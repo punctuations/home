@@ -1,0 +1,24 @@
+{
+  "name": "juststop",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.1.0",
+    "framer-motion": "^3.1.1",
+    "moment-timezone": "^0.5.32",
+    "next": "10.0.4",
+    "next-seo": "^4.17.0",
+    "postcss": "^8.2.1",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-skeleton-loader": "^1.0.4",
+    "swr": "^0.3.11",
+    "tailwindcss": "^2.0.2",
+    "use-last-fm": "^0.2.11"
+  }
+}
