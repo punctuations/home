@@ -127,7 +127,7 @@ export default function Projects() {
 							opacity: 1,
 							transition: {
 								duration: 0.4,
-								delay: 0.2,
+								delay: 0.25,
 								ease: [0.48, 0.15, 0.25, 0.96],
 							},
 						}}
@@ -143,7 +143,7 @@ export default function Projects() {
 								opacity: 1,
 								transition: {
 									duration: 0.4,
-									delay: 0.25,
+									delay: 0.3,
 									ease: [0.48, 0.15, 0.25, 0.96],
 								},
 							}}
