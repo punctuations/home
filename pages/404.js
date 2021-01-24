@@ -1,6 +1,5 @@
 import Head from "next/head";
 import { theme, Toggle } from "../components/toggle";
-import Proj from "../components/proj";
 import Nav from "../components/nav.jsx";
 import { NextSeo } from "next-seo";
 import { motion } from "framer-motion";
