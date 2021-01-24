@@ -71,7 +71,7 @@ export default function Home(props) {
 				}}
 			/>
 
-			<div className="cursor-pointer absolute left-12 top-1/2 text-black dark:text-white">
+			<div className="cursor-pointer absolute 2xl:left-12 xl:left-12 lg:left-12 md:left-12 sm:left-0 left-0 top-1/2 text-black dark:text-white">
 				<Toggle />
 			</div>
 
@@ -282,7 +282,7 @@ export default function Home(props) {
 					</motion.div>
 				</section>
 			</section>
-			<div className="absolute right-12 top-3/12">
+			<div className="absolute 2xl:right-12 xl:right-12 lg:right-12 md:right-12 sm:right-2 right-2 top-3/12">
 				{Socials.map((socials, i) => {
 					return (
 						<motion.div
