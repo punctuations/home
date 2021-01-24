@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useState } from "react";
-import Song from "../components/song";
-import Nav from "../components/nav";
+import Song from "../components/song.jsx";
+import Nav from "../components/nav.jsx";
 import Socials from "../components/socials";
 import { theme, Toggle } from "../components/toggle";
 import { NextSeo } from "next-seo";
@@ -75,7 +75,7 @@ export default function Home(props) {
 				<Toggle />
 			</div>
 
-			<section className="flex flex-col ml-96 mt-32 select-none cursor-default">
+			<section className="absolute flex flex-col top-2/12 select-none cursor-default">
 				{theme() ? (
 					<motion.header
 						initial={{
@@ -91,7 +91,7 @@ export default function Home(props) {
 								ease: [0.48, 0.15, 0.25, 0.96],
 							},
 						}}
-						className="text-5xl font-semibold tracking-wide text-black header-dark"
+						className="relative left-full text-5xl font-semibold tracking-wide text-black header-dark"
 					>
 						matt
 					</motion.header>
@@ -110,13 +110,13 @@ export default function Home(props) {
 								ease: [0.48, 0.15, 0.25, 0.96],
 							},
 						}}
-						className="text-5xl font-bold text-white header"
+						className="relative left-full text-5xl font-bold text-white header"
 					>
 						matt
 					</motion.header>
 				)}
 
-				<section className="flex flex-col">
+				<section className="relative left-full flex flex-col">
 					<motion.p
 						initial={{
 							y: 20,
@@ -280,29 +280,29 @@ export default function Home(props) {
 					>
 						<Song />
 					</motion.div>
-					<div className="absolute right-12">
-						{Socials.map((socials, i) => {
-							return (
-								<motion.div
-									key={i}
-									initial={{ y: 20, opacity: 0 }}
-									animate={{
-										y: 0,
-										opacity: 1,
-										transition: {
-											duration: 0.4,
-											delay: 0.35 + (i / 100 + 0.05) * 5,
-											ease: [0.48, 0.15, 0.25, 0.96],
-										},
-									}}
-								>
-									{socials}
-								</motion.div>
-							);
-						})}
-					</div>
 				</section>
 			</section>
+			<div className="absolute right-12 top-3/12">
+				{Socials.map((socials, i) => {
+					return (
+						<motion.div
+							key={i}
+							initial={{ y: 20, opacity: 0 }}
+							animate={{
+								y: 0,
+								opacity: 1,
+								transition: {
+									duration: 0.4,
+									delay: 0.35 + (i / 100 + 0.05) * 5,
+									ease: [0.48, 0.15, 0.25, 0.96],
+								},
+							}}
+						>
+							{socials}
+						</motion.div>
+					);
+				})}
+			</div>
 			<Nav />
 		</>
 	);

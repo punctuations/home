@@ -13,13 +13,13 @@ export default function Projects() {
 				<meta name="theme-color" content="#2f3136" />
 			</Head>
 			<NextSeo
-				title="projects"
+				title="404"
 				titleTemplate="%s | matt.mdx"
 				description="Student and Full-Stack JavaScript Engineer."
 				openGraph={{
 					type: "website",
 					url: "https://dont-ping.me/",
-					title: "projects - matt.mdx",
+					title: "404 - matt.mdx",
 					description: "Student and Full-Stack JavaScript Engineer.",
 					images: [
 						{
@@ -57,7 +57,7 @@ export default function Projects() {
 						}}
 						className="relative left-1/2 text-5xl font-semibold tracking-wide text-black header-dark"
 					>
-						projects
+						matt
 					</motion.header>
 				) : (
 					<motion.header
@@ -76,7 +76,7 @@ export default function Projects() {
 						}}
 						className="relative left-1/2 text-5xl font-bold text-white header"
 					>
-						projects
+						matt
 					</motion.header>
 				)}
 
@@ -95,38 +95,64 @@ export default function Projects() {
 								ease: [0.48, 0.15, 0.25, 0.96],
 							},
 						}}
-						className="mt-2 text-xl font-medium text-gray-400 dark:text-gray-400"
+						className="text-lg font-medium text-gray-400 dark:text-gray-400"
 					>
-						A list of all my current my projects.
+						16-year-old full-stack javascript engineer.
 					</motion.p>
 
-					{Proj.map((content, i) => {
-						return (
-							<motion.div
-								className="w-full m-3 shadow-sm flex flex-row rounded-lg border border-gray-200 dark:border-gray-700 w-1/2 text-black dark:text-white"
-								key={i}
-								whileHover={{
-									scale: 1.03,
-									transition: {
-										duration: 0.5,
-										ease: "anticipate",
-									},
-								}}
-								initial={{ y: 20, opacity: 0 }}
-								animate={{
-									y: 0,
-									opacity: 1,
-									transition: {
-										duration: 0.4,
-										delay: 0.15 + (i / 100 + 0.05) * 5,
-										ease: [0.48, 0.15, 0.25, 0.96],
-									},
-								}}
-							>
-								{content}
-							</motion.div>
-						);
-					})}
+					<motion.p
+						initial={{
+							y: 20,
+							opacity: 0,
+						}}
+						animate={{
+							y: 0,
+							opacity: 1,
+							transition: {
+								duration: 0.4,
+								delay: 0.15,
+								ease: [0.48, 0.15, 0.25, 0.96],
+							},
+						}}
+						className="text-md font-medium text-gray-300 dark:text-gray-500"
+					>
+						Javascript + Node.js + Next.js
+					</motion.p>
+
+					<motion.p
+						className="m-4 font-semibold text-5xl text-black dark:text-white"
+						initial={{ y: 20, opacity: 0 }}
+						animate={{
+							y: 0,
+							opacity: 1,
+							transition: {
+								duration: 0.4,
+								delay: 0.2,
+								ease: [0.48, 0.15, 0.25, 0.96],
+							},
+						}}
+					>
+						404: Page not found.
+						<motion.p
+							initial={{
+								y: 20,
+								opacity: 0,
+							}}
+							animate={{
+								y: 0,
+								opacity: 1,
+								transition: {
+									duration: 0.4,
+									delay: 0.25,
+									ease: [0.48, 0.15, 0.25, 0.96],
+								},
+							}}
+							className="ml-2 text-lg font-normal text-gray-400 dark:text-gray-400"
+						>
+							Sorry! The specified location doesn't exist, please make sure you
+							have the correct URL and try again.
+						</motion.p>
+					</motion.p>
 				</section>
 			</section>
 			<Nav />

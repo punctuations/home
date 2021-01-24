@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Nav() {
 	return (
-		<div className="absolute left-4/6 top-0 mt-36">
+		<div className="absolute left-4/6 top-2/12">
 			<p className="flex flex-row">
 				<motion.span className="m-1.5">
 					<Link href="/">
