@@ -75,7 +75,7 @@ export default function Home(props) {
 				<Toggle />
 			</div>
 
-			<section className="absolute flex flex-col top-2/12 select-none cursor-default">
+			<section className="absolute 2xl:left-1/4 xl:left-1/4 lg:left-1/4 md:left-1/4 sm:left-1/4 left-2/12 flex flex-col top-2/12 select-none cursor-default">
 				{theme() ? (
 					<motion.header
 						initial={{
@@ -91,7 +91,7 @@ export default function Home(props) {
 								ease: [0.48, 0.15, 0.25, 0.96],
 							},
 						}}
-						className="relative left-full text-5xl font-semibold tracking-wide text-black header-dark"
+						className="text-5xl font-semibold tracking-wide text-black header-dark"
 					>
 						matt
 					</motion.header>
@@ -110,13 +110,13 @@ export default function Home(props) {
 								ease: [0.48, 0.15, 0.25, 0.96],
 							},
 						}}
-						className="relative left-full text-5xl font-bold text-white header"
+						className="text-5xl font-bold text-white header"
 					>
 						matt
 					</motion.header>
 				)}
 
-				<section className="relative left-full flex flex-col">
+				<section className="flex flex-col">
 					<motion.p
 						initial={{
 							y: 20,

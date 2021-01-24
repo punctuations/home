@@ -39,7 +39,8 @@ export default function Projects() {
 			<div className="cursor-pointer absolute left-12 top-1/2 text-black dark:text-white">
 				<Toggle />
 			</div>
-			<section className="absolute flex flex-col top-2/12 select-none cursor-default">
+
+			<section className="absolute 2xl:left-1/4 xl:left-1/4 lg:left-1/4 md:left-1/4 sm:left-1/4 left-2/12 flex flex-col top-2/12 select-none cursor-default z-auto">
 				{theme() ? (
 					<motion.header
 						initial={{
@@ -55,7 +56,7 @@ export default function Projects() {
 								ease: [0.48, 0.15, 0.25, 0.96],
 							},
 						}}
-						className="relative left-1/2 text-5xl font-semibold tracking-wide text-black header-dark"
+						className="text-5xl font-semibold tracking-wide text-black header-dark"
 					>
 						projects
 					</motion.header>
@@ -74,13 +75,13 @@ export default function Projects() {
 								ease: [0.48, 0.15, 0.25, 0.96],
 							},
 						}}
-						className="relative left-1/2 text-5xl font-bold text-white header"
+						className="text-5xl font-bold text-white header"
 					>
 						projects
 					</motion.header>
 				)}
 
-				<section className="relative left-1/2 flex flex-col">
+				<section className="flex flex-col">
 					<motion.p
 						initial={{
 							y: 20,
@@ -100,33 +101,35 @@ export default function Projects() {
 						A list of all my current my projects.
 					</motion.p>
 
-					{Proj.map((content, i) => {
-						return (
-							<motion.div
-								className="w-full m-3 shadow-sm flex flex-row rounded-lg border border-gray-200 dark:border-gray-700 w-1/2 text-black dark:text-white"
-								key={i}
-								whileHover={{
-									scale: 1.03,
-									transition: {
-										duration: 0.5,
-										ease: "anticipate",
-									},
-								}}
-								initial={{ y: 20, opacity: 0 }}
-								animate={{
-									y: 0,
-									opacity: 1,
-									transition: {
-										duration: 0.4,
-										delay: 0.15 + (i / 100 + 0.05) * 5,
-										ease: [0.48, 0.15, 0.25, 0.96],
-									},
-								}}
-							>
-								{content}
-							</motion.div>
-						);
-					})}
+					<div className="flex 2xl:flex-col xl:flex-col lg:flex-col md:flex-wrap sm:flex-wrap flex-wrap">
+						{Proj.map((content, i) => {
+							return (
+								<motion.div
+									className="2xl:w-full xl:w-full lg:w-full md:w-auto sm:w-auto w-auto m-3 shadow-sm flex 2xl:flex-row xl:flex-row lg:flex-row md:flex-grow sm:flex-grow flex-wrap rounded-lg border border-gray-200 dark:border-gray-700 text-black dark:text-white"
+									key={i}
+									whileHover={{
+										scale: 1.03,
+										transition: {
+											duration: 0.5,
+											ease: "anticipate",
+										},
+									}}
+									initial={{ y: 20, opacity: 0 }}
+									animate={{
+										y: 0,
+										opacity: 1,
+										transition: {
+											duration: 0.4,
+											delay: 0.15 + (i / 100 + 0.05) * 5,
+											ease: [0.48, 0.15, 0.25, 0.96],
+										},
+									}}
+								>
+									{content}
+								</motion.div>
+							);
+						})}
+					</div>
 				</section>
 			</section>
 			<Nav />

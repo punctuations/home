@@ -382,6 +382,7 @@ module.exports = {
 		},
 		height: (theme) => ({
 			auto: "auto",
+			"50px": "50px",
 			...theme("spacing"),
 			"1/2": "50%",
 			"1/3": "33.333333%",

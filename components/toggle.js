@@ -60,7 +60,7 @@ export function Toggle() {
 					stroke="currentColor"
 					width={20}
 					height={20}
-					className="select-none"
+					className="select-none z-50"
 					initial={{ y: 20, opacity: 0 }}
 					animate={{
 						y: 0,
@@ -88,7 +88,7 @@ export function Toggle() {
 					stroke="currentColor"
 					width={20}
 					height={20}
-					className="select-none"
+					className="select-none z-20"
 					initial={{ y: 20, opacity: 0 }}
 					animate={{
 						y: 0,
