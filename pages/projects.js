@@ -96,7 +96,7 @@ export default function Projects() {
 								ease: [0.48, 0.15, 0.25, 0.96],
 							},
 						}}
-						className="mt-2 text-xl font-medium text-gray-400 dark:text-gray-400"
+						className="mt-2 2xl:text-xl xl:text-xl lg:text-xl md:text-xl sm:text-lg text-lg font-medium text-gray-400 dark:text-gray-400"
 					>
 						A list of all my current my projects.
 					</motion.p>
