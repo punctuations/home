@@ -56,7 +56,7 @@ export default function Projects() {
 								ease: [0.48, 0.15, 0.25, 0.96],
 							},
 						}}
-						className="text-5xl font-semibold tracking-wide text-black header-dark"
+						className="2xl:text-5xl xl:text-5xl lg:text-5xl md:text-5xl sm:text-4xl text-4xl font-semibold tracking-wide text-black header-dark"
 					>
 						projects
 					</motion.header>
@@ -75,7 +75,7 @@ export default function Projects() {
 								ease: [0.48, 0.15, 0.25, 0.96],
 							},
 						}}
-						className="text-5xl font-bold text-white header"
+						className="2xl:text-5xl xl:text-5xl lg:text-5xl md:text-5xl sm:text-4xl text-4xl font-bold text-white header"
 					>
 						projects
 					</motion.header>
