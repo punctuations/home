@@ -36,7 +36,7 @@ export default function Projects() {
 				}}
 			/>
 
-			<div className="cursor-pointer absolute left-12 top-1/2 text-black dark:text-white">
+			<div className="cursor-pointer absolute 2xl:left-12 xl:left-12 lg:left-12 md:left-12 sm:left-0 left-0 top-1/2 text-black dark:text-white">
 				<Toggle />
 			</div>
 
