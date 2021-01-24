@@ -36,10 +36,11 @@ export default function Projects() {
 				}}
 			/>
 
-			<div className="cursor-pointer absolute left-12 top-1/2 text-black dark:text-white">
+			<div className="cursor-pointer absolute 2xl:left-12 xl:left-12 lg:left-12 md:left-12 sm:left-0 left-0 top-1/2 text-black dark:text-white">
 				<Toggle />
 			</div>
-			<section className="absolute flex flex-col top-2/12 select-none cursor-default">
+
+			<section className="absolute 2xl:left-1/4 xl:left-1/4 lg:left-1/4 md:left-1/4 sm:left-1/4 left-2/12 flex flex-col top-2/12 select-none cursor-default">
 				{theme() ? (
 					<motion.header
 						initial={{
@@ -55,7 +56,7 @@ export default function Projects() {
 								ease: [0.48, 0.15, 0.25, 0.96],
 							},
 						}}
-						className="relative left-1/2 text-5xl font-semibold tracking-wide text-black header-dark"
+						className="text-5xl font-semibold tracking-wide text-black header-dark"
 					>
 						matt
 					</motion.header>
@@ -74,13 +75,13 @@ export default function Projects() {
 								ease: [0.48, 0.15, 0.25, 0.96],
 							},
 						}}
-						className="relative left-1/2 text-5xl font-bold text-white header"
+						className="text-5xl font-bold text-white header"
 					>
 						matt
 					</motion.header>
 				)}
 
-				<section className="relative left-1/2 flex flex-col">
+				<section className="flex flex-col">
 					<motion.p
 						initial={{
 							y: 20,
@@ -127,27 +128,24 @@ export default function Projects() {
 							opacity: 1,
 							transition: {
 								duration: 0.4,
-								delay: 0.25,
+								delay: 0.3,
 								ease: [0.48, 0.15, 0.25, 0.96],
 							},
 						}}
 					>
-						404: Page not found.
+						404: Page Not Found.
 						<motion.p
-							initial={{
-								y: 20,
-								opacity: 0,
-							}}
+							className="ml-2 text-lg font-normal text-gray-400 dark:text-gray-400"
+							initial={{ y: 20, opacity: 0 }}
 							animate={{
 								y: 0,
 								opacity: 1,
 								transition: {
 									duration: 0.4,
-									delay: 0.3,
+									delay: 0.35,
 									ease: [0.48, 0.15, 0.25, 0.96],
 								},
 							}}
-							className="ml-2 text-lg font-normal text-gray-400 dark:text-gray-400"
 						>
 							Sorry! The specified location doesn't exist, please make sure you
 							have the correct URL and try again.
