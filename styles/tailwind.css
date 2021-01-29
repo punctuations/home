@@ -1,3 +1,19 @@
 @tailwind base;
+
 @tailwind components;
+
 @tailwind utilities;
+
+@layer utilities {
+	@variants dark {
+		.header {
+			-webkit-text-stroke-width: 0.1rem;
+			-webkit-text-stroke-color: black;
+		}
+
+		.header-dark {
+			-webkit-text-stroke-width: 0.1rem;
+			-webkit-text-stroke-color: white;
+		}
+	}
+}

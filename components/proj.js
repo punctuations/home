@@ -82,7 +82,9 @@ export default [
 		</svg>
 		<section className="ml-6 flex flex-col">
 			<header className="font-semibold">dont-ping.me</header>
-			<p className="text-gray-400">The website your on, made using Next.js!</p>
+			<p className="text-gray-400">
+				The website you're on, made using Next.js!
+			</p>
 		</section>
 	</a>,
 	<a

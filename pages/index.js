@@ -76,45 +76,24 @@ export default function Home(props) {
 			</div>
 
 			<section className="absolute 2xl:left-1/4 xl:left-1/4 lg:left-1/4 md:left-1/4 sm:left-1/4 left-2/12 flex flex-col top-2/12 select-none cursor-default">
-				{theme() ? (
-					<motion.header
-						initial={{
-							y: 20,
-							opacity: 0,
-						}}
-						animate={{
-							y: 0,
-							opacity: 1,
-							transition: {
-								duration: 0.4,
-								delay: 0.1,
-								ease: [0.48, 0.15, 0.25, 0.96],
-							},
-						}}
-						className="text-5xl font-semibold tracking-wide text-black header-dark"
-					>
-						matt
-					</motion.header>
-				) : (
-					<motion.header
-						initial={{
-							y: 20,
-							opacity: 0,
-						}}
-						animate={{
-							y: 0,
-							opacity: 1,
-							transition: {
-								duration: 0.4,
-								delay: 0.1,
-								ease: [0.48, 0.15, 0.25, 0.96],
-							},
-						}}
-						className="text-5xl font-bold text-white header"
-					>
-						matt
-					</motion.header>
-				)}
+				<motion.header
+					initial={{
+						y: 20,
+						opacity: 0,
+					}}
+					animate={{
+						y: 0,
+						opacity: 1,
+						transition: {
+							duration: 0.4,
+							delay: 0.1,
+							ease: [0.48, 0.15, 0.25, 0.96],
+						},
+					}}
+					className="text-5xl font-bold dark:font-semibold tracking-wide dark:tracking-normal text-white dark:text-black header dark:header-dark"
+				>
+					matt
+				</motion.header>
 
 				<section className="flex flex-col">
 					<motion.p
