@@ -90,7 +90,7 @@ export default function Projects() {
 										scale: 1.03,
 										transition: {
 											duration: 0.5,
-											ease: "anticipate",
+											ease: [0.4, 0, 0.2, 1],
 										},
 									}}
 									initial={{ y: 20, opacity: 0 }}
