@@ -3,7 +3,7 @@ import { Toggle } from "../components/toggle";
 import Proj from "../components/proj";
 import Nav from "../components/nav.jsx";
 import { NextSeo } from "next-seo";
-import { motion } from "framer-motion";
+import { AnimateSharedLayout, motion } from "framer-motion";
 
 export default function Projects() {
 	return (
@@ -80,35 +80,40 @@ export default function Projects() {
 						A list of all my current my projects.
 					</motion.p>
 
-					<div className="flex 2xl:flex-col xl:flex-col lg:flex-col md:flex-wrap sm:flex-wrap flex-wrap">
-						{Proj.map((content, i) => {
-							return (
-								<motion.div
-									className="2xl:w-full xl:w-full lg:w-full md:w-auto sm:w-auto w-auto m-3 shadow-sm flex 2xl:flex-row xl:flex-row lg:flex-row md:flex-grow sm:flex-grow flex-wrap rounded-lg border border-gray-200 dark:border-gray-700 text-black dark:text-white"
-									key={i}
-									whileHover={{
-										scale: 1.03,
-										transition: {
+					<AnimateSharedLayout>
+						<motion.div
+							layout
+							className="flex 2xl:flex-col xl:flex-col lg:flex-col md:flex-wrap sm:flex-wrap flex-wrap"
+						>
+							{Proj.map((content, i) => {
+								return (
+									<motion.div
+										className="2xl:w-full xl:w-full lg:w-full md:w-auto sm:w-auto w-auto m-3 shadow-sm flex 2xl:flex-row xl:flex-row lg:flex-row md:flex-grow sm:flex-grow flex-wrap rounded-lg border border-gray-200 dark:border-gray-700 text-black dark:text-white"
+										key={i}
+										transition={{
 											duration: 0.5,
 											ease: [0.4, 0, 0.2, 1],
-										},
-									}}
-									initial={{ y: 20, opacity: 0 }}
-									animate={{
-										y: 0,
-										opacity: 1,
-										transition: {
-											duration: 0.4,
-											delay: 0.15 + (i / 100 + 0.05) * 5,
-											ease: [0.48, 0.15, 0.25, 0.96],
-										},
-									}}
-								>
-									{content}
-								</motion.div>
-							);
-						})}
-					</div>
+										}}
+										whileHover={{
+											scale: 1.03,
+										}}
+										initial={{ y: 20, opacity: 0 }}
+										animate={{
+											y: 0,
+											opacity: 1,
+											transition: {
+												duration: 0.4,
+												delay: 0.15 + (i / 100 + 0.05) * 5,
+												ease: [0.48, 0.15, 0.25, 0.96],
+											},
+										}}
+									>
+										{content}
+									</motion.div>
+								);
+							})}
+						</motion.div>
+					</AnimateSharedLayout>
 				</section>
 			</section>
 			<Nav />
