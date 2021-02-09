@@ -1,5 +1,7 @@
 import Head from "next/head";
+import dynamic from "next/dynamic";
 import { useState } from "react";
+import { Tooltip } from "@material-ui/core";
 import Song from "../components/song.jsx";
 import Nav from "../components/nav.jsx";
 import Socials from "../components/socials";
@@ -8,6 +10,8 @@ import { NextSeo } from "next-seo";
 import { motion } from "framer-motion";
 import useSWR from "swr";
 import moment from "moment-timezone";
+
+const Flag = dynamic(() => import("react-flagpack"), { ssr: false });
 
 export async function getStaticProps() {
 	const fetcher = (url) =>
@@ -234,14 +238,40 @@ export default function Home(props) {
 						)}
 						<p className="text-xl m-1 mt-0.5">
 							{weather ? weather.current.condition.text : "loading..."} in{" "}
-							<a
-								href="https://vancouver.ca"
-								rel="noopener noreferrer"
-								target="_blank"
-								className="font-medium"
+							{theme() ? (
+								<style jsx>
+									{`
+										.MuiTooltip-tooltip {
+											background-color: rgba(33, 34, 34, 0.8) !important;
+										}
+									`}
+								</style>
+							) : (
+								<style jsx>
+									{`
+										.MuiTooltip-tooltip {
+											background-color: rgba(216, 224, 224, 0.8) !important;
+										}
+									`}
+								</style>
+							)}
+							<Tooltip
+								enterDelay={0}
+								leaveDelay={0}
+								title={
+									<Flag size="S" code="CA" hasBorderRadius hasBorder={false} />
+								}
+								placement="right"
 							>
-								Vancouver, British Columbia
-							</a>
+								<a
+									href="https://vancouver.ca"
+									rel="noopener noreferrer"
+									target="_blank"
+									className="font-medium"
+								>
+									Vancouver, British Columbia{" "}
+								</a>
+							</Tooltip>
 						</p>
 					</motion.div>
 					<motion.div
