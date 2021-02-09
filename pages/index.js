@@ -239,7 +239,7 @@ export default function Home(props) {
 						<p className="text-xl m-1 mt-0.5">
 							{weather ? weather.current.condition.text : "loading..."} in{" "}
 							{theme() ? (
-								<style jsx>
+								<style jsx="true">
 									{`
 										.MuiTooltip-tooltip {
 											background-color: rgba(33, 34, 34, 0.8) !important;
@@ -247,7 +247,7 @@ export default function Home(props) {
 									`}
 								</style>
 							) : (
-								<style jsx>
+								<style jsx="true">
 									{`
 										.MuiTooltip-tooltip {
 											background-color: rgba(216, 224, 224, 0.8) !important;
@@ -259,7 +259,13 @@ export default function Home(props) {
 								enterDelay={0}
 								leaveDelay={0}
 								title={
-									<Flag size="S" code="CA" hasBorderRadius hasBorder={false} />
+									<Flag
+										className="select-none"
+										size="S"
+										code="CA"
+										hasBorderRadius
+										hasBorder={false}
+									/>
 								}
 								placement="right"
 							>

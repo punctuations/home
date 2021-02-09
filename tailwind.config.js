@@ -812,6 +812,7 @@ module.exports = {
 	],
 	variants: {
 		extend: {
+			textColor: ["active"],
 			opacity: ["dark"],
 		},
 		accessibility: ["responsive", "focus-within", "focus"],
