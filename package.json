@@ -21,7 +21,7 @@
     "react-skeleton-loader": "^1.0.4",
     "swr": "^0.3.11",
     "tailwindcss": "^2.0.2",
-    "use-last-fm": "^0.2.11"
+    "use-lanyard": "^0.0.4"
   },
   "devDependencies": {
     "react-flagpack": "^0.1.1"

@@ -7,13 +7,17 @@
 @layer utilities {
 	@variants dark {
 		.header {
-			-webkit-text-stroke-width: 0.1rem;
-			-webkit-text-stroke-color: black;
+			background-image: url(https://www.igeeksblog.com/wp-content/uploads/2020/06/macos-big-sur-vector-wave-light-wallpaper-scaled.jpg);
+			background-clip: text;
+			-webkit-background-clip: text;
+			color: transparent;
 		}
 
 		.header-dark {
-			-webkit-text-stroke-width: 0.1rem;
-			-webkit-text-stroke-color: white;
+			background-image: url(https://www.igeeksblog.com/wp-content/uploads/2020/06/macos-big-sur-vector-wave-dark-wallpaper-scaled.jpg);
+			background-clip: text;
+			-webkit-background-clip: text;
+			color: transparent;
 		}
 	}
 }

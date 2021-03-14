@@ -32,6 +32,10 @@ a {
 	background-color: transparent;
 }
 
+.MuiTooltip-tooltip {
+	background-color: transparent !important;
+}
+
 summary {
 	font-family: "JetBrains Mono", monospace;
 }

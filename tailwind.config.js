@@ -814,6 +814,7 @@ module.exports = {
 		extend: {
 			textColor: ["active"],
 			opacity: ["dark"],
+			borderWidth: ["dark"],
 		},
 		accessibility: ["responsive", "focus-within", "focus"],
 		alignContent: ["responsive"],
