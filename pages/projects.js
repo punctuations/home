@@ -1,7 +1,7 @@
 import Head from "next/head";
-import { Toggle } from "../components/toggle";
-import Proj from "../components/proj";
-import Nav from "../components/nav.jsx";
+import { Toggle } from "../lib/core/toggle";
+import Proj from "../lib/core/proj";
+import Nav from "../lib/components/nav.jsx";
 import { NextSeo } from "next-seo";
 import { AnimateSharedLayout, motion } from "framer-motion";
 

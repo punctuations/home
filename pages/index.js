@@ -2,10 +2,10 @@ import Head from "next/head";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { Tooltip } from "@material-ui/core";
-import Song from "../components/song.jsx";
-import Nav from "../components/nav.jsx";
-import Socials from "../components/socials";
-import { theme, Toggle } from "../components/toggle";
+import Lanyard from "../lib/components/lanyard.jsx.js";
+import Nav from "../lib/components/nav.jsx.js";
+import Socials from "../lib/core/socials";
+import { theme, Toggle } from "../lib/core/toggle";
 import { NextSeo } from "next-seo";
 import { motion } from "framer-motion";
 import useSWR from "swr";
@@ -404,7 +404,7 @@ export default function Home(props) {
 					},
 				}}
 			>
-				<Song />
+				<Lanyard />
 			</motion.div>
 			<Nav />
 		</>

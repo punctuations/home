@@ -1,6 +1,6 @@
 import Head from "next/head";
-import { theme, Toggle } from "../components/toggle";
-import Nav from "../components/nav.jsx";
+import { theme, Toggle } from "../lib/core/toggle";
+import Nav from "../lib/components/nav.jsx";
 import { NextSeo } from "next-seo";
 import { motion } from "framer-motion";
 
