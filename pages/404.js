@@ -41,7 +41,7 @@ export default function Projects() {
 			</div>
 
 			<section className="absolute w-full h-full 2xl:top-1/12 xl:top-1/12 lg:top-1/12 md:top-1/12 sm:top-1/12 top-1/12 flex flex-col space-y-0 justify-center select-none cursor-default">
-				<header className="ml-32">
+				<header className="2xl:ml-32 xl:ml-32 lg:ml-32 md:ml-32 sm:ml-32 ml-16">
 					<motion.h1
 						initial={{
 							y: 20,
@@ -102,7 +102,7 @@ export default function Projects() {
 
 				<section className="flex justify-center items-center">
 					<motion.p
-						className="m-4 font-semibold text-5xl text-black dark:text-white"
+						className="m-4 font-semibold 2xl:text-5xl xl:text-5xl lg:text-5xl md:text-3xl sm:text-2xl text-xl text-black dark:text-white"
 						initial={{ y: 20, opacity: 0 }}
 						animate={{
 							y: 0,
@@ -116,7 +116,7 @@ export default function Projects() {
 					>
 						404: Page Not Found.
 						<motion.p
-							className="ml-2 text-lg font-normal text-gray-400 dark:text-gray-400"
+							className="ml-2 2xl:text-lg xl:text-lg lg:text-lg md:text-lg sm:text-base text-sm font-normal text-gray-400 dark:text-gray-400"
 							initial={{ y: 20, opacity: 0 }}
 							animate={{
 								y: 0,
