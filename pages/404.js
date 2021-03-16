@@ -56,7 +56,7 @@ export default function Projects() {
 								ease: [0.48, 0.15, 0.25, 0.96],
 							},
 						}}
-						className="2xl:text-7xl xl:text-7xl lg:text-7xl md:text-7xl sm:text-5xl text-5xl font-bold dark:font-semibold tracking-wide dark:tracking-normal text-white dark:text-black header dark:header-dark"
+						className="2xl:text-7xl xl:text-7xl lg:text-7xl md:text-7xl sm:text-5xl text-3xl font-bold dark:font-semibold tracking-wide dark:tracking-normal text-white dark:text-black header dark:header-dark"
 					>
 						matt
 					</motion.h1>
