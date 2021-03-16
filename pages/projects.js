@@ -80,7 +80,7 @@ export default function Projects() {
 				</motion.header>
 
 				<section>
-					<motion.div className="2xl:grid xl:grid lg:grid md:grid sm:grid flex flex-col items-center justify-center 2xl:grid-cols-3 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 2xl:gap-x-8 xl:gap-x-8 lg:gap-x-7 md:gap-x-6 sm:gap-x-2 gap-x-0 2xl:gap-y-3 xl:gap-y-3 lg:gap-y-3 md:gap-y-3 sm:gap-y-3 gap-y-6">
+					<motion.div className="2xl:grid xl:grid lg:grid md:grid sm:grid flex flex-col items-center justify-center space-x-3 2xl:grid-cols-3 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 2xl:gap-x-8 xl:gap-x-8 lg:gap-x-7 md:gap-x-6 sm:gap-x-2 gap-x-0 2xl:gap-y-3 xl:gap-y-3 lg:gap-y-3 md:gap-y-3 sm:gap-y-3 gap-y-3">
 						{Proj.map((content, i) => {
 							return (
 								<motion.div
