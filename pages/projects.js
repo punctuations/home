@@ -58,7 +58,7 @@ export default function Projects() {
 					}}
 					className="2xl:ml-32 xl:ml-32 lg:ml-32 md:ml-32 sm:ml-32 ml-16 2xl:text-5xl xl:text-5xl lg:text-5xl md:text-5xl sm:text-3xl text-3xl font-bold dark:font-semibold tracking-normal dark:tracking-wide text-white dark:text-black header dark:header-dark"
 				>
-					<h1>projects</h1>
+					projects
 					<motion.p
 						initial={{
 							y: 20,
