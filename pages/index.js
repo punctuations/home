@@ -298,7 +298,7 @@ export default function Home(props) {
 									<>
 										<figure className="relative flex flex-col justify-center items-center">
 											<img
-												src={gh.avatar_url}
+												src="https://github.com/punctuations.png"
 												className="rounded-full max-w-28 max-h-28 hover:scale-105 transform-gpu transition-transform duration-300"
 											/>
 											<figcaption className="p-1 px-4 bg-purple-500 text-white font-medium rounded-lg absolute -bottom-3 hover:scale-105 transform-gpu transition-transform duration-300">

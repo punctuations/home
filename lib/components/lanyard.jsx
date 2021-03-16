@@ -49,8 +49,8 @@ export default function lanyard() {
 									</figure>
 								</a>
 								<div className="flex flex-col text-xs text-black dark:text-white">
-									<p className="font-bold">{lanyard.spotify.song}</p>
-									<p className="text-gray-400 dark:text-gray-600">
+									<p className="font-bold w-3/4">{lanyard.spotify.song}</p>
+									<p className="text-gray-400 dark:text-gray-600 w-3/4">
 										by {lanyard.spotify.artist}
 									</p>
 								</div>
