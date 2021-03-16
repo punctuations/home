@@ -32,7 +32,7 @@ export default function lanyard() {
 											src={lanyard.spotify.album_art_url}
 											width={50}
 											height={50}
-											className="rounded-lg"
+											className="rounded-lg border-2 border-white dark:border-black"
 										/>
 
 										<figcaption>
