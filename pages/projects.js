@@ -41,7 +41,7 @@ export default function Projects() {
 				<Toggle />
 			</div>
 
-			<section className="absolute w-full h-full 2xl:top-1/12 xl:top-1/12 lg:top-1/12 md:top-1/12 sm:top-1/12 top-4/12 flex flex-col justify-evenly select-none cursor-default">
+			<section className="absolute w-full h-full 2xl:top-1/12 xl:top-1/12 lg:top-1/12 md:top-1/12 sm:top-1/12 top-6/12 flex flex-col justify-evenly select-none cursor-default">
 				<motion.header
 					initial={{
 						y: 20,
