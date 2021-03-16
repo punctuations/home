@@ -40,7 +40,7 @@ export default function Projects() {
 				<Toggle />
 			</div>
 
-			<section className="absolute w-full h-full 2xl:top-1/12 xl:top-1/12 lg:top-1/12 md:top-1/12 sm:top-1/12 top-1/12 flex flex-col space-y-0 justify-center select-none cursor-default">
+			<section className="absolute w-full h-full 2xl:top-1/12 xl:top-1/12 lg:top-1/12 md:top-1/12 sm:top-1/12 top-auto flex flex-col space-y-0 justify-center select-none cursor-default">
 				<header className="2xl:ml-32 xl:ml-32 lg:ml-32 md:ml-32 sm:ml-32 ml-8">
 					<motion.h1
 						initial={{
