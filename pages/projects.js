@@ -78,7 +78,7 @@ export default function Projects() {
 						}}
 						className="mt-2 2xl:text-xl xl:text-xl lg:text-xl md:text-xl sm:text-lg text-lg font-medium text-gray-400 dark:text-gray-400"
 					>
-						A list of all my current my projects.
+						A list of all my current projects.
 					</motion.p>
 				</header>
 
