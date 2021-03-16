@@ -56,9 +56,11 @@ export default function Projects() {
 							ease: [0.48, 0.15, 0.25, 0.96],
 						},
 					}}
-					className="2xl:ml-32 xl:ml-32 lg:ml-32 md:ml-32 sm:ml-32 ml-16 2xl:text-5xl xl:text-5xl lg:text-5xl md:text-5xl sm:text-3xl text-3xl font-bold dark:font-semibold tracking-normal dark:tracking-wide text-white dark:text-black header dark:header-dark"
+					className="2xl:ml-32 xl:ml-32 lg:ml-32 md:ml-32 sm:ml-32 ml-16"
 				>
-					projects
+					<h1 className="2xl:text-5xl xl:text-5xl lg:text-5xl md:text-5xl sm:text-3xl text-3xl font-bold dark:font-semibold tracking-normal dark:tracking-wide text-white dark:text-black header dark:header-dark">
+						projects
+					</h1>
 					<motion.p
 						initial={{
 							y: 20,
