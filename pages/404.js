@@ -25,7 +25,7 @@ export default function Projects() {
 						{
 							url: "https://github.com/punctuations.png",
 							width: "400px",
-							height: "200px",
+							height: "300px",
 						},
 					],
 				}}
