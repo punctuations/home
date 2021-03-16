@@ -41,7 +41,7 @@ export default function Projects() {
 			</div>
 
 			<section className="absolute w-full h-full 2xl:top-1/12 xl:top-1/12 lg:top-1/12 md:top-1/12 sm:top-1/12 top-1/12 flex flex-col space-y-0 justify-center select-none cursor-default">
-				<header className="2xl:ml-32 xl:ml-32 lg:ml-32 md:ml-32 sm:ml-32 ml-16">
+				<header className="2xl:ml-32 xl:ml-32 lg:ml-32 md:ml-32 sm:ml-32 ml-8">
 					<motion.h1
 						initial={{
 							y: 20,
@@ -56,7 +56,7 @@ export default function Projects() {
 								ease: [0.48, 0.15, 0.25, 0.96],
 							},
 						}}
-						className="text-7xl font-bold dark:font-semibold tracking-wide dark:tracking-normal text-white dark:text-black header dark:header-dark"
+						className="2xl:text-7xl xl:text-7xl lg:text-7xl md:text-7xl sm:text-5xl text-5xl font-bold dark:font-semibold tracking-wide dark:tracking-normal text-white dark:text-black header dark:header-dark"
 					>
 						matt
 					</motion.h1>
