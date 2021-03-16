@@ -4,6 +4,7 @@ import Proj from "../lib/core/proj";
 import Nav from "../lib/components/nav.jsx";
 import { NextSeo } from "next-seo";
 import { AnimateSharedLayout, motion } from "framer-motion";
+import Lanyard from "../lib/components/lanyard";
 
 export default function Projects() {
 	return (
@@ -40,7 +41,7 @@ export default function Projects() {
 				<Toggle />
 			</div>
 
-			<section className="absolute w-full h-full 2xl:top-1/12 xl:top-1/12 lg:top-1/12 md:top-1/12 sm:top-1/12 top-2/12 flex flex-col justify-evenly select-none cursor-default">
+			<section className="absolute w-full h-full 2xl:top-1/12 xl:top-1/12 lg:top-1/12 md:top-1/12 sm:top-1/12 top-4/12 flex flex-col justify-evenly select-none cursor-default">
 				<motion.header
 					initial={{
 						y: 20,
@@ -112,6 +113,21 @@ export default function Projects() {
 					</motion.div>
 				</section>
 			</section>
+			<motion.div
+				className="fixed bottom-7 left-5 inline-flex mt-4"
+				initial={{ y: 20, opacity: 0 }}
+				animate={{
+					y: 0,
+					opacity: 1,
+					transition: {
+						duration: 0.4,
+						delay: 0.35,
+						ease: [0.48, 0.15, 0.25, 0.96],
+					},
+				}}
+			>
+				<Lanyard />
+			</motion.div>
 			<Nav />
 		</>
 	);

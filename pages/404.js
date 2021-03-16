@@ -1,8 +1,9 @@
 import Head from "next/head";
-import { theme, Toggle } from "../lib/core/toggle";
+import { Toggle } from "../lib/core/toggle";
 import Nav from "../lib/components/nav.jsx";
 import { NextSeo } from "next-seo";
 import { motion } from "framer-motion";
+import Lanyard from "../lib/components/lanyard";
 
 export default function Projects() {
 	return (
@@ -35,13 +36,13 @@ export default function Projects() {
 				}}
 			/>
 
-			<div className="cursor-pointer absolute 2xl:left-12 xl:left-12 lg:left-12 md:left-12 sm:left-0 left-0 top-1/2 text-black dark:text-white">
+			<div className="z-10 cursor-pointer absolute left-6 top-6 text-black dark:text-white">
 				<Toggle />
 			</div>
 
-			<section className="absolute 2xl:left-1/4 xl:left-1/4 lg:left-1/4 md:left-1/4 sm:left-1/4 left-2/12 flex flex-col top-2/12 select-none cursor-default">
-				{theme() ? (
-					<motion.header
+			<section className="absolute w-full h-full 2xl:top-1/12 xl:top-1/12 lg:top-1/12 md:top-1/12 sm:top-1/12 top-1/12 flex flex-col space-y-0 justify-center select-none cursor-default">
+				<header className="ml-32">
+					<motion.h1
 						initial={{
 							y: 20,
 							opacity: 0,
@@ -55,32 +56,11 @@ export default function Projects() {
 								ease: [0.48, 0.15, 0.25, 0.96],
 							},
 						}}
-						className="text-5xl font-semibold tracking-wide text-black header-dark"
+						className="text-7xl font-bold dark:font-semibold tracking-wide dark:tracking-normal text-white dark:text-black header dark:header-dark"
 					>
 						matt
-					</motion.header>
-				) : (
-					<motion.header
-						initial={{
-							y: 20,
-							opacity: 0,
-						}}
-						animate={{
-							y: 0,
-							opacity: 1,
-							transition: {
-								duration: 0.4,
-								delay: 0.1,
-								ease: [0.48, 0.15, 0.25, 0.96],
-							},
-						}}
-						className="text-5xl font-bold text-white header"
-					>
-						matt
-					</motion.header>
-				)}
+					</motion.h1>
 
-				<section className="flex flex-col">
 					<motion.p
 						initial={{
 							y: 20,
@@ -118,7 +98,9 @@ export default function Projects() {
 					>
 						Javascript + Node.js + Next.js
 					</motion.p>
+				</header>
 
+				<section className="flex justify-center items-center">
 					<motion.p
 						className="m-4 font-semibold text-5xl text-black dark:text-white"
 						initial={{ y: 20, opacity: 0 }}
@@ -152,6 +134,21 @@ export default function Projects() {
 					</motion.p>
 				</section>
 			</section>
+			<motion.div
+				className="fixed bottom-7 left-5 inline-flex mt-4"
+				initial={{ y: 20, opacity: 0 }}
+				animate={{
+					y: 0,
+					opacity: 1,
+					transition: {
+						duration: 0.4,
+						delay: 0.35,
+						ease: [0.48, 0.15, 0.25, 0.96],
+					},
+				}}
+			>
+				<Lanyard />
+			</motion.div>
 			<Nav />
 		</>
 	);

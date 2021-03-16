@@ -88,8 +88,8 @@ export default function Home(props) {
 				<Toggle />
 			</div>
 
-			<section className="absolute w-full h-full flex flex-row items-center justify-center select-none cursor-default">
-				<div className="2xl:grid xl:grid lg:grid md:grid sm:flex flex flex-col grid-cols-2 place-content-center">
+			<section className="absolute w-full h-full 2xl:top-auto xl:top-auto lg:top-auto md:top-auto sm:top-auto top-2/12 flex flex-row items-center justify-center select-none cursor-default">
+				<div className="2xl:grid xl:grid lg:grid md:grid sm:flex flex flex-col grid-cols-2 place-content-center 2xl:space-y-0 xl:space-y-0 lg:space-y-0 md:space-y-0 sm:space-y-0 space-y-6">
 					<section>
 						<header>
 							<motion.h1
@@ -398,7 +398,7 @@ export default function Home(props) {
 				</div>
 			</section>
 			<motion.div
-				className="absolute bottom-7 left-5 inline-flex mt-4"
+				className="fixed bottom-7 left-5 inline-flex mt-4"
 				initial={{ y: 20, opacity: 0 }}
 				animate={{
 					y: 0,
