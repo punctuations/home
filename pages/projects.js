@@ -40,7 +40,7 @@ export default function Projects() {
 				<Toggle />
 			</div>
 
-			<section className="absolute w-full h-full top-2/12 flex flex-col justify-evenly select-none cursor-default">
+			<section className="absolute w-full h-full 2xl:top-1/12 xl:top-1/12 lg:top-1/12 md:top-1/12 sm:top-1/12 top-2/12 flex flex-col justify-evenly select-none cursor-default">
 				<motion.header
 					initial={{
 						y: 20,
@@ -79,7 +79,7 @@ export default function Projects() {
 				</motion.header>
 
 				<section>
-					<motion.div className="grid grid-cols-3 2xl:gap-8 xl:gap-8 lg:gap-7 md:gap-6 sm:gap-3 gap-1 gap-y-0">
+					<motion.div className="2xl:grid xl:grid lg:grid md:grid sm:grid flex flex-col items-center justify-center 2xl:grid-cols-3 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 2xl:gap-x-8 xl:gap-x-8 lg:gap-x-7 md:gap-x-6 sm:gap-x-2 gap-x-0 2xl:gap-y-3 xl:gap-y-3 lg:gap-y-3 md:gap-y-3 sm:gap-y-3 gap-y-3">
 						{Proj.map((content, i) => {
 							return (
 								<motion.div

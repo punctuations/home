@@ -22,9 +22,12 @@ export async function getStaticProps() {
 		"http://api.weatherapi.com/v1/current.json?key=e900e6ba03db4c49939213648202912&q=Vancouver"
 	);
 
+	const gh = await fetcher("https://api.github.com/users/punctuations");
+
 	return {
 		props: {
 			weather,
+			gh,
 		},
 	};
 }
@@ -38,6 +41,11 @@ export default function Home(props) {
 		"http://api.weatherapi.com/v1/current.json?key=e900e6ba03db4c49939213648202912&q=Vancouver",
 		fetcher,
 		{ initialData: props.weather, revalidateOnMount: true }
+	);
+	const { data: gh } = useSWR(
+		"https://api.github.com/users/punctuations",
+		fetcher,
+		{ initialData: props.gh }
 	);
 
 	const [time, setTime] = useState(null);
@@ -286,11 +294,11 @@ export default function Home(props) {
 							className="p-4 shadow-xl hover:shadow-2xl transition-shadow duration-500 flex flex-col space-x-4 space-y-4 rounded-lg w-11/12 border-gray-300 dark:border-gray-900 border"
 						>
 							<div className="flex 2xl:flex-row xl:flex-row lg:flex-row md:flex-col sm:flex-col flex-col">
-								{true ? (
+								{gh ? (
 									<>
 										<figure className="relative flex flex-col justify-center items-center">
 											<img
-												src="https://github.com/punctuations.png"
+												src={gh.avatar_url}
 												className="rounded-full max-w-28 max-h-28 hover:scale-105 transform-gpu transition-transform duration-300"
 											/>
 											<figcaption className="p-1 px-4 bg-purple-500 text-white font-medium rounded-lg absolute -bottom-3 hover:scale-105 transform-gpu transition-transform duration-300">
@@ -329,7 +337,7 @@ export default function Home(props) {
 										</figure>
 										<div className="flex flex-col space-y-5 2xl:w-112 xl:w-112 lg:w-112 md:w-full sm:w-full w-full">
 											<header className="flex flex-row items-center justify-between ml-4">
-												<h3 className="text-4xl font-medium text-gray-900 dark:text-gray-200">
+												<h3>
 													<Skeleton
 														widthRandomness="0"
 														height="20px"
@@ -345,7 +353,7 @@ export default function Home(props) {
 													</p>
 												</a>
 											</header>
-											<p className="text-gray-400 dark:text-gray-500 text-sm p-1.5 ml-3 font-medium">
+											<p className="p-1.5 ml-3">
 												<Skeleton
 													widthRandomness={0.06}
 													height="15px"
