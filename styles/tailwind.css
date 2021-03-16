@@ -8,6 +8,7 @@
 	@variants dark {
 		.header {
 			background-image: url(https://www.igeeksblog.com/wp-content/uploads/2020/06/macos-big-sur-vector-wave-light-wallpaper-scaled.jpg);
+			background-size: 100% 100%;
 			background-clip: text;
 			-webkit-background-clip: text;
 			color: transparent;
@@ -15,6 +16,7 @@
 
 		.header-dark {
 			background-image: url(https://www.igeeksblog.com/wp-content/uploads/2020/06/macos-big-sur-vector-wave-dark-wallpaper-scaled.jpg);
+			background-size: 100% 100%;
 			background-clip: text;
 			-webkit-background-clip: text;
 			color: transparent;

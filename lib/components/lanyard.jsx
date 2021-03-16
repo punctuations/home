@@ -76,7 +76,7 @@ export default function lanyard() {
 														className="rounded-lg pointer-events-none"
 													/>
 
-													{activity.assets.application_id ? (
+													{activity.assets.small_image ? (
 														<figcaption>
 															<img
 																src={`https://cdn.discordapp.com/app-assets/${BigInt(

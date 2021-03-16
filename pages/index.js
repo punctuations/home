@@ -1,6 +1,6 @@
 import Head from "next/head";
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Tooltip } from "@material-ui/core";
 import Lanyard from "../lib/components/lanyard.jsx";
 import Nav from "../lib/components/nav.jsx";
@@ -98,7 +98,7 @@ export default function Home(props) {
 										ease: [0.48, 0.15, 0.25, 0.96],
 									},
 								}}
-								className="text-7xl font-bold dark:font-semibold tracking-wide dark:tracking-normal text-white dark:text-black header dark:header-dark bg-contain"
+								className="text-7xl font-bold dark:font-semibold tracking-wide dark:tracking-normal text-white dark:text-black header dark:header-dark"
 							>
 								matt
 							</motion.h1>
@@ -244,8 +244,6 @@ export default function Home(props) {
 								<p className="text-xl m-1 mt-0.5">
 									{weather ? weather.current.condition.text : "loading..."} in{" "}
 									<Tooltip
-										enterDelay={0}
-										leaveDelay={0}
 										title={
 											<Flag
 												className="select-none"
@@ -255,7 +253,7 @@ export default function Home(props) {
 												hasBorder={false}
 											/>
 										}
-										placement="top"
+										placement="right"
 									>
 										<a
 											href="https://vancouver.ca"

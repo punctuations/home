@@ -36,11 +36,11 @@ export default function Projects() {
 				}}
 			/>
 
-			<div className="cursor-pointer absolute 2xl:left-12 xl:left-12 lg:left-12 md:left-12 sm:left-0 left-0 top-1/2 text-black dark:text-white">
+			<div className="z-10 cursor-pointer absolute left-6 top-6 text-black dark:text-white">
 				<Toggle />
 			</div>
 
-			<section className="absolute 2xl:left-1/4 xl:left-1/4 lg:left-1/4 md:left-1/4 sm:left-1/4 left-2/12 flex flex-col top-2/12 select-none cursor-default z-auto">
+			<section className="absolute w-full h-full top-2/12 flex flex-col justify-evenly select-none cursor-default">
 				<motion.header
 					initial={{
 						y: 20,
@@ -55,12 +55,9 @@ export default function Projects() {
 							ease: [0.48, 0.15, 0.25, 0.96],
 						},
 					}}
-					className="2xl:text-5xl xl:text-5xl lg:text-5xl md:text-5xl sm:text-3xl text-3xl font-bold dark:font-semibold tracking-normal dark:tracking-wide text-white dark:text-black header dark:header-dark bg-contain"
+					className="ml-32 2xl:text-5xl xl:text-5xl lg:text-5xl md:text-5xl sm:text-3xl text-3xl font-bold dark:font-semibold tracking-normal dark:tracking-wide text-white dark:text-black header dark:header-dark"
 				>
-					projects
-				</motion.header>
-
-				<section className="flex flex-col">
+					<h1>projects</h1>
 					<motion.p
 						initial={{
 							y: 20,
@@ -79,41 +76,40 @@ export default function Projects() {
 					>
 						A list of all my current my projects.
 					</motion.p>
+				</motion.header>
 
-					<AnimateSharedLayout>
-						<motion.div
-							layout
-							className="flex 2xl:flex-col xl:flex-col lg:flex-col md:flex-wrap sm:flex-wrap flex-wrap"
-						>
-							{Proj.map((content, i) => {
-								return (
-									<motion.div
-										className="2xl:w-full xl:w-full lg:w-full md:w-auto sm:w-auto w-auto m-3 shadow-sm flex 2xl:flex-row xl:flex-row lg:flex-row md:flex-grow sm:flex-grow flex-wrap rounded-lg border border-gray-200 dark:border-gray-700 text-black dark:text-white"
-										key={i}
-										transition={{
-											duration: 0.5,
-											ease: [0.4, 0, 0.2, 1],
-										}}
-										whileHover={{
-											scale: 1.03,
-										}}
-										initial={{ y: 20, opacity: 0 }}
-										animate={{
-											y: 0,
-											opacity: 1,
-											transition: {
-												duration: 0.4,
-												delay: 0.15 + (i / 100 + 0.05) * 5,
-												ease: [0.48, 0.15, 0.25, 0.96],
-											},
-										}}
-									>
+				<section>
+					<motion.div className="grid grid-cols-3 2xl:gap-8 xl:gap-8 lg:gap-7 md:gap-6 sm:gap-3 gap-1 gap-y-0">
+						{Proj.map((content, i) => {
+							return (
+								<motion.div
+									key={i}
+									transition={{
+										duration: 0.5,
+										ease: [0.4, 0, 0.2, 1],
+									}}
+									whileHover={{
+										scale: 1.03,
+									}}
+									initial={{ y: 20, opacity: 0 }}
+									animate={{
+										y: 0,
+										opacity: 1,
+										transition: {
+											duration: 0.4,
+											delay: 0.15 + (i / 100 + 0.05) * 5,
+											ease: [0.48, 0.15, 0.25, 0.96],
+										},
+									}}
+									className="shadow-xl hover:shadow-2xl transition-shadow duration-500 flex flex-col space-x-4 space-y-4 rounded-lg w-11/12 2xl:ml-4 xl:ml-4 lg:ml-3 md:ml-2 sm:ml-1 ml-0 border-gray-300 dark:border-gray-900 border"
+								>
+									<div className="flex 2xl:flex-row xl:flex-row lg:flex-row md:flex-col sm:flex-col flex-col">
 										{content}
-									</motion.div>
-								);
-							})}
-						</motion.div>
-					</AnimateSharedLayout>
+									</div>
+								</motion.div>
+							);
+						})}
+					</motion.div>
 				</section>
 			</section>
 			<Nav />
