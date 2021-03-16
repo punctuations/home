@@ -42,25 +42,26 @@ export default function Projects() {
 			</div>
 
 			<section className="absolute w-full h-full 2xl:top-1/12 xl:top-1/12 lg:top-1/12 md:top-1/12 sm:top-1/12 top-6/12 flex flex-col justify-evenly select-none cursor-default">
-				<motion.header
-					initial={{
-						y: 20,
-						opacity: 0,
-					}}
-					animate={{
-						y: 0,
-						opacity: 1,
-						transition: {
-							duration: 0.4,
-							delay: 0.1,
-							ease: [0.48, 0.15, 0.25, 0.96],
-						},
-					}}
-					className="2xl:ml-32 xl:ml-32 lg:ml-32 md:ml-32 sm:ml-32 ml-16"
-				>
-					<h1 className="2xl:text-5xl xl:text-5xl lg:text-5xl md:text-5xl sm:text-3xl text-3xl font-bold dark:font-semibold tracking-normal dark:tracking-wide text-white dark:text-black header dark:header-dark">
+				<header className="2xl:ml-32 xl:ml-32 lg:ml-32 md:ml-32 sm:ml-32 ml-16">
+					<motion.h1
+						initial={{
+							y: 20,
+							opacity: 0,
+						}}
+						animate={{
+							y: 0,
+							opacity: 1,
+							transition: {
+								duration: 0.4,
+								delay: 0.1,
+								ease: [0.48, 0.15, 0.25, 0.96],
+							},
+						}}
+						className="2xl:text-5xl xl:text-5xl lg:text-5xl md:text-5xl sm:text-3xl text-3xl font-bold dark:font-semibold tracking-normal dark:tracking-wide text-white dark:text-black header dark:header-dark"
+					>
 						projects
-					</h1>
+					</motion.h1>
+
 					<motion.p
 						initial={{
 							y: 20,
@@ -79,7 +80,7 @@ export default function Projects() {
 					>
 						A list of all my current my projects.
 					</motion.p>
-				</motion.header>
+				</header>
 
 				<section>
 					<motion.div className="2xl:grid xl:grid lg:grid md:grid sm:grid flex flex-col items-center justify-center space-y-3 2xl:grid-cols-3 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 2xl:gap-x-8 xl:gap-x-8 lg:gap-x-7 md:gap-x-6 sm:gap-x-2 gap-x-0 2xl:gap-y-3 xl:gap-y-3 lg:gap-y-3 md:gap-y-3 sm:gap-y-3 gap-y-3">
