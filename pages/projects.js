@@ -105,7 +105,7 @@ export default function Projects() {
                       ease: [0.48, 0.15, 0.25, 0.96],
                     },
                   }}
-                  className="shadow-xl hover:shadow-2xl transition-shadow duration-500 flex flex-col justify-center items-center space-x-4 space-y-4 rounded-lg w-11/12 2xl:ml-4 xl:ml-4 lg:ml-3 md:ml-2 sm:ml-1 ml-0 border-gray-300 dark:border-gray-900 border"
+                  className="shadow-xl hover:shadow-2xl transition-shadow duration-500 flex flex-col justify-center items-center space-x-4 space-y-4 rounded-lg w-11/12 2xl:ml-4 xl:ml-4 lg:ml-3 md:ml-2 sm:ml-1 ml-0 border-gray-300 dark:border-gray-900 border bg-white dark:bg-black"
                 >
                   <div className="flex 2xl:flex-row xl:flex-row lg:flex-row md:flex-col sm:flex-col flex-col">
                     {content}
