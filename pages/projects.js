@@ -83,7 +83,7 @@ export default function Projects() {
         </header>
 
         <section>
-          <motion.div className="2xl:grid xl:grid lg:grid md:grid sm:grid flex flex-col items-center justify-center space-y-6 2xl:grid-cols-3 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 2xl:gap-x-8 xl:gap-x-8 lg:gap-x-7 md:gap-x-6 sm:gap-x-2 gap-x-0 2xl:gap-y-3 xl:gap-y-3 lg:gap-y-3 md:gap-y-3 sm:gap-y-3 gap-y-3">
+          <motion.div className="2xl:grid xl:grid lg:grid md:grid sm:grid flex flex-col items-center justify-center 2xl:space-y-0 xl:space-y-0 lg:space-y-0 md:space-y-0 sm:space-y-0 space-y-6 2xl:grid-cols-3 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 2xl:gap-x-8 xl:gap-x-8 lg:gap-x-7 md:gap-x-6 sm:gap-x-2 gap-x-0 2xl:gap-y-3 xl:gap-y-3 lg:gap-y-3 md:gap-y-3 sm:gap-y-3 gap-y-3">
             {Proj.map((content, i) => {
               return (
                 <motion.div
@@ -105,7 +105,7 @@ export default function Projects() {
                       ease: [0.48, 0.15, 0.25, 0.96],
                     },
                   }}
-                  className="shadow-xl hover:shadow-2xl transition-shadow duration-500 flex flex-col justify-center items-center space-x-4 space-y-4 rounded-lg w-11/12 2xl:ml-4 xl:ml-4 lg:ml-3 md:ml-2 sm:ml-1 ml-0 border-gray-300 dark:border-gray-900 border bg-white dark:bg-black"
+                  className="w-96 h-32 shadow-xl hover:shadow-2xl transition-shadow duration-500 flex flex-col justify-center items-center space-x-4 space-y-4 rounded-lg w-11/12 2xl:ml-4 xl:ml-4 lg:ml-3 md:ml-2 sm:ml-1 ml-0 border-gray-300 dark:border-gray-900 border bg-white dark:bg-black"
                 >
                   <div className="flex 2xl:flex-row xl:flex-row lg:flex-row md:flex-col sm:flex-col flex-col">
                     {content}
@@ -117,7 +117,7 @@ export default function Projects() {
         </section>
       </section>
       <motion.div
-        className="fixed bottom-7 left-5 inline-flex mt-4"
+        className="fixed bottom-7 left-5 inline-flex"
         initial={{ y: 20, opacity: 0 }}
         animate={{
           y: 0,
