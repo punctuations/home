@@ -10,7 +10,7 @@ export default function Projects() {
   return (
     <>
       <Head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="https://github.com/punctuations.png" />
         <meta name="theme-color" content="#2f3136" />
       </Head>
       <NextSeo
