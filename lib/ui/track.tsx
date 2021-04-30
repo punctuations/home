@@ -53,7 +53,7 @@ const Track = () => {
               </div>
             </>
           ) : (
-            <div className="px-4 py-4 rounded-lg shadow-lg flex flex-row space-x-4 items-center justify-center">
+            <div className="dark:border border-0 border-gray-900 px-4 py-4 rounded-lg shadow-lg flex flex-row space-x-4 items-center justify-center">
               <img
                 className="rounded-md h-20 w-16"
                 src={
@@ -62,7 +62,7 @@ const Track = () => {
                 alt="random placeholder image"
               />
               <div className="flex flex-col">
-                <h3 className="text-lg font-semibold">
+                <h3 className="dark:text-white text-lg font-semibold">
                   Sorry but nothing is playing on spotify right now!
                 </h3>
                 <p className="text-gray-400">
