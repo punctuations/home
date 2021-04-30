@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { useLanyard } from "use-lanyard";
 
 import { Wrapper } from "../lib/assets/wrapper";
 
@@ -9,6 +10,9 @@ import Track from "../lib/ui/track";
 import { NextSeo } from "next-seo";
 
 export default function Spotify() {
+  const snowflake = "291050399509774340";
+  const { data: lanyard } = useLanyard(snowflake);
+
   const router = useRouter();
 
   return (
@@ -17,29 +21,56 @@ export default function Spotify() {
         <link rel="icon" href="https://github.com/punctuations.png" />
         <meta name="theme-color" content="#2f3136" />
       </Head>
-      <NextSeo
-        title="spotify"
-        titleTemplate="%s | matt.mdx"
-        description="Student and Typescript Developer."
-        openGraph={{
-          type: "website",
-          url: "https://dont-ping.me/",
-          title: "spotify - matt.mdx",
-          description: "Student and Typescript Developer.",
-          images: [
-            {
-              url: "https://github.com/punctuations.png",
-              width: 400,
-              height: 200,
-            },
-          ],
-        }}
-        twitter={{
-          handle: "@atmattt",
-          site: "@atmattt",
-          cardType: "summary_large_image",
-        }}
-      />
+      {lanyard?.listening_to_spotify ? (
+        <NextSeo
+          title={`${lanyard?.spotify?.song} - ${lanyard?.spotify?.artist}`}
+          titleTemplate="%s | matt.mdx"
+          description={`${lanyard?.spotify?.song} by ${lanyard?.spotify?.artist} from ${lanyard?.spotify?.album}`}
+          openGraph={{
+            type: "website",
+            url: "https://dont-ping.me/",
+            title: `${lanyard?.spotify?.song} | matt.mdx`,
+            description: `${lanyard?.spotify?.song} by ${lanyard?.spotify?.artist} from ${lanyard?.spotify?.album}`,
+            images: [
+              {
+                url: `${lanyard?.spotify?.album_art_url}`,
+                width: 400,
+                height: 200,
+              },
+            ],
+          }}
+          twitter={{
+            handle: "@atmattt",
+            site: "@atmattt",
+            cardType: "summary_large_image",
+          }}
+        />
+      ) : (
+        <NextSeo
+          title="spotify"
+          titleTemplate="%s | matt.mdx"
+          description="Not listening to anything right now — Student and Typescript Developer."
+          openGraph={{
+            type: "website",
+            url: "https://dont-ping.me/",
+            title: "spotify - matt.mdx",
+            description:
+              "Not listening to anything right now — Student and Typescript Developer.",
+            images: [
+              {
+                url: "https://github.com/punctuations.png",
+                width: 400,
+                height: 200,
+              },
+            ],
+          }}
+          twitter={{
+            handle: "@atmattt",
+            site: "@atmattt",
+            cardType: "summary_large_image",
+          }}
+        />
+      )}
 
       <Background />
 
