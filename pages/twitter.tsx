@@ -3,7 +3,7 @@ import { Main } from "../lib/assets/main";
 import Head from "next/head";
 import { NextSeo } from "next-seo";
 
-export default function () {
+export default function Twitter() {
   useEffect(() => {
     window.location.href = "https://twitter.com/atmattt";
   }, []);
