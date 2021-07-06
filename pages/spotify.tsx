@@ -45,7 +45,7 @@ export default function Spotify(props: {
           property="og:image"
           content={`${
             props.lanyard.data?.listening_to_spotify
-              ? props.presence.data
+              ? `https://presence.vercel.app/api/spotify/track/${props.lanyard.data?.spotify?.track_id}`
               : "https://github.com/punctuations.png"
           }`}
         />
