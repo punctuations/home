@@ -42,7 +42,7 @@ export default function Spotify(props: { lanyard: LanyardResponse }) {
           images: [
             {
               url: `${
-                props.lanyard.data && props.lanyard.data.listening_to_spotify
+                props?.lanyard?.data && props.lanyard.data.listening_to_spotify
                   ? `https://presence.vercel.app/api/spotify/track/${props.lanyard.data.spotify?.sync_id}`
                   : "https://github.com/punctuations.png"
               }`,
