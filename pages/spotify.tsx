@@ -7,8 +7,21 @@ import Background from "../lib/ui/background";
 import Song from "../lib/ui/song";
 import Track from "../lib/ui/track";
 import { NextSeo } from "next-seo";
+import { LanyardResponse } from "../lib/types/LanyardResponse";
 
-export default function Spotify() {
+export async function getServerSideProps() {
+  const res = await fetch(
+    "https://api.lanyard.rest/v1/users/291050399509774340"
+  );
+
+  const lanyard: LanyardResponse = await res.json();
+
+  return {
+    props: lanyard,
+  };
+}
+
+export default function Spotify(props: LanyardResponse) {
   const router = useRouter();
 
   return (
@@ -28,7 +41,11 @@ export default function Spotify() {
           description: "Student and Typescript Developer.",
           images: [
             {
-              url: "https://github.com/punctuations.png",
+              url: `${
+                props.data?.listening_to_spotify
+                  ? `https://presence.vercel.app/api/spotify/${props.data?.spotify?.track_id}?type=png`
+                  : "https://github.com/punctuations.png"
+              }`,
               width: 400,
               height: 200,
             },
