@@ -15,7 +15,7 @@ export interface Data {
 }
 export interface Spotify {
   timestamps: Timestamps;
-  sync_id?: string;
+  track_id: string;
   song: string;
   artist: string;
   album_art_url: string;

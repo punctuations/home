@@ -14,14 +14,14 @@ export async function getServerSideProps() {
     "https://api.lanyard.rest/v1/users/291050399509774340"
   );
 
-  const lanyard = await res.json();
+  const body = await res.json();
 
   return {
-    props: lanyard,
+    props: body,
   };
 }
 
-export default function Spotify(props: { lanyard: LanyardResponse }) {
+export default function Spotify(props: LanyardResponse) {
   const router = useRouter();
 
   return (
@@ -42,8 +42,8 @@ export default function Spotify(props: { lanyard: LanyardResponse }) {
           images: [
             {
               url: `${
-                props?.lanyard?.data && props.lanyard.data.listening_to_spotify
-                  ? `https://presence.vercel.app/api/spotify/track/${props.lanyard.data.spotify?.sync_id}`
+                props.data?.listening_to_spotify
+                  ? `https://presence.vercel.app/api/spotify/track/${props.data?.spotify?.track_id}`
                   : "https://github.com/punctuations.png"
               }`,
               width: 400,
