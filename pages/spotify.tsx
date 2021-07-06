@@ -6,7 +6,6 @@ import { Wrapper } from "../lib/assets/wrapper";
 import Background from "../lib/ui/background";
 import Song from "../lib/ui/song";
 import Track from "../lib/ui/track";
-import { NextSeo } from "next-seo";
 import { LanyardResponse } from "../lib/types/LanyardResponse";
 
 export async function getServerSideProps() {
@@ -38,34 +37,21 @@ export default function Spotify(props: {
       <Head>
         <link rel="icon" href="https://github.com/punctuations.png" />
         <meta name="theme-color" content="#2f3136" />
+        <meta name="viewport" content="width=device-width" />
+        <meta charSet="utf-8" />
+        <title>spotify - matt.mdx</title>
+        <meta name="description" content="Student and Typescript Developer." />
+        <meta
+          property="og:image"
+          content={`${
+            props.lanyard.data?.listening_to_spotify
+              ? props.presence.data
+              : "https://github.com/punctuations.png"
+          }`}
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:creator" content="@atmattt" />
       </Head>
-      <NextSeo
-        title="spotify"
-        titleTemplate="%s | matt.mdx"
-        description="Student and Typescript Developer."
-        openGraph={{
-          type: "website",
-          url: "https://dont-ping.me/",
-          title: "spotify - matt.mdx",
-          description: "Student and Typescript Developer.",
-          images: [
-            {
-              url: `${
-                props.lanyard.data?.listening_to_spotify
-                  ? props.presence.data
-                  : "https://github.com/punctuations.png"
-              }`,
-              width: 400,
-              height: 200,
-            },
-          ],
-        }}
-        twitter={{
-          handle: "@atmattt",
-          site: "@atmattt",
-          cardType: "summary_large_image",
-        }}
-      />
 
       <Background />
 
