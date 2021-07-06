@@ -6,30 +6,9 @@ import { Wrapper } from "../lib/assets/wrapper";
 import Background from "../lib/ui/background";
 import Song from "../lib/ui/song";
 import Track from "../lib/ui/track";
-import { LanyardResponse } from "../lib/types/LanyardResponse";
+import { NextSeo } from "next-seo";
 
-export async function getServerSideProps() {
-  const res = await fetch(
-    "https://api.lanyard.rest/v1/users/291050399509774340"
-  );
-
-  const lanyard: LanyardResponse = await res.json();
-
-  const response = await fetch(
-    `https://presence.vercel.app/api/spotify/track/${lanyard.data?.spotify?.track_id}?type=base64`
-  );
-
-  const presence = await response.json();
-
-  return {
-    props: { presence, lanyard },
-  };
-}
-
-export default function Spotify(props: {
-  presence: { data: string };
-  lanyard: LanyardResponse;
-}) {
+export default function Spotify() {
   const router = useRouter();
 
   return (
@@ -37,21 +16,30 @@ export default function Spotify(props: {
       <Head>
         <link rel="icon" href="https://github.com/punctuations.png" />
         <meta name="theme-color" content="#2f3136" />
-        <meta name="viewport" content="width=device-width" />
-        <meta charSet="utf-8" />
-        <title>spotify - matt.mdx</title>
-        <meta name="description" content="Student and Typescript Developer." />
-        <meta
-          property="og:image"
-          content={`${
-            props.lanyard.data?.listening_to_spotify
-              ? `https://presence.vercel.app/api/spotify/track/${props.lanyard.data?.spotify?.track_id}`
-              : "https://github.com/punctuations.png"
-          }`}
-        />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:creator" content="@atmattt" />
       </Head>
+      <NextSeo
+        title="spotify"
+        titleTemplate="%s | matt.mdx"
+        description="Student and Typescript Developer."
+        openGraph={{
+          type: "website",
+          url: "https://dont-ping.me/",
+          title: "spotify - matt.mdx",
+          description: "Student and Typescript Developer.",
+          images: [
+            {
+              url: "https://github.com/punctuations.png",
+              width: 400,
+              height: 200,
+            },
+          ],
+        }}
+        twitter={{
+          handle: "@atmattt",
+          site: "@atmattt",
+          cardType: "summary_large_image",
+        }}
+      />
 
       <Background />
 
