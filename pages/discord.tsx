@@ -24,7 +24,7 @@ export default function Discord() {
           description: "Student and Typescript Developer.",
           images: [
             {
-              url: "https://github.com/punctuations.png",
+              url: "https://presence.vercel.app/api/discord/user/291050399509774340?bg=2f3136&text=fff&desc=f8f8ff&accent=fff&type=png",
               width: 400,
               height: 200,
             },

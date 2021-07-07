@@ -24,7 +24,7 @@ export default function Twitter() {
           description: "Student and Typescript Developer.",
           images: [
             {
-              url: "https://github.com/punctuations.png",
+              url: "https://presence.vercel.app/api/twitter/user/atmattt?bg=2f3136&text=fff&type=png",
               width: 400,
               height: 200,
             },
