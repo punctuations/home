@@ -25,8 +25,8 @@ export default function Twitter() {
           images: [
             {
               url: "https://presence.vercel.app/api/twitter/card/atmattt?bg=2f3136&text=fff&type=png",
-              width: 955,
-              height: 470,
+              width: 400,
+              height: 200,
             },
           ],
         }}
