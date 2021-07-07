@@ -24,9 +24,9 @@ export default function Twitter() {
           description: "Student and Typescript Developer.",
           images: [
             {
-              url: "https://presence.vercel.app/api/twitter/user/atmattt?bg=2f3136&text=fff&type=png",
+              url: "https://presence.vercel.app/api/twitter/card/atmattt?bg=2f3136&text=fff&type=png",
               width: 955,
-              height: 295,
+              height: 470,
             },
           ],
         }}
