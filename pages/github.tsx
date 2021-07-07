@@ -25,8 +25,8 @@ export default function GitHub() {
           images: [
             {
               url: "https://presence.vercel.app/api/github/user/punctuations?bg=2f3136&text=fff&type=png",
-              width: 400,
-              height: 200,
+              width: 955,
+              height: 295,
             },
           ],
         }}
