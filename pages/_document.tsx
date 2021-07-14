@@ -36,7 +36,7 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head />
-        <body className="dots dark:dots-dark 2xl:overflow-hidden xl:overflow-hidden lg:overflow-hidden overflow-auto bg-white dark:bg-black bg dark:bg-dark transition-colors duration-300 ease-in-out">
+        <body className="light-select dark:dark-select dots dark:dots-dark 2xl:overflow-hidden xl:overflow-hidden lg:overflow-hidden overflow-auto bg-white dark:bg-black bg dark:bg-dark transition-colors duration-300 ease-in-out">
           <Main />
           <NextScript />
         </body>

@@ -18,5 +18,13 @@
             background-attachment: fixed;
             background-size: 50px 50px;
         }
+        .dark-select ::selection {
+            background-color: #f81ce5;
+            color: #fff;
+        }
+        .light-select ::selection {
+            background-color: #79ffe1;
+            color: #000;
+        }
     }
 }
