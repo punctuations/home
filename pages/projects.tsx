@@ -50,26 +50,58 @@ export default function Projects() {
       <Grid>
         <Nav />
 
-        {Project.map((project, i) => {
-          return (
-            <motion.div
-              className="2xl:mr-24 xl:mr-24 lg:mr-24 mr-4"
-              key={i}
-              initial={{ y: 20, opacity: 0 }}
-              animate={{
-                y: 0,
-                opacity: 1,
-                transition: {
-                  duration: 0.4,
-                  delay: 0.2 + (i / 100 + 0.05) * 5,
-                  ease: [0.48, 0.15, 0.25, 0.96],
-                },
-              }}
-            >
-              {project}
-            </motion.div>
-          );
-        })}
+        <section className="absolute 2xl:grid xl:grid flex flex-col 2xl:space-y-0 xl:space-y-0 space-y-5 grid-cols-3 grid-rows-3 gap-x-10 gap-y-8 h-5/6 2xl:w-5/6 xl:w-5/6 w-2/3 ">
+          {Project.map((project, i) => {
+            return (
+              <motion.div
+                className="flex flex-col justify-center space-y-2 w-full p-4 px-12 shadow-lg bg-white dark:bg-black dark:text-white dark:border border-gray-800 rounded-md"
+                key={i}
+                initial={{ y: 20, opacity: 0 }}
+                animate={{
+                  y: 0,
+                  opacity: 1,
+                  transition: {
+                    duration: 0.4,
+                    delay: 0.2 + (i / 100 + 0.05) * 5,
+                    ease: [0.48, 0.15, 0.25, 0.96],
+                  },
+                }}
+              >
+                <header className="flex flex-row space-x-3">
+                  <h2 className="text-4xl">{project.icon}</h2>
+                  <h3 className="text-2xl">{project.name}</h3>
+                </header>
+                <p className="pl-2 text-gray-400">{project.description}</p>
+                <div className="flex flex-row space-x-4">
+                  {project.links.map((social, s) => {
+                    return (
+                      <motion.div
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{
+                          y: 0,
+                          opacity: 1,
+                          transition: {
+                            duration: 0.4,
+                            delay: 0.25 + (s / 100 + 0.05) * 5 + (i % 3) / 4,
+                            ease: [0.48, 0.15, 0.25, 0.96],
+                          },
+                        }}
+                      >
+                        <a
+                          href={social.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {social.svg}
+                        </a>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </motion.div>
+            );
+          })}
+        </section>
       </Grid>
 
       <Presence>
