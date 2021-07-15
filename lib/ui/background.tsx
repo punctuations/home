@@ -9,7 +9,7 @@ const Background = () => {
     <>
       {lanyard && lanyard?.listening_to_spotify ? (
         <motion.img
-          className="absolute w-full h-full flex items-center select-none filter blur-sm brightness-50"
+          className="absolute w-full h-full flex items-center select-none filter blur-sm brightness-50 object-cover"
           src={lanyard?.spotify?.album_art_url}
           initial={{ y: 20, opacity: 0 }}
           animate={{
