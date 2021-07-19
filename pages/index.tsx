@@ -33,8 +33,8 @@ export default function Home() {
           images: [
             {
               url: "/full.png",
-              width: 400,
-              height: 200,
+              width: 1224,
+              height: 719,
             },
           ],
         }}

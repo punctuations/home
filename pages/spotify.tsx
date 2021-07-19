@@ -46,8 +46,8 @@ export default function Spotify(props: LanyardResponse) {
                   ? `https://presence.vercel.app/api/spotify/track/${props.data?.spotify?.track_id}?type=png`
                   : "/full.png"
               }`,
-              width: 400,
-              height: 200,
+              width: props.data?.listening_to_spotify ? 400 : 1224,
+              height: props.data?.listening_to_spotify ? 200 : 719,
             },
           ],
         }}

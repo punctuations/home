@@ -25,8 +25,8 @@ export default function GitHub() {
           images: [
             {
               url: "https://presence.im/api/github/card/punctuations?bg=2f3136&text=fff&type=png",
-              width: 955,
-              height: 470,
+              width: 400,
+              height: 200,
             },
           ],
         }}
