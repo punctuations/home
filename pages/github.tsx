@@ -24,7 +24,7 @@ export default function GitHub() {
           description: "Student and Typescript Developer.",
           images: [
             {
-              url: "https://presence.vercel.app/api/github/card/punctuations?bg=2f3136&text=fff&type=png",
+              url: "https://presence.im/api/github/card/punctuations?bg=2f3136&text=fff&type=png",
               width: 955,
               height: 470,
             },

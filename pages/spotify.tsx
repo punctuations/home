@@ -44,7 +44,7 @@ export default function Spotify(props: LanyardResponse) {
               url: `${
                 props.data?.listening_to_spotify
                   ? `https://presence.vercel.app/api/spotify/track/${props.data?.spotify?.track_id}?type=png`
-                  : "https://github.com/punctuations.png"
+                  : "/full.png"
               }`,
               width: 400,
               height: 200,

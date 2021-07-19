@@ -19,7 +19,7 @@ export default function Hi() {
           description: "Student and Typescript Developer.",
           images: [
             {
-              url: "https://github.com/punctuations.png",
+              url: "/full.png",
               width: 400,
               height: 200,
             },
