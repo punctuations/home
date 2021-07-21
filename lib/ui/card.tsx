@@ -24,7 +24,7 @@ const Card = () => {
           <div className="grid place-content-center py-2 pl-2">
             <img
               src={"https://github.com/punctuations.png"}
-              className="select-none rounded-md max-w-28 max-h-28"
+              className="select-none rounded-md max-w-40 max-h-40"
               alt="github pfp"
             />
           </div>
