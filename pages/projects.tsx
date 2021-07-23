@@ -54,8 +54,8 @@ export default function Projects() {
           {Project.map((project, i) => {
             return (
               <motion.div
-                className="flex flex-col justify-center space-y-2 w-full p-4 px-12 shadow-lg bg-white dark:bg-black dark:text-white dark:border border-gray-800 rounded-md"
-                key={i}
+                className="flex flex-col justify-center space-y-2 w-full p-4 px-12 shadow-lg hover:shadow-xl transition-shadow duration-500 bg-white dark:bg-black dark:text-white dark:border border-gray-800 rounded-md"
+                key={project.name}
                 initial={{ y: 20, opacity: 0 }}
                 animate={{
                   y: 0,
