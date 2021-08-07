@@ -99,7 +99,7 @@ export const Project = [
     description: "A simple and elegant solution to images for socials media!",
     links: [
       {
-        href: "https://twitter.com/atmattt/status/1411037838024474625?s=20",
+        href: "https://twitter.com/atmattt/status/1421727443262582784?s=20",
         svg: (
           <svg
             width={20}
@@ -129,6 +129,23 @@ export const Project = [
           </svg>
         ),
       },
+      {
+        href: "https://www.producthunt.com/posts/presence-8",
+        svg: (
+          <svg
+            width={20}
+            height={20}
+            fill="currentColor"
+            strokeWidth={2}
+            className="duration-500 transition-all opacity-40 dark:opacity-75 dark:hover:opacity-40 hover:opacity-75 dark:text-white"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+          >
+            <title>Product Hunt</title>
+            <path d="M326.3 218.8c0 20.5-16.7 37.2-37.2 37.2h-70.3v-74.4h70.3c20.5 0 37.2 16.7 37.2 37.2zM504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-128.1-37.2c0-47.9-38.9-86.8-86.8-86.8H169.2v248h49.6v-74.4h70.3c47.9 0 86.8-38.9 86.8-86.8z" />
+          </svg>
+        ),
+      },
     ],
   },
   {
@@ -137,7 +154,30 @@ export const Project = [
     description: "wrap-presence is an official wrapper for presence.",
     links: [
       {
-        href: "https://github.com/punctuations/wrap-xpresence",
+        href: "https://github.com/punctuations/wrap-presence",
+        svg: (
+          <svg
+            width={20}
+            height={20}
+            fill="currentColor"
+            strokeWidth={2}
+            className="duration-500 transition-all opacity-40 dark:opacity-75 dark:hover:opacity-40 hover:opacity-75 dark:text-white"
+            viewBox="0 0 24 24"
+          >
+            <title>GitHub</title>
+            <path d="M12 2C6.477 2 2 6.463 2 11.97c0 4.404 2.865 8.14 6.839 9.458.5.092.682-.216.682-.48 0-.236-.008-.864-.013-1.695-2.782.602-3.369-1.337-3.369-1.337-.454-1.151-1.11-1.458-1.11-1.458-.908-.618.069-.606.069-.606 1.003.07 1.531 1.027 1.531 1.027.892 1.524 2.341 1.084 2.91.828.092-.643.35-1.083.636-1.332-2.22-.251-4.555-1.107-4.555-4.927 0-1.088.39-1.979 1.029-2.675-.103-.252-.446-1.266.098-2.638 0 0 .84-.268 2.75 1.022A9.606 9.606 0 0112 6.82c.85.004 1.705.114 2.504.336 1.909-1.29 2.747-1.022 2.747-1.022.546 1.372.202 2.386.1 2.638.64.696 1.028 1.587 1.028 2.675 0 3.83-2.339 4.673-4.566 4.92.359.307.678.915.678 1.846 0 1.332-.012 2.407-.012 2.734 0 .267.18.577.688.48C19.137 20.107 22 16.373 22 11.969 22 6.463 17.522 2 12 2z" />
+          </svg>
+        ),
+      },
+    ],
+  },
+  {
+    icon: "☁️",
+    name: "cdn",
+    description: "Simple file host :)",
+    links: [
+      {
+        href: "https://github.com/punctuations/cdn",
         svg: (
           <svg
             width={20}
