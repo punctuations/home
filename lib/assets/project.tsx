@@ -174,7 +174,7 @@ export const Project = [
   {
     icon: "☁️",
     name: "cdn",
-    description: "Simple file host :)",
+    description: "A public file host.",
     links: [
       {
         href: "https://github.com/punctuations/cdn",
