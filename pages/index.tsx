@@ -13,8 +13,10 @@ import Card from "../lib/ui/card";
 import Lanyard from "../lib/ui/lanyard";
 import { Toggle } from "../lib/assets/toggle";
 import Fullscreen from "../lib/ui/fullscreen";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const { query } = useRouter();
   return (
     <>
       <Head>
@@ -60,7 +62,9 @@ export default function Home() {
 
       <Extras>
         <Toggle />
-        <Fullscreen />
+        <Fullscreen
+          query={Array.isArray(query.code) ? query.code[0] : query.code}
+        />
       </Extras>
     </>
   );

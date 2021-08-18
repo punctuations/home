@@ -4381,6 +4381,11 @@ use-lanyard@^0.0.5:
   dependencies:
     swr "^0.5.2"
 
+use-listen-along@^1.1.10:
+  version "1.1.10"
+  resolved "https://registry.yarnpkg.com/use-listen-along/-/use-listen-along-1.1.10.tgz#2d070f4381f223df93fcc564ec7c8e0b6eea9cbf"
+  integrity sha512-+fbsyzj8EgcgwAD0dePsl9hVx1oTq/Ns3wHOiLf5e+QYv/5s7BRokGBrRxsRFwCDkR9dWS9qDbBeBNXNkYxl9Q==
+
 use-subscription@1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/use-subscription/-/use-subscription-1.5.1.tgz#73501107f02fad84c6dd57965beb0b75c68c42d1"
