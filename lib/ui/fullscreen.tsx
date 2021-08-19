@@ -11,13 +11,12 @@ const Fullscreen = (props: { query: string | undefined }) => {
   const [disconnect, setDisconnection] = React.useState<boolean>(true);
 
   const snowflake = "291050399509774340";
-  const listenTo = "430056918493429770";
   const { data: lanyard } = useLanyard(snowflake);
 
   const router = useRouter();
 
   const { connected, error } = useListenAlong(
-    listenTo,
+    snowflake,
     auth ? auth : "",
     props.query && auth ? disconnect : true
   );
