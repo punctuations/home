@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { NextSeo } from "next-seo";
+import { useRouter } from "next/router";
 
 import { Main } from "../lib/assets/main";
 import { Presence } from "../lib/assets/presence";
@@ -13,7 +14,6 @@ import Card from "../lib/ui/card";
 import Lanyard from "../lib/ui/lanyard";
 import { Toggle } from "../lib/assets/toggle";
 import Fullscreen from "../lib/ui/fullscreen";
-import { useRouter } from "next/router";
 
 export default function Home() {
   const { query } = useRouter();

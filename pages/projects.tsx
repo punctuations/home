@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { NextSeo } from "next-seo";
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 
 import { Grid } from "../lib/assets/grid";
 import { Presence } from "../lib/assets/presence";
@@ -15,6 +16,7 @@ import { Toggle } from "../lib/assets/toggle";
 import Fullscreen from "../lib/ui/fullscreen";
 
 export default function Projects() {
+  const { query } = useRouter();
   return (
     <>
       <Head>
@@ -110,7 +112,9 @@ export default function Projects() {
 
       <Extras>
         <Toggle />
-        <Fullscreen />
+        <Fullscreen
+          query={Array.isArray(query.code) ? query.code[0] : query.code}
+        />
       </Extras>
     </>
   );
