@@ -71,7 +71,7 @@ const Fullscreen = (props: { query: string | undefined }) => {
         <div className="flex flex-row space-x-4 justify-center items-center">
           <button
             onClick={() => listen(connection)}
-            className="duration-500 transition-colors px-3 py-1 bg-white dark:bg-black rounded-md border-gray-600 hover:border-black text-gray-600 hover:text-black border"
+            className="duration-500 transition-colors px-3 py-1 bg-white dark:bg-black rounded-md border-gray-600 dark:hover:border-white hover:border-black text-gray-600 dark:hover:text-white hover:text-black border"
           >
             {connection ? "Disconnect" : "Listen Along"}
           </button>
