@@ -29,13 +29,22 @@ const Fullscreen = (props: { query: string | undefined }) => {
           "?response_type=code" +
           `&client_id=${process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID}` +
           `&scope=${encodeURIComponent("user-modify-playback-state")}` +
-          `&redirect_uri=${encodeURIComponent("http://0.0.0.0:3000")}`
+          `&redirect_uri=${encodeURIComponent(
+            process.env.NODE_ENV === "development"
+              ? "http://0.0.0.0:3000" // REPLACE WITH YOUR URL
+              : "https://dont-ping.me"
+          )}`
       );
     } else {
       const data = new URLSearchParams();
       data.append("grant_type", "authorization_code");
       data.append("code", props.query);
-      data.append("redirect_uri", "http://0.0.0.0:3000");
+      data.append(
+        "redirect_uri",
+        process.env.NODE_ENV === "development"
+          ? "http://0.0.0.0:3000" // REPLACE WITH YOUR URL
+          : "https://dont-ping.me"
+      );
 
       fetch("https://accounts.spotify.com/api/token", {
         method: "POST",
