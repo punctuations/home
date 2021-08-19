@@ -2421,10 +2421,10 @@ use-lanyard@^0.0.5:
   dependencies:
     swr "^0.5.2"
 
-use-listen-along@^1.1.10:
-  version "1.1.10"
-  resolved "https://registry.yarnpkg.com/use-listen-along/-/use-listen-along-1.1.10.tgz#2d070f4381f223df93fcc564ec7c8e0b6eea9cbf"
-  integrity sha512-+fbsyzj8EgcgwAD0dePsl9hVx1oTq/Ns3wHOiLf5e+QYv/5s7BRokGBrRxsRFwCDkR9dWS9qDbBeBNXNkYxl9Q==
+use-listen-along@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/use-listen-along/-/use-listen-along-1.2.0.tgz#7f99ede45e2255e2e52b3b16e84f9e47d5250400"
+  integrity sha512-1Yj8azBJiGM0R2rbjhOR15RM4tLH9RLxqBQhRXeV7cV+ctlevs8lbBxzabOPBaoYZONFJGq1Vvx0oKkwh/NMAQ==
 
 use-subscription@1.5.1:
   version "1.5.1"

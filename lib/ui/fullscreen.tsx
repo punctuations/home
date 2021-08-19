@@ -28,7 +28,9 @@ const Fullscreen = (props: { query: string | undefined }) => {
         "https://accounts.spotify.com/authorize" +
           "?response_type=code" +
           `&client_id=${process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID}` +
-          `&scope=${encodeURIComponent("user-modify-playback-state")}` +
+          `&scope=${encodeURIComponent(
+            "user-modify-playback-state user-read-currently-playing"
+          )}` +
           `&redirect_uri=${encodeURIComponent(
             process.env.NODE_ENV === "development"
               ? "http://0.0.0.0:3000" // REPLACE WITH YOUR URL
