@@ -3,6 +3,7 @@ export const Project = [
     icon: "🍂",
     name: "ac",
     description: "Animal Crossing music depending on the time and weather!",
+    default: "https://ac.vercel.app",
     links: [
       {
         href: "https://twitter.com/atmattt/status/1339657922037497856?s=20",
@@ -59,6 +60,7 @@ export const Project = [
     name: "sb-next-ts-tailwind",
     description:
       "A template for Storybook + Next.js + Typescript + Tailwindcss!",
+    default: "https://sb-next-ts-tailwind.vercel.app/",
     links: [
       {
         href: "https://twitter.com/atmattt/status/1400145507834425346?s=20",
@@ -97,6 +99,7 @@ export const Project = [
     icon: "🌙",
     name: "presence",
     description: "A simple and elegant solution to images for socials media!",
+    default: "https://presence.im",
     links: [
       {
         href: "https://twitter.com/atmattt/status/1421727443262582784?s=20",
@@ -152,6 +155,7 @@ export const Project = [
     icon: "🌙",
     name: "wrap-presence",
     description: "wrap-presence is an official wrapper for presence.",
+    default: "https://wrap.presence.im",
     links: [
       {
         href: "https://github.com/punctuations/wrap-presence",
@@ -191,6 +195,7 @@ export const Project = [
     icon: "☁️",
     name: "cdn",
     description: "A public file host. + an endpoint :)",
+    default: "https://cdn.dont-ping.me",
     links: [
       {
         href: "https://twitter.com/atmattt/status/1426773081155059715?s=20",
@@ -229,6 +234,7 @@ export const Project = [
     icon: "⌘",
     name: "cmd + f",
     description: "⌘ + F, find a new way to shorten urls.",
+    default: "https://cmdf.at",
     links: [
       {
         href: "https://twitter.com/atmattt/status/1426773081155059715?s=20",
@@ -267,6 +273,7 @@ export const Project = [
     icon: "👥🎵",
     name: "use-listen-along",
     description: "Typescript React Hook for listening along on spotify.",
+    default: "https://npmjs.org/use-listen-along",
     links: [
       {
         href: "https://github.com/punctuations/use-listen-along",

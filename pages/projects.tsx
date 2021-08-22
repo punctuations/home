@@ -16,7 +16,7 @@ import { Toggle } from "../lib/assets/toggle";
 import Fullscreen from "../lib/ui/fullscreen";
 
 export default function Projects() {
-  const { query } = useRouter();
+  const router = useRouter();
   return (
     <>
       <Head>
@@ -56,7 +56,7 @@ export default function Projects() {
           {Project.map((project, i) => {
             return (
               <motion.div
-                className="flex flex-col justify-center space-y-2 w-full p-4 px-12 shadow-lg hover:shadow-xl transition-shadow duration-500 bg-white dark:bg-black dark:text-white dark:border border-gray-800 rounded-md"
+                className="relative flex flex-col justify-center space-y-2 w-full p-4 px-12 shadow-lg hover:shadow-xl transition-shadow duration-500 bg-white dark:bg-black dark:text-white dark:border border-gray-800 rounded-md"
                 key={project.name}
                 initial={{ y: 20, opacity: 0 }}
                 animate={{
@@ -69,6 +69,26 @@ export default function Projects() {
                   },
                 }}
               >
+                <a
+                  href={project.default}
+                  className="duration-300 transition-colors absolute top-4 right-4 text-gray-500 hover:text-blue-500"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={20}
+                    height={20}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2.2}
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
+                  </svg>
+                </a>
                 <header className="flex flex-row space-x-3">
                   <h2 className="text-4xl">{project.icon}</h2>
                   <h3 className="text-2xl">{project.name}</h3>
@@ -113,7 +133,11 @@ export default function Projects() {
       <Extras>
         <Toggle />
         <Fullscreen
-          query={Array.isArray(query.code) ? query.code[0] : query.code}
+          query={
+            Array.isArray(router.query.code)
+              ? router.query.code[0]
+              : router.query.code
+          }
         />
       </Extras>
     </>
