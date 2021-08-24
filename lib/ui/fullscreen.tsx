@@ -71,10 +71,25 @@ const Fullscreen = (props: { query: string | undefined }) => {
         <div className="flex flex-row space-x-4 justify-center items-center -mr-1">
           <button
             onClick={() => listen(connection)}
-            className="duration-500 transition-colors px-3 py-1 bg-white dark:bg-black rounded-md border-gray-600 dark:hover:border-white hover:border-black text-gray-600 dark:hover:text-white hover:text-black border"
+            className="2xl:flex xl:flex lg:flex md:flex hidden duration-500 transition-colors px-3 py-1 bg-white dark:bg-black rounded-md border-gray-600 dark:hover:border-white hover:border-black text-gray-600 dark:hover:text-white hover:text-black border"
           >
             {connection ? "Disconnect" : "Listen Along"}
           </button>
+          <svg
+            onClick={() => listen(connection)}
+            xmlns="http://www.w3.org/2000/svg"
+            className="2xl:hidden xl:hidden md:hidden flex h-6 w-6 text-gray-400 cursor-pointer"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={1.5}
+              d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"
+            />
+          </svg>
           <svg
             onClick={() => router.push("/spotify")}
             xmlns="http://www.w3.org/2000/svg"
