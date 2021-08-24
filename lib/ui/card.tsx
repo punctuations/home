@@ -41,7 +41,7 @@ const Card = () => {
               </a>
             </header>
             <p className="text-gray-400 dark:text-gray-500 2xl:text-sm xl:text-sm lg:text-sm md:text-sm text-xs p-1.5 ml-3 font-medium">
-              I’m Matt, I’m a student and Typescript Developer from British
+              I’m Matt, a student and Typescript Developer from British
               Columbia, Canada.{" "}
             </p>
             <div className="mt-3 flex flex-row justify-around items-center">
