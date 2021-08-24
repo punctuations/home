@@ -270,7 +270,7 @@ export const Project = [
     ],
   },
   {
-    icon: "👥🎵",
+    icon: "🎵",
     name: "use-listen-along",
     description: "Typescript React Hook for listening along on spotify.",
     default: "https://npmjs.org/use-listen-along",
