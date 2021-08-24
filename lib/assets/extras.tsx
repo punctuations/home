@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 export const Extras = (props: { children: ReactNode }) => {
   return (
     <motion.section
-      className="absolute right-5 bottom-5 dark:text-white flex flex-col items-center space-y-4"
+      className="absolute right-5 bottom-5 dark:text-white flex flex-col items-end space-y-4"
       initial={{ y: 20, opacity: 0 }}
       animate={{
         y: 0,

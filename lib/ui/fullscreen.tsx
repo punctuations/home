@@ -68,7 +68,7 @@ const Fullscreen = (props: { query: string | undefined }) => {
   return (
     <>
       {lanyard?.listening_to_spotify ? (
-        <div className="flex flex-row space-x-4 justify-center items-center">
+        <div className="flex flex-row space-x-4 justify-center items-center -mr-1">
           <button
             onClick={() => listen(connection)}
             className="duration-500 transition-colors px-3 py-1 bg-white dark:bg-black rounded-md border-gray-600 dark:hover:border-white hover:border-black text-gray-600 dark:hover:text-white hover:text-black border"
