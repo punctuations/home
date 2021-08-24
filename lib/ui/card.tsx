@@ -1,4 +1,6 @@
+import Image from "next/image";
 import { motion } from "framer-motion";
+
 import { Socials } from "../assets/socials";
 
 const Card = () => {
@@ -22,7 +24,11 @@ const Card = () => {
       >
         <div className="flex 2xl:flex-row xl:flex-row lg:flex-row md:flex-col sm:flex-col flex-col">
           <div className="grid place-content-center py-2 pl-2">
-            <img
+            <Image
+              placeholder="blur"
+              blurDataURL={"https://github.com/punctuations.png"}
+              width={200}
+              height={200}
               src={"https://github.com/punctuations.png"}
               className="select-none rounded-md max-w-40 max-h-40"
               alt="github pfp"
