@@ -1,5 +1,7 @@
-import { AnimatePresence, motion } from "framer-motion";
 import dynamic from "next/dynamic";
+import Image from "next/image";
+
+import { AnimatePresence, motion } from "framer-motion";
 import { Activity, useLanyard } from "use-lanyard";
 
 const Skeleton = dynamic(() => import("react-skeleton-loader"), { ssr: false });
@@ -44,8 +46,10 @@ const Lanyard = () => {
                   target="_blank"
                 >
                   <figure className="flex flex-row items-end relative">
-                    <img
-                      src={lanyard.spotify?.album_art_url}
+                    <Image
+                      placeholder="blur"
+                      blurDataURL={lanyard.spotify?.album_art_url as string}
+                      src={lanyard.spotify?.album_art_url as string}
                       width={50}
                       height={50}
                       className="rounded-lg border-2 border-white dark:border-black"
@@ -81,7 +85,7 @@ const Lanyard = () => {
                         <figure className="flex flex-row items-end relative">
                           <img
                             src={`https://cdn.discordapp.com/app-assets/${BigInt(
-                              activity.application_id
+                              activity.application_id as number
                             ).toString()}/${activity.assets.large_image}.png`}
                             alt={
                               activity.assets.large_text
@@ -97,7 +101,7 @@ const Lanyard = () => {
                             <figcaption>
                               <img
                                 src={`https://cdn.discordapp.com/app-assets/${BigInt(
-                                  activity.application_id
+                                  activity.application_id as number
                                 ).toString()}/${
                                   activity.assets.small_image
                                 }.png`}
