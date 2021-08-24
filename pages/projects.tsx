@@ -48,15 +48,14 @@ export default function Projects() {
       />
 
       <Page />
+      <Nav />
 
       <Grid>
-        <Nav />
-
-        <section className="absolute 2xl:grid xl:grid flex flex-col 2xl:space-y-0 xl:space-y-0 space-y-5 grid-cols-3 grid-rows-3 gap-x-10 gap-y-8 h-5/6 2xl:w-5/6 xl:w-5/6 w-2/3 ">
+        <section className="2xl:absolute xl:absolute left-5 2xl:mt-0 xl:mt-0 mt-12 2xl:grid xl:grid flex flex-col 2xl:space-y-0 xl:space-y-0 space-y-2 grid-cols-3 grid-flow-row gap-x-10 gap-y-8 h-5/12 2xl:w-5/6 xl:w-5/6 w-2/3">
           {Project.map((project, i) => {
             return (
               <motion.div
-                className="relative flex flex-col justify-center space-y-2 w-full p-4 px-12 shadow-lg hover:shadow-xl transition-shadow duration-500 bg-white dark:bg-black dark:text-white dark:border border-gray-800 rounded-md"
+                className="relative flex flex-col justify-center space-y-2 w-full p-4 px-12 shadow-md hover:shadow-lg transition-shadow duration-500 bg-white dark:bg-black dark:text-white border dark:border-gray-800 border-black rounded-md"
                 key={project.name}
                 initial={{ y: 20, opacity: 0 }}
                 animate={{
@@ -71,7 +70,7 @@ export default function Projects() {
               >
                 <a
                   href={project.default}
-                  className="duration-300 transition-colors absolute top-4 right-4 text-gray-500 hover:text-blue-500"
+                  className="2xl:flex xl:flex lg:flex md:flex hidden duration-300 transition-colors absolute top-4 right-4 text-gray-500 hover:text-blue-500"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -98,6 +97,7 @@ export default function Projects() {
                   {project.links.map((social, s) => {
                     return (
                       <motion.div
+                        key={social.href}
                         initial={{ y: 20, opacity: 0 }}
                         animate={{
                           y: 0,

@@ -6,7 +6,7 @@ const Nav = () => {
 
   return (
     <motion.nav
-      className="absolute 2xl:right-6 xl:right-6 lg:right-6 md:right-6 sm:right-4 right-0 dark:text-white"
+      className="absolute z-10 top-1/2 2xl:right-6 xl:right-6 lg:right-6 md:right-6 sm:right-4 -right-6 dark:text-white"
       initial={{ y: 20, opacity: 0 }}
       animate={{
         y: 0,

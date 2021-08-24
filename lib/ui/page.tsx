@@ -26,7 +26,11 @@ const Page = () => {
         </h3>
       ) : null}
       {router.pathname === "/projects" ? (
-        <h3 className="text-2xl font-bold">PROJECTS</h3>
+        <h3 className="text-2xl font-bold">
+          PRJ
+          <br />
+          CTS{" "}
+        </h3>
       ) : null}
     </motion.header>
   );
