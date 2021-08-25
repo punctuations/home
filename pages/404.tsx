@@ -8,16 +8,13 @@ import { Extras } from "../lib/assets/extras";
 
 import Page from "../lib/ui/page";
 
-import Nav from "../lib/assets/nav";
-import Header from "../lib/ui/header";
-import Card from "../lib/ui/card";
 import Lanyard from "../lib/ui/lanyard";
 import { Toggle } from "../lib/assets/toggle";
 import Fullscreen from "../lib/ui/fullscreen";
 import { Language } from "../lib/ui/language";
 import { motion } from "framer-motion";
 
-export default function Home() {
+export default function Error() {
   const router = useRouter();
   return (
     <>
