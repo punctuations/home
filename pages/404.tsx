@@ -95,7 +95,7 @@ export default function Home() {
             },
           }}
           onClick={() => router.push("/")}
-          className="place-self-center w-1/3 px-7 py-4 rounded-md bg-white dark:bg-black text-gray-500 transition-colors duration-300 border border-gray-400 dark:border-gray-800 hover:border-black dark:hover:border-white hover:text-black dark:hover:text-white"
+          className="place-self-center 2xl:w-1/3 xl:w-1/3 lg:w-1/3 md:w-1/3 sm:w-1/3 w-2/3 px-7 py-4 rounded-md bg-white dark:bg-black text-gray-500 transition-colors duration-300 border border-gray-400 dark:border-gray-800 hover:border-black dark:hover:border-white hover:text-black dark:hover:text-white"
         >
           Return &rarr;
         </motion.button>
