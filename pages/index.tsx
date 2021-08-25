@@ -14,6 +14,7 @@ import Card from "../lib/ui/card";
 import Lanyard from "../lib/ui/lanyard";
 import { Toggle } from "../lib/assets/toggle";
 import Fullscreen from "../lib/ui/fullscreen";
+import { Language } from "../lib/ui/language";
 
 export default function Home() {
   const { query } = useRouter();
@@ -48,6 +49,7 @@ export default function Home() {
       />
 
       <Page />
+      <Language />
 
       <Main>
         <Nav />

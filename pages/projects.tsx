@@ -14,6 +14,7 @@ import { Project } from "../lib/assets/project";
 import Lanyard from "../lib/ui/lanyard";
 import { Toggle } from "../lib/assets/toggle";
 import Fullscreen from "../lib/ui/fullscreen";
+import { Language } from "../lib/ui/language";
 
 export default function Projects() {
   const router = useRouter();
@@ -48,9 +49,11 @@ export default function Projects() {
       />
 
       <Page />
-      <Nav />
+      <Language />
 
       <Grid>
+        <Nav />
+
         <section className="2xl:absolute xl:absolute left-5 2xl:mt-0 xl:mt-0 mt-12 2xl:grid xl:grid flex flex-col 2xl:space-y-0 xl:space-y-0 space-y-2 grid-cols-3 grid-flow-row gap-x-10 gap-y-8 h-5/12 2xl:w-5/6 xl:w-5/6 w-2/3">
           {Project.map((project, i) => {
             return (
