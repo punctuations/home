@@ -52,7 +52,7 @@ const Form = () => {
   return (
     <section className="flex flex-col space-y-6 items-center justify-center w-5/6">
       <p className="self-start ml-14 uppercase font-semibold text-xs text-red-400">
-        {error && `error: ${error}`}
+        {error && !success && `error: ${error}`}
       </p>
       <motion.form
         initial={{
