@@ -24,14 +24,15 @@ const Page = () => {
           <br />
           ME{" "}
         </h3>
-      ) : null}
-      {router.pathname === "/projects" ? (
+      ) : router.pathname === "/projects" ? (
         <h3 className="text-2xl font-bold">
           PRJ
           <br />
           CTS{" "}
         </h3>
-      ) : null}
+      ) : (
+        <h3 className="text-2xl font-bold">404</h3>
+      )}
     </motion.header>
   );
 };
