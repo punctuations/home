@@ -9,6 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "framer-motion": "^4.1.9",
     "next": "11.1.0",
     "next-seo": "^4.24.0",
