@@ -79,9 +79,18 @@ export default function Home() {
             </h1>
           </div>
 
-          <p className="text-center 2xl:text-xl xl:text-xl lg:text-xl md:text-lg text-base text-gray-400">
-            Shoot me a message via discord's webhooks!
-          </p>
+          <div>
+            <p className="text-center 2xl:text-xl xl:text-xl lg:text-xl md:text-lg text-base text-gray-400">
+              Shoot me a message via discord's webhooks!
+            </p>
+            <p className="text-base text-gray-300">
+              Based on conrad's{" "}
+              <a className="underline" href="https://send.cnrad.dev">
+                send
+              </a>
+              .
+            </p>
+          </div>
         </motion.header>
         <Form />
       </Main>
