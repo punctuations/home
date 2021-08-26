@@ -8,7 +8,10 @@ type Incoming = {
   body: string;
 };
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   if (req.method !== "POST")
     return res.status(405).json({ data: "Method not allowed" });
 
@@ -28,15 +31,29 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
   if (!WEBHOOK_URL) throw new Error("Missing env.WEBHOOK_URL");
 
+  function escape(unsafe: string) {
+    return unsafe.replace(/\?/g, "&quest;").replace(/\//g, "&sol;");
+  }
+
   axios
     .post(WEBHOOK_URL, {
+      avatar_url: `https://picsum.photos/seed/${escape(incoming.body)}/200`,
       embeds: [
         {
-          description: incoming.body,
+          description: "→ Message from dont-ping.me!",
           author: {
-            name: incoming.name,
+            name: `👤 ${incoming.name}`,
+            url: "https://dont-ping.me/message",
+            icon_url: `https://picsum.photos/seed/${escape(incoming.name)}/200`,
           },
+          fields: [
+            {
+              name: ":pencil2: Message",
+              value: `\`\`\`${incoming.body}\`\`\``,
+            },
+          ],
           color: 3092790,
+          timestamp: new Date().toISOString(),
         },
       ],
     })
