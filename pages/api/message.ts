@@ -31,20 +31,20 @@ export default async function handler(
 
   if (!WEBHOOK_URL) throw new Error("Missing env.WEBHOOK_URL");
 
-  function escape(unsafe: string) {
-    return unsafe.replace(/\?/g, "&quest;").replace(/\//g, "&sol;");
-  }
-
   axios
     .post(WEBHOOK_URL, {
-      avatar_url: `https://picsum.photos/seed/${escape(incoming.body)}/200`,
+      avatar_url: `https://picsum.photos/seed/${encodeURIComponent(
+        incoming.body
+      )}/200`,
       embeds: [
         {
           description: "→ Message from dont-ping.me!",
           author: {
             name: `👤 ${incoming.name}`,
             url: "https://dont-ping.me/message",
-            icon_url: `https://picsum.photos/seed/${escape(incoming.name)}/200`,
+            icon_url: `https://picsum.photos/seed/${encodeURIComponent(
+              incoming.name
+            )}/200`,
           },
           fields: [
             {
