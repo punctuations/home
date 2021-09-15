@@ -1,6 +1,8 @@
 import { AppProps } from "next/app";
 import "../styles/tailwind.css";
 import React from "react";
+import { useKeyPress } from "ahooks";
+
 import { ThemeContext, themeLoad } from "../lib/assets/toggle";
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -33,6 +35,16 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [theme.mode]);
 
   const value = React.useMemo(() => ({ theme, setTheme }), [theme]);
+
+  useKeyPress("T", () => {
+    if (
+      document.activeElement?.tagName.toLowerCase() !== "input" &&
+      document.activeElement?.tagName.toLowerCase() !== "textarea"
+    )
+      setTheme({
+        mode: theme.mode === "light" ? "dark" : "light",
+      });
+  });
 
   return (
     <ThemeContext.Provider value={value}>
