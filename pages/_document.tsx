@@ -13,24 +13,6 @@ class MyDocument extends Document {
   }
 
   render() {
-    let theme = 0;
-
-    if (process.browser) {
-      setInterval(() => {
-        if (!localStorage.getItem("theme")) {
-          theme = 0;
-        } else {
-          theme = parseInt(localStorage.getItem("theme") as string);
-          parseInt(localStorage.getItem("theme") as string)
-            ? document.querySelector("html")?.classList.remove("light")
-            : document.querySelector("html")?.classList.remove("dark");
-          parseInt(localStorage.getItem("theme") as string)
-            ? document.querySelector("html")?.classList.add("dark")
-            : document.querySelector("html")?.classList.add("light");
-        }
-      }, 200);
-    }
-
     return (
       <Html lang="en">
         <Head>
