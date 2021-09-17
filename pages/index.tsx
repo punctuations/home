@@ -15,6 +15,7 @@ import Lanyard from "../lib/ui/lanyard";
 import { Toggle } from "../lib/assets/toggle";
 import Fullscreen from "../lib/ui/fullscreen";
 import { Language } from "../lib/ui/language";
+import { Intro } from "../lib/ui/Intro";
 
 export default function Home() {
   const { query } = useRouter();
@@ -48,26 +49,28 @@ export default function Home() {
         }}
       />
 
-      <Page />
-      <Language />
+      <Intro>
+        <Page />
+        <Language />
 
-      <Main>
-        <Nav />
+        <Main>
+          <Nav />
 
-        <Header />
-        <Card />
-      </Main>
+          <Header />
+          <Card />
+        </Main>
 
-      <Presence>
-        <Lanyard />
-      </Presence>
+        <Presence>
+          <Lanyard />
+        </Presence>
 
-      <Extras>
-        <Toggle />
-        <Fullscreen
-          query={Array.isArray(query.code) ? query.code[0] : query.code}
-        />
-      </Extras>
+        <Extras>
+          <Toggle />
+          <Fullscreen
+            query={Array.isArray(query.code) ? query.code[0] : query.code}
+          />
+        </Extras>
+      </Intro>
     </>
   );
 }

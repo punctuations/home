@@ -1,6 +1,8 @@
 import { NextSeo } from "next-seo";
 import Head from "next/head";
 
+import Message from "../lib/ui/Message";
+
 export default function Hi() {
   return (
     <>
@@ -32,8 +34,10 @@ export default function Hi() {
         }}
       />
 
-      <main className="absolute w-full h-full grid place-content-center">
-        <p>hi</p>
+      <main className="absolute w-full h-full flex flex-col items-center justify-center">
+        <Message.Provider>
+          <Message text={"oh, hi"} />
+        </Message.Provider>
       </main>
     </>
   );
