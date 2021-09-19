@@ -45,14 +45,14 @@ const Lanyard = () => {
                   }`}
                   target="_blank"
                 >
-                  <figure className="flex flex-row items-end relative">
+                  <figure className="flex flex-row items-end relative border-2 border-white dark:border-black rounded-lg">
                     <Image
                       placeholder="blur"
                       blurDataURL={lanyard.spotify?.album_art_url as string}
                       src={lanyard.spotify?.album_art_url as string}
                       width={50}
                       height={50}
-                      className="rounded-lg border-2 border-white dark:border-black"
+                      className="rounded-lg"
                       alt={"spotify album"}
                     />
 
