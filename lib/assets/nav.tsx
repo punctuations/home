@@ -21,154 +21,81 @@ const Nav = () => {
         },
       }}
     >
-      <p
+      <button
         onClick={() => setMenuState(!menu)}
-        className="flex select-none cursor-pointer text-xl font-semibold"
+        className="outline-none appearance-none flex select-none opacity-60"
       >
-        @
-      </p>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M4 6h16M4 12h16m-7 6h7"
+          />
+        </svg>
+      </button>
       <AnimatePresence>
         {menu && (
           <motion.div
-            className="absolute right-7 z-20 w-40 flex flex-col space-y-2 justify-center items-center py-6 rounded-lg bg-white dark:bg-black dark:border border-gray-800 shadow-lg"
-            initial={{ opacity: 0, x: -40 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -40 }}
+            className="absolute right-7 z-20 w-40 flex flex-col space-y-2 justify-center items-center py-6 rounded-lg bg-white dark:bg-black dark:border border-gray-800 shadow-2xl"
+            initial={{ opacity: 0, scale: 0, x: 40 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            exit={{ opacity: 0, scale: 0, x: 40 }}
           >
             {router.pathname === "/" ? (
               <>
-                <p
+                <button
                   onClick={() => router.push("/projects")}
-                  className="select-none cursor-pointer text-lg inline-flex items-center justify-center space-x-1"
+                  className="outline-none appearance-none select-none text-lg text-blue-500 group"
                 >
-                  <span>projects</span>{" "}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width={15}
-                    height={15}
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2.2}
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                    />
-                  </svg>
-                </p>
-                <p
+                  <span className="group-hover:underline">Projects</span>{" "}
+                  &rsaquo;
+                </button>
+                <button
                   onClick={() => router.push("/message")}
-                  className="select-none cursor-pointer text-lg inline-flex items-center justify-center space-x-1"
+                  className="outline-none appearance-none select-none text-lg text-blue-500 group"
                 >
-                  <span>message</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width={15}
-                    height={15}
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2.2}
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                    />
-                  </svg>
-                </p>
+                  <span className="group-hover:underline">Message</span>{" "}
+                  &rsaquo;
+                </button>
               </>
             ) : router.pathname === "/projects" ? (
               <>
-                <p
+                <button
                   onClick={() => router.push("/")}
-                  className="select-none cursor-pointer text-lg inline-flex items-center justify-center space-x-1"
+                  className="outline-none appearance-none select-none text-lg text-blue-500 group"
                 >
-                  <span>home</span>{" "}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width={15}
-                    height={15}
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2.2}
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                    />
-                  </svg>
-                </p>
-                <p
+                  <span className="group-hover:underline">Home</span> &rsaquo;
+                </button>
+                <button
                   onClick={() => router.push("/message")}
-                  className="select-none cursor-pointer text-lg inline-flex items-center justify-center space-x-1"
+                  className="outline-none appearance-none select-none text-lg text-blue-500 group"
                 >
-                  <span>message</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width={15}
-                    height={15}
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2.2}
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                    />
-                  </svg>
-                </p>
+                  <span className="group-hover:underline">Message</span>{" "}
+                  &rsaquo;
+                </button>
               </>
             ) : (
               <>
-                <p
+                <button
                   onClick={() => router.push("/")}
-                  className="select-none cursor-pointer text-lg inline-flex items-center justify-center space-x-1"
+                  className="outline-none appearance-none select-none text-lg text-blue-500 group"
                 >
-                  <span>home</span>{" "}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width={15}
-                    height={15}
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2.2}
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                    />
-                  </svg>
-                </p>
-                <p
+                  <span className="group-hover:underline">Home</span> &rsaquo;
+                </button>
+                <button
                   onClick={() => router.push("/projects")}
-                  className="select-none cursor-pointer text-lg inline-flex items-center justify-center space-x-1"
+                  className="outline-none appearance-none select-none text-lg text-blue-500 group"
                 >
-                  <span>projects</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width={15}
-                    height={15}
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2.2}
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                    />
-                  </svg>
-                </p>
+                  <span className="group-hover:underline">Projects</span>{" "}
+                  &rsaquo;
+                </button>
               </>
             )}
           </motion.div>
