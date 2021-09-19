@@ -1,4 +1,5 @@
 import React from "react";
+import { useKeyPress } from "ahooks";
 
 import { motion } from "framer-motion";
 import Message from "./Message";
@@ -19,6 +20,8 @@ export function Intro(props: { children: React.ReactNode }) {
   };
 
   const [introduction, setIntro] = React.useState<boolean>(true);
+
+  useKeyPress("ENTER", () => setIntro(false));
 
   return (
     <>
