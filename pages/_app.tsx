@@ -13,7 +13,6 @@ export default function App({ Component, pageProps }: AppProps) {
   });
 
   React.useEffect(() => {
-    console.log("effected! " + theme.mode);
     if (theme.mode) {
       if (theme.mode === "dark" || theme.mode === 1) {
         if (document.documentElement.classList.contains("light")) {

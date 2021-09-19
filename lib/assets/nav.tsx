@@ -9,7 +9,7 @@ const Nav = () => {
 
   return (
     <motion.nav
-      className="absolute z-10 top-1/2 2xl:right-6 xl:right-6 lg:right-6 md:right-6 sm:right-4 right-6 dark:text-white flex items-center justify-center"
+      className="absolute z-20 top-1/2 2xl:right-6 xl:right-6 lg:right-6 md:right-6 sm:right-4 right-6 dark:text-white flex items-center justify-center"
       initial={{ y: 20, opacity: 0 }}
       animate={{
         y: 0,
@@ -30,7 +30,7 @@ const Nav = () => {
       <AnimatePresence>
         {menu && (
           <motion.div
-            className="absolute right-7 z-10 w-40 flex flex-col space-y-2 justify-center items-center py-6 rounded-lg bg-white dark:bg-black dark:border border-gray-800 shadow-lg"
+            className="absolute right-7 z-20 w-40 flex flex-col space-y-2 justify-center items-center py-6 rounded-lg bg-white dark:bg-black dark:border border-gray-800 shadow-lg"
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -40 }}
