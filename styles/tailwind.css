@@ -167,8 +167,11 @@
             background-color: #2c2c2e;
         }
 
-        .external:after {
-            content: " \2197"
-        }
+
     }
+
+    .external:after {
+        content: " \2197"
+    }
+
 }
