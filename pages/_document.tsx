@@ -18,7 +18,7 @@ class MyDocument extends Document {
         <Head>
           <script async src="https://cdn.splitbee.io/sb.js" />
         </Head>
-        <body className="light-select dark:dark-select bg-dots bg-pos-[0-25] bg-size-[50px] bg-fixed dark:bg-none 2xl:overflow-hidden xl:overflow-hidden overflow-auto bg-white dark:bg-black bg dark:bg-dark transition-colors duration-300 ease-in-out">
+        <body className="light-select dark:dark-select 2xl:overflow-hidden xl:overflow-hidden overflow-auto bg-white dark:bg-black bg dark:bg-dark transition-colors duration-300 ease-in-out">
           <Main />
           <NextScript />
         </body>

@@ -90,16 +90,85 @@
             background: black;
             border-bottom-right-radius: 10px;
         }
-    }
 
+        .message-to {
+            border-radius: 20px;
+            padding: 8px 15px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            display: inline-block;
 
+            align-items: flex-end;
 
+            background: rgb(0, 120, 254);
+            color: white;
+            position: relative;
+        }
 
-    .bg-pos-\[0-25\] {
-         background-position: 0 0,25px 25px;
-     }
+        .message-to:before {
+            content: "";
+            position: absolute;
+            z-index: 0;
+            bottom: 0;
+            right: -8px;
+            height: 20px;
+            width: 20px;
+            background: rgb(0, 120, 254);
+            border-bottom-left-radius: 15px;
+        }
 
-    .bg-size-\[50px\] {
-        background-size: 50px 50px;
+        .message-to:after {
+            content: "";
+            position: absolute;
+            z-index: 1;
+            bottom: 0;
+            right: -10px;
+            width: 10px;
+            height: 20px;
+            transition-duration: 240ms;
+            background: white;
+            border-bottom-left-radius: 10px;
+        }
+
+        .message-dark-to:after {
+            content: "";
+            position: absolute;
+            z-index: 1;
+            bottom: 0;
+            right: -10px;
+            width: 10px;
+            height: 20px;
+            transition-duration: 240ms;
+            background: black;
+            border-bottom-left-radius: 10px;
+        }
+
+        .bg-\[\#f1f2f6\] {
+            background-color: #f1f2f6;
+        }
+
+        .border-\[\#f1f2f6\] {
+            border-color: #f1f2f6;
+        }
+
+        .bg-\[\#e0e2eb\] {
+            background-color: #e0e2eb;
+        }
+
+        .border-\[\#e0e2eb\] {
+            border-color: #e0e2eb;
+        }
+
+        .bg-\[\#1b1c1f\] {
+            background-color: #1b1c1f;
+        }
+
+        .bg-\[\#2c2c2e\] {
+            background-color: #2c2c2e;
+        }
+
+        .external:after {
+            content: " \2197"
+        }
     }
 }
