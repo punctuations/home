@@ -59,7 +59,7 @@ export default function Projects() {
             return (
               <motion.div
                 key={project.name}
-                className={`relative overflow-hidden flex flex-col justify-center space-y-2 w-full 2xl:h-80 h-64 p-4 px-12 shadow-md hover:shadow-lg transition-shadow duration-500 dark:border-2 border-${`${
+                className={`relative overflow-hidden flex flex-col justify-center space-y-2 w-full 2xl:h-80 h-64 p-4 px-12 shadow-md hover:shadow-lg transition-all duration-500 dark:border-2 border-${`${
                   project.color.split("-")[1]
                 }${
                   project.color.split("-")[2]
