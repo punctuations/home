@@ -94,7 +94,7 @@ const Lanyard = () => {
                             }
                             width={50}
                             height={50}
-                            className="rounded-lg pointer-events-none"
+                            className="rounded-lg pointer-events-none border-2 border-white dark:border-black"
                           />
 
                           {activity.assets.small_image ? (
