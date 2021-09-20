@@ -9,7 +9,7 @@ const Nav = () => {
 
   return (
     <motion.nav
-      className="absolute z-20 top-1/2 2xl:right-6 xl:right-6 lg:right-6 md:right-6 sm:right-4 right-6 dark:text-white flex items-center justify-center"
+      className="fixed z-20 top-1/2 2xl:right-6 xl:right-6 lg:right-6 md:right-6 sm:right-4 right-6 dark:text-white flex items-center justify-center"
       initial={{ y: 20, opacity: 0 }}
       animate={{
         y: 0,
