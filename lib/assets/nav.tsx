@@ -5,8 +5,6 @@ import React from "react";
 const Nav = () => {
   const router = useRouter();
 
-  const [menu, setMenuState] = React.useState<boolean>(false);
-
   return (
     <motion.nav
       className="fixed z-20 top-6 right-6 dark:text-white flex space-x-6 items-center justify-center"
