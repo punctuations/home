@@ -27,13 +27,19 @@ const Nav = () => {
             onClick={() => router.push("/projects")}
             className="outline-none appearance-none select-none text-lg group"
           >
-            <span className="group-hover:underline">projects</span> &rsaquo;
+            <span className="group-hover:underline group-hover:mr-1 transition-all duration-500">
+              projects
+            </span>{" "}
+            &rsaquo;
           </button>
           <button
             onClick={() => router.push("/message")}
             className="outline-none appearance-none select-none text-lg group"
           >
-            <span className="group-hover:underline">message</span> &rsaquo;
+            <span className="group-hover:underline group-hover:mr-1 transition-all duration-500">
+              message
+            </span>{" "}
+            &rsaquo;
           </button>
         </>
       ) : router.pathname === "/projects" ? (
@@ -42,13 +48,19 @@ const Nav = () => {
             onClick={() => router.push("/")}
             className="outline-none appearance-none select-none text-lg group"
           >
-            <span className="group-hover:underline">home</span> &rsaquo;
+            <span className="group-hover:underline group-hover:mr-1 transition-all duration-500">
+              home
+            </span>{" "}
+            &rsaquo;
           </button>
           <button
             onClick={() => router.push("/message")}
             className="outline-none appearance-none select-none text-lg group"
           >
-            <span className="group-hover:underline">message</span> &rsaquo;
+            <span className="group-hover:underline group-hover:mr-1 transition-all duration-500">
+              message
+            </span>{" "}
+            &rsaquo;
           </button>
         </>
       ) : (
@@ -57,13 +69,19 @@ const Nav = () => {
             onClick={() => router.push("/")}
             className="outline-none appearance-none select-none text-lg group"
           >
-            <span className="group-hover:underline">home</span> &rsaquo;
+            <span className="group-hover:underline group-hover:mr-1 transition-all duration-500">
+              home
+            </span>{" "}
+            &rsaquo;
           </button>
           <button
             onClick={() => router.push("/projects")}
             className="outline-none appearance-none select-none text-lg group"
           >
-            <span className="group-hover:underline">projects</span> &rsaquo;
+            <span className="group-hover:underline group-hover:mr-1 transition-all duration-500">
+              projects
+            </span>{" "}
+            &rsaquo;
           </button>
         </>
       )}
