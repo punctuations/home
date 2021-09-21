@@ -11,7 +11,6 @@ import Page from "../lib/ui/page";
 import Lanyard from "../lib/ui/lanyard";
 import { Toggle } from "../lib/assets/toggle";
 import Fullscreen from "../lib/ui/fullscreen";
-import { Language } from "../lib/ui/language";
 import { motion } from "framer-motion";
 
 export default function Error() {
@@ -47,7 +46,6 @@ export default function Error() {
       />
 
       <Page />
-      <Language />
 
       <Main>
         <motion.header

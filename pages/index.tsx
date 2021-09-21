@@ -14,7 +14,6 @@ import Card from "../lib/ui/card";
 import Lanyard from "../lib/ui/lanyard";
 import { Toggle } from "../lib/assets/toggle";
 import Fullscreen from "../lib/ui/fullscreen";
-import { Language } from "../lib/ui/language";
 import { Intro } from "../lib/ui/Intro";
 
 export default function Home() {
@@ -51,7 +50,6 @@ export default function Home() {
 
       <Intro>
         <Page />
-        <Language />
 
         <Main>
           <Nav />
