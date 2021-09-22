@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Socials } from "../assets/socials";
 
 const Header = () => {
   return (
@@ -24,6 +25,28 @@ const Header = () => {
       <p className="text-center 2xl:text-xl xl:text-xl lg:text-xl md:text-lg text-base text-gray-400">
         I'm a sixteen-year-old TypeScript developer!
       </p>
+      <div className="flex space-x-9">
+        {Socials.map((socials, i) => {
+          return (
+            <motion.div
+              className="mt-1"
+              key={i}
+              initial={{ y: 20, opacity: 0 }}
+              animate={{
+                y: 0,
+                opacity: 1,
+                transition: {
+                  duration: 0.4,
+                  delay: 0.2 + (i / 100 + 0.05) * 5,
+                  ease: [0.48, 0.15, 0.25, 0.96],
+                },
+              }}
+            >
+              {socials}
+            </motion.div>
+          );
+        })}
+      </div>
     </motion.header>
   );
 };
