@@ -29,7 +29,6 @@ const Header = () => {
         {Socials.map((socials, i) => {
           return (
             <motion.div
-              className="mt-1"
               key={i}
               initial={{ y: 20, opacity: 0 }}
               animate={{

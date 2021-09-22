@@ -7,7 +7,7 @@ export const Socials = [
     target="_blank"
     rel="noopener noreferrer"
   >
-    <Twitter />
+    <Twitter className="hover:opacity-40 duration-500 transition-opacity dark:text-white" />
   </a>,
   <a
     title="discord"
@@ -15,10 +15,10 @@ export const Socials = [
     target="_blank"
     rel="noopener noreferrer"
   >
-    <AtSign />
+    <AtSign className="hover:opacity-40 duration-500 transition-opacity dark:text-white" />
   </a>,
   <a title="github" href={"/github"} target="_blank" rel="noopener noreferrer">
-    <GitHub />
+    <GitHub className="hover:opacity-40 duration-500 transition-opacity dark:text-white" />
   </a>,
   <a
     title="email"
@@ -26,6 +26,6 @@ export const Socials = [
     target="_blank"
     rel="noopener noreferrer"
   >
-    <Mail />
+    <Mail className="hover:opacity-40 duration-500 transition-opacity dark:text-white" />
   </a>,
 ];
