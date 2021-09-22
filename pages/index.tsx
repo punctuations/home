@@ -55,7 +55,7 @@ export default function Home() {
           <Nav />
 
           <Header />
-          <Card />
+          {/*<Card />*/}
         </Main>
 
         <Presence>
