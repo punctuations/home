@@ -23,7 +23,7 @@ const Nav = () => {
         <>
           <button
             onClick={() => router.push("/projects")}
-            className="outline-none appearance-none select-none text-lg group"
+            className="appearance-none focus:outline-none select-none text-lg group"
           >
             <span className="group-hover:underline group-hover:mr-1 transition-all duration-500">
               projects
@@ -32,7 +32,7 @@ const Nav = () => {
           </button>
           <button
             onClick={() => router.push("/message")}
-            className="outline-none appearance-none select-none text-lg group"
+            className="appearance-none focus:outline-none select-none text-lg group"
           >
             <span className="group-hover:underline group-hover:mr-1 transition-all duration-500">
               message
@@ -44,7 +44,7 @@ const Nav = () => {
         <>
           <button
             onClick={() => router.push("/")}
-            className="outline-none appearance-none select-none text-lg group"
+            className="appearance-none focus:outline-none select-none text-lg group"
           >
             <span className="group-hover:underline group-hover:mr-1 transition-all duration-500">
               home
@@ -53,7 +53,7 @@ const Nav = () => {
           </button>
           <button
             onClick={() => router.push("/message")}
-            className="outline-none appearance-none select-none text-lg group"
+            className="appearance-none focus:outline-none select-none text-lg group"
           >
             <span className="group-hover:underline group-hover:mr-1 transition-all duration-500">
               message
@@ -65,7 +65,7 @@ const Nav = () => {
         <>
           <button
             onClick={() => router.push("/")}
-            className="outline-none appearance-none select-none text-lg group"
+            className="appearance-none focus:outline-none select-none text-lg group"
           >
             <span className="group-hover:underline group-hover:mr-1 transition-all duration-500">
               home
@@ -74,7 +74,7 @@ const Nav = () => {
           </button>
           <button
             onClick={() => router.push("/projects")}
-            className="outline-none appearance-none select-none text-lg group"
+            className="appearance-none focus:outline-none select-none text-lg group"
           >
             <span className="group-hover:underline group-hover:mr-1 transition-all duration-500">
               projects

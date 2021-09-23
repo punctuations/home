@@ -39,7 +39,7 @@ export function Intro(props: { children: React.ReactNode }) {
           </Message.Provider>
           <button
             onClick={() => setIntro(false)}
-            className="appearance-none outline-none z-50 absolute bottom-12 right-12 text-lg text-black dark:text-white transition-colors duration-500 dark:hover:text-green-400 hover:text-green-500"
+            className="appearance-none focus:outline-none z-50 absolute bottom-12 right-12 text-lg text-black dark:text-white transition-colors duration-500 dark:hover:text-green-400 hover:text-green-500"
           >
             skip &#xbb;
           </button>
