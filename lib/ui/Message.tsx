@@ -18,13 +18,19 @@ const Message = (props: { text: string; to?: boolean }) => {
   );
 };
 
-const Provider = (props: { children: React.ReactNode; to?: boolean }) => {
+const Provider = (props: {
+  children: React.ReactNode;
+  to?: boolean;
+  className: string;
+}) => {
   return (
     <motion.div
       variants={chat}
       initial="hidden"
       animate="show"
-      className={`flex flex-col ${props.to ? "items-end" : "items-start"}`}
+      className={`flex flex-col ${props.to ? "items-end" : "items-start"} ${
+        props.className
+      }`}
     >
       {props.children}
     </motion.div>
