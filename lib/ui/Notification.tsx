@@ -18,12 +18,22 @@ const Notification = (props: {
   const [hidden, setHiddenState] = React.useState<boolean>(false);
 
   React.useEffect(() => {
+    if (process.browser && !hidden)
+      setHiddenState(JSON.parse(localStorage.getItem("dismissed") as string));
+  }, []);
+
+  React.useEffect(() => {
     if (!props.dismiss) {
       const timeout = setTimeout(() => {
         setHiddenState(true);
       }, props.duration ?? 5000);
     }
   }, []);
+
+  React.useEffect(() => {
+    if (process.browser && hidden)
+      localStorage.setItem("dismissed", JSON.stringify(hidden));
+  }, [hidden]);
 
   return (
     <AnimatePresence>
