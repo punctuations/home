@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 
 const Notification = (props: {
   href?: string;
+  duration?: number;
   dismiss?: boolean;
   variant?: "macOS" | "iOS";
   app?: string;
@@ -20,7 +21,7 @@ const Notification = (props: {
     if (!props.dismiss) {
       const timeout = setTimeout(() => {
         setHiddenState(true);
-      }, 5000);
+      }, props.duration ?? 5000);
     }
   }, []);
 
