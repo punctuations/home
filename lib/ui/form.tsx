@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import axios from "axios";
 import React from "react";
+import Message from "./Message";
 
 const Form = () => {
   const [error, setError] = React.useState<string | null>(null);
@@ -219,7 +220,7 @@ const Form = () => {
         className="relative w-4/6 flex flex-col space-y-4"
       >
         <AnimatePresence initial={false}>
-          {success.state && (
+          {success.state && success.body && (
             <motion.div
               initial={{ y: 15, opacity: 0 }}
               animate={{
@@ -232,7 +233,7 @@ const Form = () => {
               }}
               className="w-full flex justify-end -mx-8"
             >
-              <p className="message-to dark:message-dark-to">{success.body}</p>
+              <Message to text={success.body} />
             </motion.div>
           )}
         </AnimatePresence>

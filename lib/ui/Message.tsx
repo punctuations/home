@@ -3,24 +3,28 @@ import React from "react";
 import { motion } from "framer-motion";
 import { chat, message } from "../types/constants";
 
-const Message = (props: { text: string }) => {
+const Message = (props: { text: string; to?: boolean }) => {
   return (
     <motion.div
       variants={message}
-      className="message dark:message-dark select-none"
+      className={`${
+        props.to
+          ? "message-to dark:message-dark-to"
+          : "message dark:message-dark"
+      } select-none`}
     >
       {props.text}
     </motion.div>
   );
 };
 
-const Provider = (props: { children: React.ReactNode }) => {
+const Provider = (props: { children: React.ReactNode; to?: boolean }) => {
   return (
     <motion.div
       variants={chat}
       initial="hidden"
       animate="show"
-      className="flex flex-col items-start"
+      className={`flex flex-col ${props.to ? "items-end" : "items-start"}`}
     >
       {props.children}
     </motion.div>
