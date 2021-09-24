@@ -3,6 +3,14 @@ import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/router";
 
+interface EventTargetWithTagName extends EventTarget {
+  tagName: string;
+}
+
+interface MouseEventWithTagName extends React.MouseEvent<HTMLDivElement> {
+  target: EventTargetWithTagName;
+}
+
 const Notification = (props: {
   href?: string;
   duration?: number;
@@ -60,6 +68,15 @@ const Notification = (props: {
               ease: [0.48, 0.15, 0.25, 0.96],
             },
           }}
+          onClick={(event: MouseEventWithTagName) =>
+            props.variant?.toLowerCase() !== "macOS" &&
+            props.href &&
+            event.target.tagName.toLowerCase() !== "svg" &&
+            event.target.tagName.toLowerCase() !== "button" &&
+            event.target.tagName.toLowerCase() !== "path"
+              ? router.push(props.href)
+              : null
+          }
           className={`relative group mt-2 text-black dark:text-white flex ${
             props.dismiss && props.variant?.toLowerCase() !== "macos"
               ? "justify-between"
@@ -68,6 +85,10 @@ const Notification = (props: {
             props.variant?.toLowerCase() === "macos"
               ? "shadow-sm border border-white border-opacity-40 dark:border-opacity-100 dark:border-gray-800 p-3 px-5"
               : "p-2 px-8"
+          } ${
+            props.variant?.toLowerCase() !== "macOS" && props.href
+              ? "cursor-pointer"
+              : ""
           } w-full rounded-xl backdrop-filter backdrop-saturate-200 backdrop-blur-3xl bg-gray-200 dark:bg-gray-800 bg-opacity-40 dark:bg-opacity-60`}
         >
           <div
@@ -153,7 +174,7 @@ const Notification = (props: {
                 </svg>
               </button>
             ))}
-          {props.href && (
+          {props.href && props.variant?.toLowerCase() === "macOS" && (
             <button
               onClick={() => router.push(props.href ?? "")}
               className="group-hover:flex hidden absolute top-1 right-4 p-0.5 px-2.5 rounded text-xl font-extralight hover:bg-gray-200 bg-opacity-20 transition-colors duration-200 appearance-none focus:outline-none"
