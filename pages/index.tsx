@@ -52,6 +52,7 @@ export default function Home() {
       <Intro>
         <div className="absolute z-50 top-0 right-2 w-1/4">
           <Notification
+            dismiss
             href={"https://github.com/punctuations/home"}
             variant={"macOS"}
             app={"Launch"}
