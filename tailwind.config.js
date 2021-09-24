@@ -904,7 +904,7 @@ module.exports = {
     container: ["responsive"],
     contrast: ["responsive"],
     cursor: ["responsive"],
-    display: ["responsive"],
+    display: ["responsive", "group-hover"],
     divideColor: ["responsive", "dark"],
     divideOpacity: ["responsive", "dark"],
     divideStyle: ["responsive"],
