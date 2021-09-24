@@ -15,6 +15,7 @@ import Lanyard from "../lib/ui/lanyard";
 import { Toggle } from "../lib/assets/toggle";
 import Fullscreen from "../lib/ui/fullscreen";
 import { Intro } from "../lib/ui/Intro";
+import Notification from "../lib/ui/Notification";
 
 export default function Home() {
   const { query } = useRouter();
@@ -49,6 +50,13 @@ export default function Home() {
       />
 
       <Intro>
+        <div className="absolute z-50 top-0 w-full">
+          <Notification title={"Launch!"} text={"Yo!"}>
+            <p className="grid place-content-center bg-yellow-200 rounded-md h-9 w-9 p-2">
+              🎉
+            </p>
+          </Notification>
+        </div>
         <Page />
 
         <Main>
