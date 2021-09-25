@@ -27,6 +27,20 @@
             position: relative;
         }
 
+        .message-hidden {
+            border-radius: 20px;
+            padding: 8px 13px;
+            margin-top: 5px;
+            margin-bottom: -2px;
+            display: inline-block;
+
+            align-items: flex-start;
+
+            background-color: #EEE;
+            color: black;
+            position: relative;
+        }
+
         .message:before {
             content: "";
             position: absolute;
@@ -66,6 +80,20 @@
             position: relative;
         }
 
+        .message-hidden-dark {
+            border-radius: 20px;
+            padding: 8px 13px;
+            margin-top: 5px;
+            margin-bottom: -2px;
+            display: inline-block;
+
+            align-items: flex-start;
+
+            background-color: #26252A;
+            color: white;
+            position: relative;
+        }
+
         .message-dark:before {
             content: "";
             position: absolute;
@@ -96,6 +124,20 @@
             padding: 8px 15px;
             margin-top: 5px;
             margin-bottom: 5px;
+            display: inline-block;
+
+            align-items: flex-end;
+
+            background: rgb(0, 120, 254);
+            color: white;
+            position: relative;
+        }
+
+        .message-hidden-to {
+            border-radius: 20px;
+            padding: 8px 13px;
+            margin-top: 5px;
+            margin-bottom: -2px;
             display: inline-block;
 
             align-items: flex-end;
