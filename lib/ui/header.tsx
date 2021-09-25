@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Socials } from "../assets/socials";
+import Message from "./Message";
 
 const Header = () => {
   return (
@@ -19,6 +20,12 @@ const Header = () => {
       }}
       className="2xl:ml-24 xl:ml-24 lg:ml-24 ml-0 flex flex-col justify-center 2xl:items-start xl:items-start lg:items-start items-center space-y-6"
     >
+      <Message.Provider
+        className="2xl:flex xl:flex lg:flex hidden"
+        pfp={"https://github.com/punctuations.png"}
+      >
+        <Message text={"👀💬"} />
+      </Message.Provider>
       <h1 className="text-center 2xl:text-6xl xl:text-6xl lg:text-6xl md:text-5xl sm:text-4xl text-3xl font-bold dark:text-white">
         Hey, I'm Matt <span className="wave">👋</span>
       </h1>
