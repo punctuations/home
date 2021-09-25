@@ -21,7 +21,7 @@ const Message = (props: { text: string; to?: boolean }) => {
 const Provider = (props: {
   children: React.ReactNode;
   to?: boolean;
-  className: string;
+  className?: string;
 }) => {
   return (
     <motion.div
