@@ -1,7 +1,7 @@
 import React from "react";
 import { useKeyPress } from "ahooks";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Message from "./Message";
 
 export function Intro(props: { children: React.ReactNode }) {
@@ -46,19 +46,21 @@ export function Intro(props: { children: React.ReactNode }) {
         </motion.div>
       )}
 
-      {!introduction && (
-        <motion.section
-          initial={{ opacity: 0 }}
-          animate={{
-            opacity: 1,
-            transition: {
-              delay: 0.5,
-            },
-          }}
-        >
-          {props.children}
-        </motion.section>
-      )}
+      <AnimatePresence>
+        {!introduction && (
+          <motion.section
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: 1,
+              transition: {
+                when: "beforeChildren",
+              },
+            }}
+          >
+            {props.children}
+          </motion.section>
+        )}
+      </AnimatePresence>
     </>
   );
 }
