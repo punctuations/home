@@ -12,12 +12,12 @@ export default function Hi() {
       </Head>
       <NextSeo
         title="hi"
-        titleTemplate="%s | matt.mdx"
+        titleTemplate="%s | matt"
         description="Student and Typescript Developer."
         openGraph={{
           type: "website",
           url: "https://dont-ping.me/",
-          title: "hi - matt.mdx",
+          title: "hi - matt",
           description: "Student and Typescript Developer.",
           images: [
             {

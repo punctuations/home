@@ -15,12 +15,12 @@ export default function GitHub() {
       </Head>
       <NextSeo
         title="github"
-        titleTemplate="%s | matt.mdx"
+        titleTemplate="%s | matt"
         description="Student and Typescript Developer."
         openGraph={{
           type: "website",
           url: "https://dont-ping.me/",
-          title: "github - matt.mdx",
+          title: "github - matt",
           description: "Student and Typescript Developer.",
           images: [
             {

@@ -15,12 +15,12 @@ export default function Twitter() {
       </Head>
       <NextSeo
         title="twitter"
-        titleTemplate="%s | matt.mdx"
+        titleTemplate="%s | matt"
         description="Student and Typescript Developer."
         openGraph={{
           type: "website",
           url: "https://dont-ping.me/",
-          title: "twitter - matt.mdx",
+          title: "twitter - matt",
           description: "Student and Typescript Developer.",
           images: [
             {

@@ -25,12 +25,12 @@ export default function Projects() {
       </Head>
       <NextSeo
         title="projects"
-        titleTemplate="%s | matt.mdx"
+        titleTemplate="%s | matt"
         description="Student and Typescript Developer."
         openGraph={{
           type: "website",
           url: "https://dont-ping.me/",
-          title: "projects - matt.mdx",
+          title: "projects - matt",
           description: "Student and Typescript Developer.",
           images: [
             {

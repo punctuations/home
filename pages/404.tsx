@@ -23,12 +23,12 @@ export default function Error() {
       </Head>
       <NextSeo
         title="404"
-        titleTemplate="%s | matt.mdx"
+        titleTemplate="%s | matt"
         description="Student and Typescript Developer."
         openGraph={{
           type: "website",
           url: "https://dont-ping.me/",
-          title: "404 - matt.mdx",
+          title: "404 - matt",
           description: "Student and Typescript Developer.",
           images: [
             {

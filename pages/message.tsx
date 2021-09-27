@@ -24,12 +24,12 @@ export default function Home() {
       </Head>
       <NextSeo
         title="message"
-        titleTemplate="%s | matt.mdx"
+        titleTemplate="%s | matt"
         description="Student and Typescript Developer."
         openGraph={{
           type: "website",
           url: "https://dont-ping.me/",
-          title: "message - matt.mdx",
+          title: "message - matt",
           description: "Student and Typescript Developer.",
           images: [
             {

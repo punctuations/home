@@ -32,12 +32,12 @@ export default function Spotify(props: LanyardResponse) {
       </Head>
       <NextSeo
         title="spotify"
-        titleTemplate="%s | matt.mdx"
+        titleTemplate="%s | matt"
         description="Student and Typescript Developer."
         openGraph={{
           type: "website",
           url: "https://dont-ping.me/",
-          title: "spotify - matt.mdx",
+          title: "spotify - matt",
           description: "Student and Typescript Developer.",
           images: [
             {

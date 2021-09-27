@@ -15,12 +15,12 @@ export default function Discord() {
       </Head>
       <NextSeo
         title="discord"
-        titleTemplate="%s | matt.mdx"
+        titleTemplate="%s | matt"
         description="Student and Typescript Developer."
         openGraph={{
           type: "website",
           url: "https://dont-ping.me/",
-          title: "discord - matt.mdx",
+          title: "discord - matt",
           description: "Student and Typescript Developer.",
           images: [
             {
