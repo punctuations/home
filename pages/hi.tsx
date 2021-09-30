@@ -37,7 +37,6 @@ export default function Hi() {
       <main className="absolute w-full h-full flex flex-col items-center justify-center">
         <Message.Provider>
           <Message text={"2021-10-1"} />
-          <Message text={"👀💬 soon™️"} />
         </Message.Provider>
       </main>
     </>
