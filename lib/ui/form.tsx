@@ -167,7 +167,7 @@ const Form = () => {
                 placeholder="+12345678910"
                 maxLength={15}
                 onChange={(e) => setPhone(e.target.value)}
-                className={`${
+                className={`w-11/12 ${
                   phone?.match(
                     "^[+]?[(]?[0-9]{3}[)]?[-s.]?[0-9]{3}[-s.]?[0-9]{4,6}$"
                   )
@@ -184,7 +184,7 @@ const Form = () => {
                 autoComplete="email"
                 placeholder={placeHolderEmail}
                 onChange={(e) => setEmail(e.target.value)}
-                className={`${
+                className={`w-11/12 ${
                   email?.match(pattern) ? "text-blue-500" : null
                 } ml-2 outline-none bg-transparent`}
               />
@@ -198,7 +198,7 @@ const Form = () => {
                 maxLength={16}
                 placeholder="@atmattt"
                 onChange={(e) => setTwitter(e.target.value)}
-                className={`${
+                className={`w-11/12 ${
                   twitter?.match("@[a-z0-9]") ? "text-blue-500" : null
                 } ml-2 outline-none bg-transparent`}
               />
