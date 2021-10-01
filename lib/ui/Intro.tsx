@@ -34,7 +34,7 @@ export function Intro(props: { children: React.ReactNode }) {
           onAnimationComplete={() => setIntro(false)}
         >
           <Message.Provider>
-            <Message text={"Hey, I'm Matt :)"} />
+            <Message hide text={"Hey, I'm Matt :)"} />
             <Message text={"I'm a Typescript Developer!"} />
           </Message.Provider>
           <button
