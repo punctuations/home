@@ -100,7 +100,7 @@ export default function Projects() {
                 <img
                   src={project.image}
                   alt={`${project.name} website`}
-                  className="select-none pointer-events-none absolute 2xl:w-7/12 xl:w-96 lg:w-96 md:w-96 sm:w-96 w-11/12 2xl:-right-18 xl:-right-8 lg:-right-8 md:-right-8 sm:-right-40 -right-36 2xl:-bottom-20 xl:-bottom-20 lg:-bottom-20 md:-bottom-20 sm:-bottom-18 -bottom-9"
+                  className="select-none pointer-events-none absolute 3xl:w-1/2 2xl:w-7/12 xl:w-96 lg:w-96 md:w-96 sm:w-96 w-11/12 2xl:-right-18 xl:-right-8 lg:-right-8 md:-right-8 sm:-right-40 -right-36 2xl:-bottom-20 xl:-bottom-20 lg:-bottom-20 md:-bottom-20 sm:-bottom-18 -bottom-9"
                 />
               </motion.div>
             );
