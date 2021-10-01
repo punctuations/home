@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "ahooks": "^2.10.9",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "framer-motion": "^4.1.9",
     "next": "11.1.0",
     "next-seo": "^4.24.0",
