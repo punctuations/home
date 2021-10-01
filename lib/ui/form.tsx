@@ -16,6 +16,8 @@ const Form = () => {
   const [email, setEmail] = React.useState<string | null>(null);
   const [twitter, setTwitter] = React.useState<string | null>(null);
 
+  const [clicked, setClicked] = React.useState<boolean>(false);
+
   const pattern = new RegExp(
     /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/
   );
@@ -124,9 +126,10 @@ const Form = () => {
             </button>
           ) : (
             <button
-              onClick={(e) => {
+              onClick={async (e) => {
                 e.preventDefault();
-                send();
+                if (!clicked) await send();
+                setClicked(true);
               }}
               className="absolute top-4 right-4 text-sm text-blue-500"
             >
@@ -244,6 +247,7 @@ const Form = () => {
               onClick={(e) => {
                 e.preventDefault();
               }}
+              disabled
               className="inline-block absolute bottom-0 right-0 mb-1.5 mr-2 p-0.5 bg-green-500 rounded-full"
             >
               <svg
@@ -265,9 +269,10 @@ const Form = () => {
             </button>
           ) : (
             <button
-              onClick={(e) => {
+              onClick={async (e) => {
                 e.preventDefault();
-                send();
+                if (!clicked) await send();
+                setClicked(true);
               }}
               className="inline-block absolute bottom-0 right-0 mb-1.5 mr-2 p-0.5 bg-blue-500 rounded-full"
             >
