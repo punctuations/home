@@ -295,6 +295,7 @@ const Form = () => {
             type="text"
             maxLength={350}
             onChange={(e) => setBody(e.target.value)}
+            value={success.state ? "" : body ?? ""}
             required
             className="bg-transparent appearance-none w-full h-auto mr-6 inline-block placeholder-gray-500 text-gray-900 dark:text-gray-400 focus:outline-none sm:text-sm"
             placeholder="Message"
