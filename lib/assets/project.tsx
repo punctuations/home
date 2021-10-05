@@ -66,4 +66,15 @@ export const Project = [
     default: "https://npmjs.org/use-listen-along",
     image: "https://cdn.dont-ping.me/listen-along.png",
   },
+  {
+    icon: "🔎",
+    name: "new → tab",
+    description: "An uber-customizable new tab experience.",
+    color: "bg-gray-800",
+    dark_color: "bg-gray-900",
+    text: "text-white",
+    dark_text: "text-white",
+    default: "https://newtab.vc/",
+    image: "https://cdn.dont-ping.me/tab.png",
+  },
 ];
