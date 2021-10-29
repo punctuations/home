@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { Main } from "../lib/assets/main";
 import Head from "next/head";
 import { NextSeo } from "next-seo";
 
@@ -37,9 +36,9 @@ export default function Twitter() {
         }}
       />
 
-      <Main>
+      <div>
         <a href={"https://twitter.com/atmattt"}>Redirecting...</a>
-      </Main>
+      </div>
     </>
   );
 }
