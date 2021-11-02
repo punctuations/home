@@ -77,4 +77,15 @@ export const Project = [
     default: "https://newtab.vc/",
     image: "https://cdn.dont-ping.me/tab.png",
   },
+  {
+    icon: "💬",
+    name: "canary",
+    description: "A small, compact & modern UI kit.",
+    color: "bg-green-500",
+    dark_color: "bg-green-600",
+    text: "text-white",
+    dark_text: "text-white",
+    default: "https://npmjs.org/@canary-ui/react",
+    image: "https://cdn.dont-ping.me/canary.png",
+  },
 ];
