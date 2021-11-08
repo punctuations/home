@@ -3,13 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "license": "MIT",
-  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "post:projects": "tsc lib/assets/project.ts --outDir ./posts && node --experimental-modules ./post/index.js",
-    "post:socials": "tsc lib/assets/social.ts --outDir ./posts && node --experimental-modules ./post/index.js"
+    "post:projects": "cd post && yarn post:projects",
+    "post:socials": "cd post && yarn post:socials"
   },
   "dependencies": {
     "ahooks": "^2.10.9",

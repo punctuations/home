@@ -16,7 +16,7 @@
 /build
 
 # posting
-/posts/
+/post/out/
 
 # misc
 .DS_Store

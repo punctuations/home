@@ -50,9 +50,7 @@ function upload() {
         "file",
         file,
         `${
-          fixed
-            ? `${fixed.split(".")[0]}.${response.split(".").slice(-1)}`
-            : response.split(".").slice(-2)[0]
+          fixed ? `${fixed.split(".")[0]}` : response.split(".").slice(-2)[0]
         }.${response.split(".").slice(-1)}`
       );
 
