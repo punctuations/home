@@ -59,7 +59,7 @@ function upload() {
 
       return axios
         .post(
-          `https://file.cmdf.at/api/upload?emoji=false&fixed=${
+          `http://0.0.0.0:3000/api/upload?emoji=false&fixed=${
             fixed ? "true" : "false"
           }`,
           form,
