@@ -1,3 +1,31 @@
+/**
+ * @type {
+ * {
+ *  twitter: {
+ *   name: string,
+ *   discriminator: string | null,
+ *   at: string, href: string
+ *   },
+ *  github: {
+ *   name: string,
+ *   discriminator: string | null,
+ *   at: string,
+ *   href: string
+ *   },
+ *  discord: {
+ *   name: string,
+ *   discriminator: string | null,
+ *   at: string, href: string
+ *   },
+ *  email: {
+ *   name: string,
+ *   discriminator: string | null,
+ *   at: string,
+ *   href: string
+ *   }
+ *  }
+ * }
+ */
 export const Socials = {
   twitter: {
     name: "matt",

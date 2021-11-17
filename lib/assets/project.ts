@@ -1,17 +1,19 @@
 /**
- * @type {Array<{icon: string;
-  name: string;
-  id: string;
-  type: "Project" | "Research paper";
-  description: string;
-  author: { name: string; image: string; }
-  date: Date;
-  color?: string;
-  dark_color?: string;
-  text?: string;
-  dark_text?: string;
-  default: string;
-  image: string;}>}
+ * @type {Array.<{
+ *  icon: string,
+ *  name: string,
+ *  id: string,
+ *  type: "Project" | "Research paper",
+ *  description: string,
+ *  author: { name: string, image: string },
+ *  date: Date,
+ *  color?: string,
+ *  dark_color?: string,
+ *  text?: string,
+ *  dark_text?: string,
+ *  default: string,
+ *  image: string
+ * }>}
  */
 export const Project = [
   {
