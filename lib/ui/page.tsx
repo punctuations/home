@@ -32,6 +32,8 @@ const Page = () => {
         </h3>
       ) : router.pathname === "/message" ? (
         <h3 className="text-2xl font-bold">PING</h3>
+      ) : router.pathname === "/music" ? (
+        <h3 className="text-2xl font-bold">MUSIC</h3>
       ) : (
         <h3 className="text-2xl font-bold">404</h3>
       )}

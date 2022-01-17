@@ -39,6 +39,15 @@ const Nav = () => {
             </span>{" "}
             &rsaquo;
           </button>
+          <button
+            onClick={() => router.push("/music")}
+            className="appearance-none focus:outline-none select-none text-lg group"
+          >
+            <span className="group-hover:underline group-hover:mr-1 transition-all duration-500">
+              music
+            </span>{" "}
+            &rsaquo;
+          </button>
         </>
       ) : router.pathname === "/projects" ? (
         <>
@@ -60,6 +69,45 @@ const Nav = () => {
             </span>{" "}
             &rsaquo;
           </button>
+          <button
+            onClick={() => router.push("/music")}
+            className="appearance-none focus:outline-none select-none text-lg group"
+          >
+            <span className="group-hover:underline group-hover:mr-1 transition-all duration-500">
+              music
+            </span>{" "}
+            &rsaquo;
+          </button>
+        </>
+      ) : router.pathname === "/music" ? (
+        <>
+          <button
+            onClick={() => router.push("/")}
+            className="appearance-none focus:outline-none select-none text-lg group"
+          >
+            <span className="group-hover:underline group-hover:mr-1 transition-all duration-500">
+              home
+            </span>{" "}
+            &rsaquo;
+          </button>
+          <button
+            onClick={() => router.push("/message")}
+            className="appearance-none focus:outline-none select-none text-lg group"
+          >
+            <span className="group-hover:underline group-hover:mr-1 transition-all duration-500">
+              message
+            </span>{" "}
+            &rsaquo;
+          </button>
+          <button
+            onClick={() => router.push("/projects")}
+            className="appearance-none focus:outline-none select-none text-lg group"
+          >
+            <span className="group-hover:underline group-hover:mr-1 transition-all duration-500">
+              projects
+            </span>{" "}
+            &rsaquo;
+          </button>
         </>
       ) : (
         <>
@@ -78,6 +126,15 @@ const Nav = () => {
           >
             <span className="group-hover:underline group-hover:mr-1 transition-all duration-500">
               projects
+            </span>{" "}
+            &rsaquo;
+          </button>
+          <button
+            onClick={() => router.push("/music")}
+            className="appearance-none focus:outline-none select-none text-lg group"
+          >
+            <span className="group-hover:underline group-hover:mr-1 transition-all duration-500">
+              music
             </span>{" "}
             &rsaquo;
           </button>
