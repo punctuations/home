@@ -51,7 +51,7 @@ export default function Music() {
 
       <Main>
         <Nav />
-        <section className="mx-2 overflow-scroll grid col-span-2 md:grid-rows-2 md:grid-flow-col grid-flow-rows gap-x-3 gap-y-4">
+        <section className="mx-2 overflow-x-scroll grid col-span-2 md:grid-rows-2 md:grid-flow-col grid-flow-rows gap-x-3 gap-y-4">
           {Songs.map((song, i) => {
             try {
               if (
