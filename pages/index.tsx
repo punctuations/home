@@ -51,20 +51,20 @@ export default function Home() {
 
       <Intro>
         <div className="absolute z-50 top-0 right-2 w-1/4">
-          <Notification
-            dismiss
-            href={"https://github.com/punctuations/home"}
-            variant={"macOS"}
-            app={"Launch"}
-            title={"👀💬"}
-            text={"The new UI has launched!"}
-          >
-            <img
-              alt={"launch icon"}
-              src="https://cdn.discordapp.com/attachments/708830079551275098/890787858862968872/unknown.png"
-              className="rounded"
-            />
-          </Notification>
+          {/*<Notification*/}
+          {/*  dismiss*/}
+          {/*  href={"https://github.com/punctuations/home"}*/}
+          {/*  variant={"macOS"}*/}
+          {/*  app={"Launch"}*/}
+          {/*  title={"👀💬"}*/}
+          {/*  text={"The new UI has launched!"}*/}
+          {/*>*/}
+          {/*  <img*/}
+          {/*    alt={"launch icon"}*/}
+          {/*    src="https://cdn.discordapp.com/attachments/708830079551275098/890787858862968872/unknown.png"*/}
+          {/*    className="rounded"*/}
+          {/*  />*/}
+          {/*</Notification>*/}
         </div>
         <Page />
 

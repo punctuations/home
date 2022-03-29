@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Socials } from "../assets/socials";
 import Message from "./Message";
+import ntw from "number-to-words";
 
 const Header = () => {
   return (
@@ -30,7 +31,8 @@ const Header = () => {
         Hey, I'm Matt <span className="wave">👋</span>
       </h1>
       <p className="text-center 2xl:text-xl xl:text-xl lg:text-xl md:text-lg text-base text-gray-400">
-        I'm a sixteen-year-old TypeScript developer!
+        I'm a {ntw.toWords(new Date().getFullYear() - 2005)}-year-old TypeScript
+        developer!
       </p>
       <div className="flex space-x-9">
         {Socials.map((socials, i) => {
