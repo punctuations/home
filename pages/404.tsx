@@ -11,13 +11,15 @@ import Page from "../lib/ui/page";
 import Lanyard from "../lib/ui/lanyard";
 import { Toggle } from "../lib/assets/toggle";
 import Fullscreen from "../lib/ui/fullscreen";
-import { motion } from "framer-motion";
-import { LangProvider } from "../lib/assets/LangProvider";
+import {LangProvider} from "../lib/assets/LangProvider";
 import { Globe } from "../lib/assets/globe";
 import React from "react";
 
+import { NotFound } from "../lib/ui/notfound"
+
 export default function Error() {
   const router = useRouter();
+
   return (
     <LangProvider>
       <Head>
@@ -51,52 +53,7 @@ export default function Error() {
       <Page />
 
       <Main>
-        <motion.header
-          initial={{
-            y: 20,
-            opacity: 0,
-          }}
-          animate={{
-            y: 0,
-            opacity: 1,
-            transition: {
-              duration: 0.4,
-              delay: 0.1,
-              ease: [0.48, 0.15, 0.25, 0.96],
-            },
-          }}
-          className="2xl:ml-24 xl:ml-24 lg:ml-24 ml-0 flex flex-col justify-center 2xl:items-start xl:items-start lg:items-start items-center space-y-6"
-        >
-          <div>
-            <p className="uppercase font-semibold text-red-400">404 Error</p>
-            <h1 className="text-center 2xl:text-6xl xl:text-6xl lg:text-6xl md:text-5xl sm:text-4xl text-3xl font-bold dark:text-white">
-              Page not found
-            </h1>
-          </div>
-
-          <p className="text-center 2xl:text-xl xl:text-xl lg:text-xl md:text-lg text-base text-gray-400">
-            Please check the URL in the address bar and try again.
-          </p>
-        </motion.header>
-        <motion.button
-          initial={{
-            y: 20,
-            opacity: 0,
-          }}
-          animate={{
-            y: 0,
-            opacity: 1,
-            transition: {
-              duration: 0.4,
-              delay: 0.15,
-              ease: [0.48, 0.15, 0.25, 0.96],
-            },
-          }}
-          onClick={() => router.push("/")}
-          className="place-self-center 2xl:w-1/3 xl:w-1/3 lg:w-1/3 md:w-1/3 sm:w-1/3 w-2/3 px-7 py-4 rounded-md bg-white dark:bg-black text-gray-500 transition-colors duration-300 border border-gray-400 dark:border-gray-800 hover:border-black dark:hover:border-white hover:text-black dark:hover:text-white"
-        >
-          Return &rarr;
-        </motion.button>
+        <NotFound />
       </Main>
 
       <Presence>

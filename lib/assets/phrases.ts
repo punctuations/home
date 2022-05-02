@@ -17,8 +17,15 @@ export const phrases = {
       listening: "LISTENING ON SPOTIFY",
       credit: "by",
     },
+    error: {
+      name: "404 ERROR",
+      desc: "Page not found",
+      instructions: "Please check the URL in the address bar and try again.",
+      return: "Return"
+    },
     navigation: ["home", "projects", "message", "music"],
     prompt: "Message",
+    fin: "Done",
     pages: {
       home: "HOME",
       projects: "PROJECTS",
@@ -40,8 +47,15 @@ export const phrases = {
       listening: "Spotifyで聴く",
       credit: "",
     },
+    error: {
+      name: "404エラー",
+      desc: "お探しのページは見つかりませんでした",
+      instructions: "ページが削除されているか、アドレスが変更されている可能性があります。",
+      return: "戻る"
+    },
     navigation: ["家", "プロジェクト", "チャット", "音楽"],
     prompt: "チャット",
+    fin: "完了",
     pages: {
       home: "家",
       projects: "プロジェクト",

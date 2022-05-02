@@ -2,8 +2,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import axios from "axios";
 import React from "react";
 import Message from "./Message";
+import {LangContext} from "../assets/LangProvider";
 
 const Form = () => {
+  const {lang} = React.useContext(LangContext)
+
   const [error, setError] = React.useState<string | null>(null);
   const [success, setSuccess] = React.useState<{
     body: string | null;
@@ -133,7 +136,7 @@ const Form = () => {
               }}
               className="absolute top-4 right-4 text-sm text-blue-500"
             >
-              Done
+              {lang.phrases.fin}
             </button>
           )}
           <header className="flex flex-col items-center justify-center space-y-3">
@@ -303,7 +306,7 @@ const Form = () => {
             value={success.state ? "" : body ?? ""}
             required
             className="bg-transparent appearance-none w-full h-auto mr-6 inline-block placeholder-gray-500 text-gray-900 dark:text-gray-400 focus:outline-none sm:text-sm"
-            placeholder="Message"
+            placeholder={lang.phrases.prompt}
           />
         </div>
         <p className="absolute left-16 top-6 uppercase font-semibold text-xs text-red-400">
