@@ -16,9 +16,16 @@ export const LangContext = React.createContext({
         bio: string;
         skip: string;
       };
+      error: {
+        name: string;
+        desc: string;
+        instructions: string;
+        return: string;
+      }
       lanyard: { cta: string; dc: string; listening: string; credit: string };
       navigation: string[];
       prompt: string;
+      fin: string;
       pages: { home: string; projects: string; message: string; music: string };
     };
   }) => {},
