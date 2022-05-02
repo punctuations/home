@@ -14,10 +14,14 @@ import { Toggle } from "../lib/assets/toggle";
 import Fullscreen from "../lib/ui/fullscreen";
 import Form from "../lib/ui/form";
 
+import { LangProvider } from "../lib/assets/LangProvider";
+import { Globe } from "../lib/assets/globe";
+import React from "react";
+
 export default function Home() {
   const { query } = useRouter();
   return (
-    <>
+    <LangProvider>
       <Head>
         <link rel="icon" href="https://github.com/punctuations.png" />
         <meta name="theme-color" content="#2f3136" />
@@ -59,11 +63,15 @@ export default function Home() {
       </Presence>
 
       <Extras>
-        <Toggle />
+        <div className="flex flex-row space-x-4">
+          <Globe />
+          <Toggle />
+        </div>
+
         <Fullscreen
           query={Array.isArray(query.code) ? query.code[0] : query.code}
         />
       </Extras>
-    </>
+    </LangProvider>
   );
 }

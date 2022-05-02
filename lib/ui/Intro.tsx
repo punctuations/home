@@ -3,9 +3,11 @@ import { useKeyPress } from "ahooks";
 
 import { AnimatePresence, motion } from "framer-motion";
 import Message from "./Message";
-import { phrases } from "../assets/phrases";
+import { LangContext } from "../assets/LangProvider";
 
 export function Intro(props: { children: React.ReactNode }) {
+  const { lang } = React.useContext(LangContext);
+
   const intro = {
     show: {
       opacity: 100,
@@ -35,14 +37,14 @@ export function Intro(props: { children: React.ReactNode }) {
           onAnimationComplete={() => setIntro(false)}
         >
           <Message.Provider>
-            <Message hide text={phrases.jp.intro.name} />
-            <Message text={phrases.jp.intro.short} />
+            <Message hide text={lang.phrases.intro.name} />
+            <Message text={lang.phrases.intro.short} />
           </Message.Provider>
           <button
             onClick={() => setIntro(false)}
             className="appearance-none focus:outline-none z-50 absolute bottom-12 right-12 text-lg text-black dark:text-white transition-colors duration-500 dark:hover:text-green-400 hover:text-green-500"
           >
-            {phrases.jp.intro.skip} &#xbb;
+            {lang.phrases.intro.skip} &#xbb;
           </button>
         </motion.div>
       )}

@@ -1,4 +1,5 @@
 import Head from "next/head";
+import React from "react";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 
@@ -18,17 +19,21 @@ import { Intro } from "../lib/ui/Intro";
 import Notification from "../lib/ui/Notification";
 import { phrases } from "../lib/assets/phrases";
 
+import { Globe } from "../lib/assets/globe";
+import { LangContext, LangProvider } from "../lib/assets/LangProvider";
+
 export default function Home() {
   const { query } = useRouter();
+
   return (
-    <>
+    <LangProvider>
       <Head>
         <link rel="icon" href="https://github.com/punctuations.png" />
         <meta name="theme-color" content="#2f3136" />
       </Head>
       <NextSeo
-        title={phrases.jp.navigation[0]}
-        titleTemplate={`%s | ${phrases.jp.intro.name_short}`}
+        title="home"
+        titleTemplate="%s | matt"
         description="Student and Typescript Developer."
         openGraph={{
           type: "website",
@@ -65,12 +70,16 @@ export default function Home() {
         </Presence>
 
         <Extras>
-          <Toggle />
+          <div className="flex flex-row space-x-4">
+            <Globe />
+            <Toggle />
+          </div>
+
           <Fullscreen
             query={Array.isArray(query.code) ? query.code[0] : query.code}
           />
         </Extras>
       </Intro>
-    </>
+    </LangProvider>
   );
 }

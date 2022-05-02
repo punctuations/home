@@ -1,13 +1,17 @@
+import React from "react";
+
 import dynamic from "next/dynamic";
 import Image from "next/image";
 
 import { AnimatePresence, motion } from "framer-motion";
 import { Activity, useLanyard } from "use-lanyard";
-import { phrases } from "../assets/phrases";
+import { LangContext } from "../assets/LangProvider";
 
 const Skeleton = dynamic(() => import("react-skeleton-loader"), { ssr: false });
 
 const Lanyard = () => {
+  const { lang } = React.useContext(LangContext);
+
   const snowflake = "291050399509774340";
   const { data: lanyard } = useLanyard(snowflake);
 
@@ -73,7 +77,7 @@ const Lanyard = () => {
                 <div className="flex flex-col text-xs text-black dark:text-white w-3/4">
                   <p className="font-bold">{lanyard.spotify?.song}</p>
                   <p className="text-gray-400 dark:text-gray-600">
-                    {phrases.jp.lanyard.credit} {lanyard.spotify?.artist}
+                    {lang.phrases.lanyard.credit} {lanyard.spotify?.artist}
                   </p>
                 </div>
               </div>

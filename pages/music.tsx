@@ -14,11 +14,14 @@ import { Toggle } from "../lib/assets/toggle";
 import Fullscreen from "../lib/ui/fullscreen";
 import { Songs } from "../lib/assets/music";
 import Nav from "../lib/assets/nav";
+import { Globe } from "../lib/assets/globe";
+import React from "react";
+import { LangProvider } from "../lib/assets/LangProvider";
 
 export default function Music() {
   const router = useRouter();
   return (
-    <>
+    <LangProvider>
       <Head>
         <link rel="icon" href="https://github.com/punctuations.png" />
         <meta name="theme-color" content="#2f3136" />
@@ -112,7 +115,11 @@ export default function Music() {
       </Presence>
 
       <Extras>
-        <Toggle />
+        <div className="flex flex-row space-x-4">
+          <Globe />
+          <Toggle />
+        </div>
+
         <Fullscreen
           query={
             Array.isArray(router.query.code)
@@ -121,6 +128,6 @@ export default function Music() {
           }
         />
       </Extras>
-    </>
+    </LangProvider>
   );
 }

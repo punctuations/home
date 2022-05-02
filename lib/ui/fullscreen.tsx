@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 import { Activity, useLanyard } from "use-lanyard";
 import { useListenAlong } from "use-listen-along";
-import { phrases } from "../assets/phrases";
+import { LangContext } from "../assets/LangProvider";
 
 const Fullscreen = (props: { query: string | undefined }) => {
   const [auth, setAuth] = React.useState<string | null>(null);
@@ -15,6 +15,8 @@ const Fullscreen = (props: { query: string | undefined }) => {
   const { data: lanyard } = useLanyard(snowflake);
 
   const router = useRouter();
+
+  const { lang } = React.useContext(LangContext);
 
   const { connected, error } = useListenAlong(
     snowflake,
@@ -74,7 +76,7 @@ const Fullscreen = (props: { query: string | undefined }) => {
             onClick={() => listen(connection)}
             className="2xl:flex xl:flex lg:flex md:flex hidden duration-500 transition-colors px-3 py-1 bg-white dark:bg-black rounded-md border-gray-600 dark:hover:border-white hover:border-black text-gray-600 dark:hover:text-white hover:text-black border"
           >
-            {connection ? phrases.jp.lanyard.dc : phrases.jp.lanyard.cta}
+            {connection ? lang.phrases.lanyard.dc : lang.phrases.lanyard.cta}
           </button>
           <svg
             onClick={() => listen(connection)}

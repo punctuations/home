@@ -1,10 +1,12 @@
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import React from "react";
-import { phrases } from "./phrases";
+import { LangContext } from "./LangProvider";
 
 const Nav = () => {
   const router = useRouter();
+
+  const { lang } = React.useContext(LangContext);
 
   return (
     <motion.nav
@@ -27,7 +29,7 @@ const Nav = () => {
             className="appearance-none focus:outline-none select-none text-lg group"
           >
             <span className="group-hover:underline group-hover:mr-1 transition-all duration-500">
-              {phrases.jp.navigation[1]}
+              {lang.phrases.navigation[1]}
             </span>{" "}
             &rsaquo;
           </button>
@@ -36,7 +38,7 @@ const Nav = () => {
             className="appearance-none focus:outline-none select-none text-lg group"
           >
             <span className="group-hover:underline group-hover:mr-1 transition-all duration-500">
-              {phrases.jp.navigation[2]}
+              {lang.phrases.navigation[2]}
             </span>{" "}
             &rsaquo;
           </button>
@@ -45,7 +47,7 @@ const Nav = () => {
             className="appearance-none focus:outline-none select-none text-lg group"
           >
             <span className="group-hover:underline group-hover:mr-1 transition-all duration-500">
-              {phrases.jp.navigation[3]}
+              {lang.phrases.navigation[3]}
             </span>{" "}
             &rsaquo;
           </button>
@@ -57,7 +59,7 @@ const Nav = () => {
             className="appearance-none focus:outline-none select-none text-lg group"
           >
             <span className="group-hover:underline group-hover:mr-1 transition-all duration-500">
-              {phrases.jp.navigation[0]}
+              {lang.phrases.navigation[0]}
             </span>{" "}
             &rsaquo;
           </button>
@@ -66,7 +68,7 @@ const Nav = () => {
             className="appearance-none focus:outline-none select-none text-lg group"
           >
             <span className="group-hover:underline group-hover:mr-1 transition-all duration-500">
-              {phrases.jp.navigation[2]}
+              {lang.phrases.navigation[2]}
             </span>{" "}
             &rsaquo;
           </button>
@@ -75,7 +77,7 @@ const Nav = () => {
             className="appearance-none focus:outline-none select-none text-lg group"
           >
             <span className="group-hover:underline group-hover:mr-1 transition-all duration-500">
-              {phrases.jp.navigation[3]}
+              {lang.phrases.navigation[3]}
             </span>{" "}
             &rsaquo;
           </button>
@@ -87,7 +89,7 @@ const Nav = () => {
             className="appearance-none focus:outline-none select-none text-lg group"
           >
             <span className="group-hover:underline group-hover:mr-1 transition-all duration-500">
-              {phrases.jp.navigation[0]}
+              {lang.phrases.navigation[0]}
             </span>{" "}
             &rsaquo;
           </button>
@@ -96,7 +98,7 @@ const Nav = () => {
             className="appearance-none focus:outline-none select-none text-lg group"
           >
             <span className="group-hover:underline group-hover:mr-1 transition-all duration-500">
-              {phrases.jp.navigation[2]}
+              {lang.phrases.navigation[2]}
             </span>{" "}
             &rsaquo;
           </button>
@@ -105,7 +107,7 @@ const Nav = () => {
             className="appearance-none focus:outline-none select-none text-lg group"
           >
             <span className="group-hover:underline group-hover:mr-1 transition-all duration-500">
-              {phrases.jp.navigation[1]}
+              {lang.phrases.navigation[1]}
             </span>{" "}
             &rsaquo;
           </button>
@@ -117,7 +119,7 @@ const Nav = () => {
             className="appearance-none focus:outline-none select-none text-lg group"
           >
             <span className="group-hover:underline group-hover:mr-1 transition-all duration-500">
-              {phrases.jp.navigation[0]}
+              {lang.phrases.navigation[0]}
             </span>{" "}
             &rsaquo;
           </button>
@@ -126,7 +128,7 @@ const Nav = () => {
             className="appearance-none focus:outline-none select-none text-lg group"
           >
             <span className="group-hover:underline group-hover:mr-1 transition-all duration-500">
-              {phrases.jp.navigation[1]}
+              {lang.phrases.navigation[1]}
             </span>{" "}
             &rsaquo;
           </button>
@@ -135,7 +137,7 @@ const Nav = () => {
             className="appearance-none focus:outline-none select-none text-lg group"
           >
             <span className="group-hover:underline group-hover:mr-1 transition-all duration-500">
-              {phrases.jp.navigation[3]}
+              {lang.phrases.navigation[3]}
             </span>{" "}
             &rsaquo;
           </button>

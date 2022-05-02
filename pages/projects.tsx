@@ -14,11 +14,14 @@ import { Project } from "../lib/assets/project";
 import Lanyard from "../lib/ui/lanyard";
 import { Toggle } from "../lib/assets/toggle";
 import Fullscreen from "../lib/ui/fullscreen";
+import { Globe } from "../lib/assets/globe";
+import React from "react";
+import { LangProvider } from "../lib/assets/LangProvider";
 
 export default function Projects() {
   const router = useRouter();
   return (
-    <>
+    <LangProvider>
       <Head>
         <link rel="icon" href="https://github.com/punctuations.png" />
         <meta name="theme-color" content="#2f3136" />
@@ -57,15 +60,9 @@ export default function Projects() {
             return (
               <motion.div
                 key={project.name}
-                className={`relative overflow-hidden flex flex-col justify-center space-y-2 w-full 2xl:h-80 h-64 p-4 px-12 shadow-md hover:shadow-lg transition-all duration-500 dark:border-2 border-${`${
-                  project.color.split("-")[1]
-                }${
-                  project.color.split("-")[2]
-                    ? `-${project.color.split("-")[2]}`
-                    : ""
-                }`} ${project.color} dark:${project.dark_color} ${
+                className={`relative overflow-hidden flex flex-col justify-center space-y-2 w-full 2xl:h-80 h-64 p-4 px-12 shadow-md hover:shadow-lg transition-all duration-500 dark:border-2 ${project.border} ${project.color} ${project.dark_color} ${
                   project.text
-                } dark:${project.dark_text} rounded-md`}
+                } ${project.dark_text} rounded-md`}
                 initial={{ y: 20, opacity: 0 }}
                 animate={{
                   y: 0,
@@ -113,7 +110,11 @@ export default function Projects() {
       </Presence>
 
       <Extras>
-        <Toggle />
+        <div className="flex flex-row space-x-4">
+          <Globe />
+          <Toggle />
+        </div>
+
         <Fullscreen
           query={
             Array.isArray(router.query.code)
@@ -122,6 +123,6 @@ export default function Projects() {
           }
         />
       </Extras>
-    </>
+    </LangProvider>
   );
 }

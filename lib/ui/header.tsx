@@ -1,9 +1,13 @@
+import React from "react";
+
 import { motion } from "framer-motion";
 import { Socials } from "../assets/socials";
 import Message from "./Message";
-import { phrases } from "../assets/phrases";
+import { LangContext } from "../assets/LangProvider";
 
 const Header = () => {
+  const { lang } = React.useContext(LangContext);
+
   return (
     <motion.header
       initial={{
@@ -28,10 +32,10 @@ const Header = () => {
         <Message text={"💻💬"} />
       </Message.Provider>
       <h1 className="text-center 2xl:text-6xl xl:text-6xl lg:text-6xl md:text-5xl sm:text-4xl text-3xl font-bold dark:text-white">
-        {phrases.jp.intro.name} <span className="wave">👋</span>
+        {lang.phrases.intro.name} <span className="wave">👋</span>
       </h1>
       <p className="text-center 2xl:text-xl xl:text-xl lg:text-xl md:text-lg text-base text-gray-400">
-        {phrases.jp.intro.bio}
+        {lang.phrases.intro.bio}
       </p>
       <div className="flex space-x-9">
         {Socials.map((socials, i) => {

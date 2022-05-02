@@ -8,7 +8,7 @@ export const phrases = {
       short: "I'm a TypeScript Developer",
       bio: `I'm a ${ntw.toWords(
         new Date().getFullYear() - 2005
-      )}-year-old TypeScript`,
+      )}-year-old TypeScript developer`,
       skip: "skip",
     },
     lanyard: {
@@ -20,8 +20,8 @@ export const phrases = {
     navigation: ["home", "projects", "message", "music"],
     prompt: "Message",
     pages: {
-      home: "HO<br />ME",
-      projects: "PRJ<br />CTS",
+      home: "HOME",
+      projects: "PROJECTS",
       message: "PING",
       music: "MUSIC",
     },
