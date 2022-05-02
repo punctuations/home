@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Socials } from "../assets/socials";
 import Message from "./Message";
-import ntw from "number-to-words";
+import { phrases } from "../assets/phrases";
 
 const Header = () => {
   return (
@@ -25,14 +25,13 @@ const Header = () => {
         className="2xl:flex xl:flex lg:flex hidden"
         pfp={"https://github.com/punctuations.png"}
       >
-        <Message text={"👀💬"} />
+        <Message text={"💻💬"} />
       </Message.Provider>
       <h1 className="text-center 2xl:text-6xl xl:text-6xl lg:text-6xl md:text-5xl sm:text-4xl text-3xl font-bold dark:text-white">
-        Hey, I'm Matt <span className="wave">👋</span>
+        {phrases.jp.intro.name} <span className="wave">👋</span>
       </h1>
       <p className="text-center 2xl:text-xl xl:text-xl lg:text-xl md:text-lg text-base text-gray-400">
-        I'm a {ntw.toWords(new Date().getFullYear() - 2005)}-year-old TypeScript
-        developer!
+        {phrases.jp.intro.bio}
       </p>
       <div className="flex space-x-9">
         {Socials.map((socials, i) => {

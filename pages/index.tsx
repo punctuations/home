@@ -16,6 +16,7 @@ import { Toggle } from "../lib/assets/toggle";
 import Fullscreen from "../lib/ui/fullscreen";
 import { Intro } from "../lib/ui/Intro";
 import Notification from "../lib/ui/Notification";
+import { phrases } from "../lib/assets/phrases";
 
 export default function Home() {
   const { query } = useRouter();
@@ -26,8 +27,8 @@ export default function Home() {
         <meta name="theme-color" content="#2f3136" />
       </Head>
       <NextSeo
-        title="home"
-        titleTemplate="%s | matt"
+        title={phrases.jp.navigation[0]}
+        titleTemplate={`%s | ${phrases.jp.intro.name_short}`}
         description="Student and Typescript Developer."
         openGraph={{
           type: "website",
@@ -50,22 +51,6 @@ export default function Home() {
       />
 
       <Intro>
-        <div className="absolute z-50 top-0 right-2 w-1/4">
-          {/*<Notification*/}
-          {/*  dismiss*/}
-          {/*  href={"https://github.com/punctuations/home"}*/}
-          {/*  variant={"macOS"}*/}
-          {/*  app={"Launch"}*/}
-          {/*  title={"👀💬"}*/}
-          {/*  text={"The new UI has launched!"}*/}
-          {/*>*/}
-          {/*  <img*/}
-          {/*    alt={"launch icon"}*/}
-          {/*    src="https://cdn.discordapp.com/attachments/708830079551275098/890787858862968872/unknown.png"*/}
-          {/*    className="rounded"*/}
-          {/*  />*/}
-          {/*</Notification>*/}
-        </div>
         <Page />
 
         <Main>

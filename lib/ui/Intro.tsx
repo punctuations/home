@@ -3,6 +3,7 @@ import { useKeyPress } from "ahooks";
 
 import { AnimatePresence, motion } from "framer-motion";
 import Message from "./Message";
+import { phrases } from "../assets/phrases";
 
 export function Intro(props: { children: React.ReactNode }) {
   const intro = {
@@ -34,14 +35,14 @@ export function Intro(props: { children: React.ReactNode }) {
           onAnimationComplete={() => setIntro(false)}
         >
           <Message.Provider>
-            <Message hide text={"Hey, I'm Matt :)"} />
-            <Message text={"I'm a Typescript Developer!"} />
+            <Message hide text={phrases.jp.intro.name} />
+            <Message text={phrases.jp.intro.short} />
           </Message.Provider>
           <button
             onClick={() => setIntro(false)}
             className="appearance-none focus:outline-none z-50 absolute bottom-12 right-12 text-lg text-black dark:text-white transition-colors duration-500 dark:hover:text-green-400 hover:text-green-500"
           >
-            skip &#xbb;
+            {phrases.jp.intro.skip} &#xbb;
           </button>
         </motion.div>
       )}

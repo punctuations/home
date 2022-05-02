@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 
 import { Activity, useLanyard } from "use-lanyard";
 import { useListenAlong } from "use-listen-along";
+import { phrases } from "../assets/phrases";
 
 const Fullscreen = (props: { query: string | undefined }) => {
   const [auth, setAuth] = React.useState<string | null>(null);
@@ -73,7 +74,7 @@ const Fullscreen = (props: { query: string | undefined }) => {
             onClick={() => listen(connection)}
             className="2xl:flex xl:flex lg:flex md:flex hidden duration-500 transition-colors px-3 py-1 bg-white dark:bg-black rounded-md border-gray-600 dark:hover:border-white hover:border-black text-gray-600 dark:hover:text-white hover:text-black border"
           >
-            {connection ? "Disconnect" : "Listen Along"}
+            {connection ? phrases.jp.lanyard.dc : phrases.jp.lanyard.cta}
           </button>
           <svg
             onClick={() => listen(connection)}

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer utilities {
-    @variants dark {
+    @layer dark {
         .dark-select ::selection {
             background-color: #f81ce5;
             color: #fff;

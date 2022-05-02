@@ -3,6 +3,7 @@ import Image from "next/image";
 
 import { AnimatePresence, motion } from "framer-motion";
 import { Activity, useLanyard } from "use-lanyard";
+import { phrases } from "../assets/phrases";
 
 const Skeleton = dynamic(() => import("react-skeleton-loader"), { ssr: false });
 
@@ -72,7 +73,7 @@ const Lanyard = () => {
                 <div className="flex flex-col text-xs text-black dark:text-white w-3/4">
                   <p className="font-bold">{lanyard.spotify?.song}</p>
                   <p className="text-gray-400 dark:text-gray-600">
-                    by {lanyard.spotify?.artist}
+                    {phrases.jp.lanyard.credit} {lanyard.spotify?.artist}
                   </p>
                 </div>
               </div>
