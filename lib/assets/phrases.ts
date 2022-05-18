@@ -21,7 +21,7 @@ export const phrases = {
       name: "404 ERROR",
       desc: "Page not found",
       instructions: "Please check the URL in the address bar and try again.",
-      return: "Return"
+      return: "Return",
     },
     navigation: ["home", "projects", "message", "music"],
     prompt: "Message",
@@ -50,14 +50,15 @@ export const phrases = {
     error: {
       name: "404エラー",
       desc: "お探しのページは見つかりませんでした",
-      instructions: "ページが削除されているか、アドレスが変更されている可能性があります。",
-      return: "戻る"
+      instructions:
+        "ページが削除されているか、アドレスが変更されている可能性があります。",
+      return: "戻る",
     },
-    navigation: ["家", "プロジェクト", "チャット", "音楽"],
+    navigation: ["ホーム", "プロジェクト", "チャット", "音楽"],
     prompt: "チャット",
     fin: "完了",
     pages: {
-      home: "家",
+      home: "ホーム",
       projects: "プロジェクト",
       message: "チャット",
       music: "音楽",
