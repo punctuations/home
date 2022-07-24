@@ -28,7 +28,12 @@ export async function getStaticProps() {
   //   )
   //   .then((r) => r.data);
 
-  const data = { tracks: { id: 1, name: "", artist: "", image: "" } };
+  const data = {
+    tracks: [
+      { id: 1, name: "", artist: "", image: "" },
+      { id: 2, name: "", artist: "", image: "" },
+    ],
+  };
 
   return {
     props: { data },
