@@ -20,20 +20,13 @@ import axios from "axios";
 import { MusicResponse } from "../lib/types/MusicResponse";
 
 export async function getStaticProps() {
-  // const data = await axios
-  //   .get(
-  //     process.env.NODE_ENV === "production"
-  //       ? "https://dont-ping.me/api/music"
-  //       : "http://0.0.0.0:3000/api/music"
-  //   )
-  //   .then((r) => r.data);
-
-  const data = {
-    tracks: [
-      { id: 1, name: "", artist: "", image: "" },
-      { id: 2, name: "", artist: "", image: "" },
-    ],
-  };
+  const data = await axios
+    .get(
+      process.env.NODE_ENV === "production"
+        ? "https://dont-ping.me/api/music"
+        : "http://0.0.0.0:3000/api/music"
+    )
+    .then((r) => r.data);
 
   return {
     props: { data },
