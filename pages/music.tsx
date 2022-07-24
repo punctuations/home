@@ -22,7 +22,7 @@ import { MusicResponse } from "../lib/types/MusicResponse";
 export async function getStaticProps() {
   const data = await fetch(
     process.env.NODE_ENV === "production"
-      ? "https://dont-ping.me/api/music"
+      ? "/api/music"
       : "http://0.0.0.0:3000/api/music"
   ).then((r) => r.json());
 
