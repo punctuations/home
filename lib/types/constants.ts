@@ -1,6 +1,5 @@
 export const WEBHOOK_URL = process.env.WEBHOOK_URL;
 export const LAST_FM_API_KEY = process.env.LAST_FM_API_KEY;
-export const SPOTIFY_AUTH = process.env.SPOTIFY_AUTH as string;
 
 export const chat = {
   hidden: { y: 100, opacity: 0 },

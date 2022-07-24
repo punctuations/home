@@ -39,7 +39,7 @@ export const phrases = {
       name_short: "マット",
       short: "Typescript開発です！",
       bio: `${new Date().getFullYear() - 2005}歳のTypescript開発者です!`,
-      skip: "早送り",
+      skip: "スキップ",
     },
     lanyard: {
       cta: "一緒に聞く",

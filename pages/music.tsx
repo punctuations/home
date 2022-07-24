@@ -20,13 +20,11 @@ import axios from "axios";
 import { MusicResponse } from "../lib/types/MusicResponse";
 
 export async function getStaticProps() {
-  const data = await axios
-    .get(
-      process.env.NODE_ENV === "production"
-        ? "https://dont-ping.me/api/music"
-        : "http://0.0.0.0:3000/api/music"
-    )
-    .then((r) => r.data);
+  const data = await fetch(
+    process.env.NODE_ENV === "production"
+      ? "https://dont-ping.me/api/music"
+      : "http://0.0.0.0:3000/api/music"
+  ).then((r) => r.json());
 
   return {
     props: { data },
@@ -75,7 +73,7 @@ export default function Music(props: { data: MusicResponse }) {
               if (!song.name || !song.artist || !song.image || !song.link)
                 throw new Error("Missing Field");
               return (
-                <div className="group w-56 relative">
+                <div key={song.id} className="group w-56 relative">
                   <div
                     style={{ width: 224, height: 224 }}
                     onClick={() => {
@@ -101,7 +99,7 @@ export default function Music(props: { data: MusicResponse }) {
               );
             } catch {
               return (
-                <div className="group w-56 relative">
+                <div key={i} className="group w-56 relative">
                   <div className="bg-red-500 rounded-xl flex flex-col rounded-xl absolute w-full h-full">
                     <div className="absolute bottom-3 pl-2 text-white">
                       <h4 className="text-2xl font-bold">An error occurred</h4>
