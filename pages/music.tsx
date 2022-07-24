@@ -12,13 +12,28 @@ import Page from "../lib/ui/page";
 import Lanyard from "../lib/ui/lanyard";
 import { Toggle } from "../lib/assets/toggle";
 import Fullscreen from "../lib/ui/fullscreen";
-import { Songs } from "../lib/assets/music";
 import Nav from "../lib/assets/nav";
 import { Globe } from "../lib/assets/globe";
 import React from "react";
 import { LangProvider } from "../lib/assets/LangProvider";
+import axios from "axios";
+import { MusicResponse } from "../lib/types/MusicResponse";
 
-export default function Music() {
+export async function getStaticProps() {
+  const data = await axios
+    .get(
+      process.env.NODE_ENV === "production"
+        ? "https://dont-ping.me/api/music"
+        : "http://0.0.0.0:3000/api/music"
+    )
+    .then((r) => r.data);
+
+  return {
+    props: { data },
+  };
+}
+
+export default function Music(props: { data: MusicResponse }) {
   const router = useRouter();
   return (
     <LangProvider>
@@ -55,15 +70,9 @@ export default function Music() {
       <Main>
         <Nav />
         <section className="mx-2 overflow-x-scroll grid col-span-2 md:grid-rows-2 md:grid-flow-col grid-flow-rows gap-x-3 gap-y-4">
-          {Songs.map((song, i) => {
+          {props.data.tracks.map((song, i) => {
             try {
-              if (
-                !song.name ||
-                !song.artists ||
-                song.artists[0] === "" ||
-                !song.album_cover ||
-                !song.link
-              )
+              if (!song.name || !song.artist || !song.image || !song.link)
                 throw new Error("Missing Field");
               return (
                 <div className="group w-56 relative">
@@ -76,18 +85,16 @@ export default function Music() {
                   >
                     <div className="absolute bottom-3 pl-2 transition-all duration-200 text-transparent group-hover:text-black dark:group-hover:text-white">
                       <h4 className="text-xl font-bold">{song.name}</h4>
-                      <p className="text-md font-semibold">
-                        {song.artists.join("; ")}
-                      </p>
+                      <p className="text-md font-semibold">{song.artist}</p>
                     </div>
                   </div>
                   <Image
                     width={224}
                     height={224}
                     alt={song.name}
-                    src={song.album_cover}
+                    src={song.image}
                     placeholder="blur"
-                    blurDataURL={song.album_cover}
+                    blurDataURL={song.image}
                     className="rounded-xl"
                   />
                 </div>

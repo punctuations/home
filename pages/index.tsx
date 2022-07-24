@@ -11,13 +11,11 @@ import Page from "../lib/ui/page";
 
 import Nav from "../lib/assets/nav";
 import Header from "../lib/ui/header";
-import Card from "../lib/ui/card";
 import Lanyard from "../lib/ui/lanyard";
 import { Toggle } from "../lib/assets/toggle";
 import Fullscreen from "../lib/ui/fullscreen";
 import { Intro } from "../lib/ui/Intro";
 import Notification from "../lib/ui/Notification";
-import { phrases } from "../lib/assets/phrases";
 
 import { Globe } from "../lib/assets/globe";
 import { LangContext, LangProvider } from "../lib/assets/LangProvider";
