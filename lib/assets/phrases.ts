@@ -5,10 +5,10 @@ export const phrases = {
     intro: {
       name: "Hey, I'm Matt",
       name_short: "matt",
-      short: "I'm a TypeScript Developer",
+      short: "I'm a Software Developer",
       bio: `I'm a ${ntw.toWords(
         new Date().getFullYear() - 2005
-      )}-year-old TypeScript developer`,
+      )}-year-old software developer`,
       skip: "skip",
     },
     lanyard: {
@@ -37,13 +37,13 @@ export const phrases = {
     intro: {
       name: "マットです",
       name_short: "マット",
-      short: "Typescript開発です！",
-      bio: `${new Date().getFullYear() - 2005}歳のTypescript開発者です!`,
+      short: "ソフトウィア開発です！",
+      bio: `${new Date().getFullYear() - 2005}歳のソフトウィア開発者です!`,
       skip: "スキップ",
     },
     lanyard: {
-      cta: "一緒に聞く",
-      dc: "一緒に聞くのをやめなさい",
+      cta: "一緒に聴く",
+      dc: "一緒に聴くのをやめなさい",
       listening: "Spotifyで聴く",
       credit: "",
     },
