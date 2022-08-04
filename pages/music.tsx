@@ -19,7 +19,7 @@ import { LangProvider } from "../lib/assets/LangProvider";
 import axios from "axios";
 import { MusicResponse } from "../lib/types/MusicResponse";
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const data = await axios
     .get(
       process.env.NODE_ENV === "production"
