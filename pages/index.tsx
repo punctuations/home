@@ -20,7 +20,19 @@ import Notification from "../lib/ui/Notification";
 import { Globe } from "../lib/assets/globe";
 import { LangContext, LangProvider } from "../lib/assets/LangProvider";
 
-export default function Home() {
+export async function getServerSideProps(ctx: {
+  req: { headers: { referer: string } };
+}) {
+  const refer = ctx.req.headers.referer ?? "";
+
+  return {
+    props: {
+      refer,
+    },
+  };
+}
+
+export default function Home(props: { refer: string }) {
   const { query } = useRouter();
 
   return (
@@ -53,7 +65,7 @@ export default function Home() {
         }}
       />
 
-      <Intro>
+      <Intro refer={props.refer}>
         <Page />
 
         <Main>
