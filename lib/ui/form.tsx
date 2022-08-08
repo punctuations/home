@@ -2,10 +2,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import axios from "axios";
 import React from "react";
 import Message from "./Message";
-import {LangContext} from "../assets/LangProvider";
+import { LangContext } from "../assets/LangProvider";
 
 const Form = () => {
-  const {lang} = React.useContext(LangContext)
+  const { lang } = React.useContext(LangContext);
 
   const [error, setError] = React.useState<string | null>(null);
   const [success, setSuccess] = React.useState<{
@@ -160,7 +160,7 @@ const Form = () => {
           </header>
           <section className="text-sm flex flex-col space-y-3 items-center justify-center w-full">
             <div className="dark:text-white bg-white dark:bg-[#2c2c2e] rounded-md p-2 w-10/12">
-              <p className="text-xs">phone</p>
+              <p className="text-xs">{lang.phrases.form.phone}</p>
               <input
                 id="phone"
                 name="Phone number"
@@ -180,7 +180,7 @@ const Form = () => {
               />
             </div>
             <div className="dark:text-white bg-white dark:bg-[#2c2c2e] rounded-md p-2 w-10/12">
-              <p className="text-xs">email</p>
+              <p className="text-xs">{lang.phrases.form.email}</p>
               <input
                 type="email"
                 name="email"

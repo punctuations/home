@@ -24,6 +24,10 @@ export const phrases = {
       return: "Return",
     },
     navigation: ["home", "projects", "message", "music"],
+    form: {
+      phone: "phone",
+      email: "email",
+    },
     prompt: "Message",
     fin: "Done",
     pages: {
@@ -55,7 +59,11 @@ export const phrases = {
       return: "戻る",
     },
     navigation: ["ホーム", "プロジェクト", "チャット", "音楽"],
-    prompt: "チャット",
+    form: {
+      phone: "電話番号",
+      email: "メール",
+    },
+    prompt: "メッセージ",
     fin: "完了",
     pages: {
       home: "ホーム",

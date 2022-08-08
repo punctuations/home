@@ -23,7 +23,15 @@ export function Intro(props: { children: React.ReactNode }) {
   };
 
   const [introduction, setIntro] = React.useState<boolean>(true);
-
+  React.useEffect(() => {
+    if (
+      document.referrer.startsWith("http://0.0.0.0:3000") ||
+      document.referrer.startsWith("http://localhost:3000") ||
+      document.referrer.startsWith("https://dont-ping.me")
+    ) {
+      setIntro(false);
+    }
+  }, []);
   useKeyPress("ENTER", () => setIntro(false));
 
   return (
