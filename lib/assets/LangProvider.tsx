@@ -21,9 +21,13 @@ export const LangContext = React.createContext({
         desc: string;
         instructions: string;
         return: string;
-      }
+      };
       lanyard: { cta: string; dc: string; listening: string; credit: string };
       navigation: string[];
+      form: {
+        phone: string;
+        email: string;
+      };
       prompt: string;
       fin: string;
       pages: { home: string; projects: string; message: string; music: string };
