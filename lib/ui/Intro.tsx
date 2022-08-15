@@ -54,7 +54,7 @@ export function Intro(props: { refer: string; children: React.ReactNode }) {
             onClick={() => setIntro(false)}
             className="appearance-none focus:outline-none z-50 absolute bottom-12 right-12 text-lg text-black dark:text-white transition-colors duration-500 dark:hover:text-green-400 hover:text-green-500"
           >
-            {lang.phrases.intro.skip} {props.refer} &#xbb;
+            {lang.phrases.intro.skip} &#xbb;
           </button>
         </motion.div>
       )}
