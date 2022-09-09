@@ -14,6 +14,7 @@ export const LangContext = React.createContext({
         name_short: string;
         short: string;
         bio: string;
+        intro: string;
         skip: string;
       };
       error: {

@@ -15,10 +15,10 @@ import Lanyard from "../lib/ui/lanyard";
 import { Toggle } from "../lib/assets/toggle";
 import Fullscreen from "../lib/ui/fullscreen";
 import { Intro } from "../lib/ui/Intro";
-import Notification from "../lib/ui/Notification";
 
 import { Globe } from "../lib/assets/globe";
-import { LangContext, LangProvider } from "../lib/assets/LangProvider";
+import { LangProvider } from "../lib/assets/LangProvider";
+import Notice from "../lib/ui/notice";
 
 export async function getServerSideProps(ctx: {
   req: { headers: { referer: string } };
@@ -70,9 +70,9 @@ export default function Home(props: { refer: string }) {
 
         <Main>
           <Nav />
+          <Notice />
 
           <Header />
-          {/*<Card />*/}
         </Main>
 
         <Presence>

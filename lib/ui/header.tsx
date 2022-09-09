@@ -34,9 +34,14 @@ const Header = () => {
       <h1 className="text-center 2xl:text-6xl xl:text-6xl lg:text-6xl md:text-5xl sm:text-4xl text-3xl font-bold dark:text-white">
         {lang.phrases.intro.name} <span className="wave">👋</span>
       </h1>
-      <p className="text-center 2xl:text-xl xl:text-xl lg:text-xl md:text-lg text-base text-gray-400">
-        {lang.phrases.intro.bio}
-      </p>
+      <div className="flex 2xl:items-start xl:items-start lg:items-start items-center flex-col">
+        <p className="text-center 2xl:text-xl xl:text-xl lg:text-xl md:text-lg text-base text-gray-400">
+          {lang.phrases.intro.bio}
+        </p>
+        <p className="text-center 2xl:text-md xl:text-md lg:text-md md:text-base text-sm text-gray-400">
+          {lang.phrases.intro.intro}
+        </p>
+      </div>
       <div className="flex space-x-9">
         {Socials.map((socials, i) => {
           return (
