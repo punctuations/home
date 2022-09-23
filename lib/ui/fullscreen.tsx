@@ -74,7 +74,7 @@ const Fullscreen = (props: { query: string | undefined }) => {
         <div className="flex flex-row space-x-4 justify-center items-center -mr-1">
           <button
             onClick={() => listen(connection)}
-            className="2xl:flex xl:flex lg:flex md:flex hidden duration-500 transition-colors px-3 py-1 bg-white dark:bg-black rounded-md border-gray-600 dark:hover:border-white hover:border-black text-gray-600 dark:hover:text-white hover:text-black border"
+            className="2xl:flex xl:flex lg:flex md:flex hidden duration-300 transition-colors px-3 py-1 bg-white dark:bg-black rounded-md border-gray-600 dark:hover:border-white hover:border-black text-gray-600 dark:hover:text-white hover:text-black border"
           >
             {connection ? lang.phrases.lanyard.dc : lang.phrases.lanyard.cta}
           </button>
