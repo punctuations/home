@@ -1,13 +1,10 @@
 import React from "react";
 
-import dynamic from "next/dynamic";
 import Image from "next/image";
 
 import { AnimatePresence, motion } from "framer-motion";
 import { Activity, useLanyard } from "use-lanyard";
 import { LangContext } from "../assets/LangProvider";
-
-const Skeleton = dynamic(() => import("react-skeleton-loader"), { ssr: false });
 
 const Lanyard = () => {
   const { lang } = React.useContext(LangContext);
@@ -22,7 +19,7 @@ const Lanyard = () => {
   return (
     <>
       <AnimatePresence>
-        {lanyard ? (
+        {lanyard && (
           <motion.div
             className="flex items-center select-none"
             initial={{ y: 20, opacity: 0 }}
@@ -152,12 +149,6 @@ const Lanyard = () => {
               </>
             )}
           </motion.div>
-        ) : (
-          <div className="flex space-x-3 items-end">
-            <Skeleton width="50px" height="50px" widthRandomness={0} />
-            <Skeleton count={2} />
-            <Skeleton />
-          </div>
         )}
       </AnimatePresence>
     </>

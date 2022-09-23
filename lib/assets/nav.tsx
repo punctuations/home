@@ -10,7 +10,7 @@ const Nav = () => {
 
   return (
     <motion.nav className="fixed z-20 top-6 right-6 dark:text-white flex space-x-6 items-center justify-center">
-      <div className="border-gray-300 dark:border-gray-800 border px-4 py-2 rounded-md flex space-x-2">
+      <div className="dark:bg-black bg-white border-gray-300 dark:border-gray-800 border px-4 py-2 rounded-md flex space-x-2">
         <button
           onClick={() => router.push("/")}
           className={`${
