@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { LangContext } from "../assets/LangProvider";
 import React from "react";
 
@@ -6,13 +6,22 @@ const Notice = () => {
   const { lang } = React.useContext(LangContext);
 
   return (
-    <>
+    <AnimatePresence>
       {lang.pref == "jp" ? (
         <motion.div
           initial={{ y: 10, opacity: 0 }}
           animate={{
             y: 0,
             opacity: 1,
+            transition: {
+              duration: 0.4,
+              delay: 0.15,
+              ease: [0.48, 0.15, 0.25, 0.96],
+            },
+          }}
+          exit={{
+            y: 10,
+            opacity: 0,
             transition: {
               duration: 0.4,
               delay: 0.15,
@@ -41,7 +50,7 @@ const Notice = () => {
           </div>
         </motion.div>
       ) : null}
-    </>
+    </AnimatePresence>
   );
 };
 
