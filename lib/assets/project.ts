@@ -184,7 +184,7 @@ export const Project = [
     border: "border-white/50",
     dark_color: "dark:from-pink-500 dark:to-purple-500",
     text: "text-white",
-    dark_text: "dark:text-black",
+    dark_text: "dark:text-white",
     default: "https://mu.canary.mx",
     image: "https://cdn.dont-ping.me/mu.png",
   },
