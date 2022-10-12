@@ -147,7 +147,7 @@ export const Project = [
     dark_color: "dark:bg-gray-900",
     text: "text-white",
     dark_text: "dark:text-white",
-    default: "https://newtab.vc/",
+    default: "https://newtabs.vercel.app/",
     image: "https://cdn.dont-ping.me/tab.png",
   },
   {
@@ -168,5 +168,24 @@ export const Project = [
     dark_text: "dark:text-white",
     default: "https://npmjs.org/@canary-ui/react",
     image: "https://cdn.dont-ping.me/canary.png",
+  },
+  {
+    icon: "📸",
+    name: "mμ",
+    id: "mu",
+    type: "Project",
+    description: "Easy open graph generation.",
+    author: {
+      name: "Matt",
+      image: "https://github.com/punctuations.png",
+    },
+    date: new Date("Oct 11 2022"),
+    color: "bg-gradient-to-r from-purple-500 to-pink-500",
+    border: "border-white/50",
+    dark_color: "dark:from-pink-500 dark:to-purple-500",
+    text: "text-white",
+    dark_text: "dark:text-black",
+    default: "mu.canary.mx",
+    image: "https://cdn.dont-ping.me/mu.png",
   },
 ];
