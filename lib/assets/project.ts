@@ -185,7 +185,7 @@ export const Project = [
     dark_color: "dark:from-pink-500 dark:to-purple-500",
     text: "text-white",
     dark_text: "dark:text-black",
-    default: "mu.canary.mx",
+    default: "https://mu.canary.mx",
     image: "https://cdn.dont-ping.me/mu.png",
   },
 ];
