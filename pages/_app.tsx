@@ -2,7 +2,6 @@ import { AppProps } from "next/app";
 import "../styles/tailwind.css";
 import React from "react";
 import { useKeyPress } from "ahooks";
-// @ts-ignore
 import { Analytics } from "@vercel/analytics/react";
 
 import { ThemeContext, themeLoad } from "../lib/assets/toggle";
