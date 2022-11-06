@@ -2,6 +2,7 @@ import { AppProps } from "next/app";
 import "../styles/tailwind.css";
 import React from "react";
 import { useKeyPress } from "ahooks";
+import { Analytics } from "@vercel/analytics/react";
 
 import { ThemeContext, themeLoad } from "../lib/assets/toggle";
 
@@ -48,6 +49,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeContext.Provider value={value}>
       <Component {...pageProps} />
+      <Analytics />
     </ThemeContext.Provider>
   );
 }
