@@ -14,7 +14,7 @@ function upload() {
   inquirer
     .prompt([
       {
-        name: "route",
+        name: "route (filepath)",
         type: "input",
       },
       {
@@ -23,7 +23,7 @@ function upload() {
       },
     ])
     .then(async (answer) => {
-      let response = answer.route.trim();
+      let response = answer["route (filepath)"].trim();
       let fixed =
         answer["fixed name (leave blank if none)"].trim() === ""
           ? null
