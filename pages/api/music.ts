@@ -20,12 +20,12 @@ export default async function handler(
 
   data.toptracks.track.forEach(
     (song: { name: string; artist: { name: string } }) => {
-      songs.push(song.name);
-      artists.push(song.artist.name);
+      if (songs.filter(element => element.toLowerCase() == song.name.toLowerCase()).length == 0) {
+        songs.push(song.name);
+        artists.push(song.artist.name);
+      }
     }
   );
-
-  // console.log(songs);
 
   const track_obj: { [key: string]: string }[] = [];
 
