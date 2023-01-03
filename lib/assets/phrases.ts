@@ -1,14 +1,17 @@
 import ntw from "number-to-words";
 
+const age = ntw.toWords(
+  new Date().getFullYear() - 2005
+)
+const vowel = '^[aieouAIEOU].*'
+
 export const phrases = {
   eng: {
     intro: {
       name: "Hey, I'm Matt",
       name_short: "matt",
       short: "I'm a Software Developer",
-      bio: `I'm a ${ntw.toWords(
-        new Date().getFullYear() - 2005
-      )}-year-old software developer`,
+      bio: `I'm ${age.match(vowel) ? "an" : "a"} ${age}-year-old software developer`,
       intro:
         "Currently I'm a student studying both computer science and linguistics.",
       skip: "skip",
