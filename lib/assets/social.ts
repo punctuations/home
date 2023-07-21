@@ -30,8 +30,8 @@ export const Socials = {
   twitter: {
     name: "matt",
     discriminator: null,
-    at: "@atmattt",
-    href: "https://twitter.com/atmattt",
+    at: "@mttskbl",
+    href: "https://twitter.com/mttskbl",
   },
   github: {
     name: "Matt",

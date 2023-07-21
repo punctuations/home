@@ -21,75 +21,75 @@ import { LangProvider } from "../lib/assets/LangProvider";
 import Notice from "../lib/ui/notice";
 
 export async function getServerSideProps(ctx: {
-  req: { headers: { referer: string } };
+	req: { headers: { referer: string } };
 }) {
-  const refer = ctx.req.headers.referer ?? "";
+	const refer = ctx.req.headers.referer ?? "";
 
-  return {
-    props: {
-      refer,
-    },
-  };
+	return {
+		props: {
+			refer,
+		},
+	};
 }
 
 export default function Home(props: { refer: string }) {
-  const { query } = useRouter();
+	const { query } = useRouter();
 
-  return (
-    <LangProvider>
-      <Head>
-        <link rel="icon" href="https://github.com/punctuations.png" />
-        <meta name="theme-color" content="#2f3136" />
-      </Head>
-      <NextSeo
-        title="home"
-        titleTemplate="%s | matt"
-        description="Student and Typescript Developer."
-        openGraph={{
-          type: "website",
-          url: "https://dont-ping.me/",
-          title: "home - matt",
-          description: "Student and Typescript Developer.",
-          images: [
-            {
-              url: "/full.png",
-              width: 1224,
-              height: 719,
-            },
-          ],
-        }}
-        twitter={{
-          handle: "@atmattt",
-          site: "@atmattt",
-          cardType: "summary_large_image",
-        }}
-      />
+	return (
+		<LangProvider>
+			<Head>
+				<link rel="icon" href="https://github.com/punctuations.png" />
+				<meta name="theme-color" content="#2f3136" />
+			</Head>
+			<NextSeo
+				title="home"
+				titleTemplate="%s | matt"
+				description="Student and Typescript Developer."
+				openGraph={{
+					type: "website",
+					url: "https://dont-ping.me/",
+					title: "home - matt",
+					description: "Student and Typescript Developer.",
+					images: [
+						{
+							url: "/full.png",
+							width: 1224,
+							height: 719,
+						},
+					],
+				}}
+				twitter={{
+					handle: "@mttskbl",
+					site: "@mttskbl",
+					cardType: "summary_large_image",
+				}}
+			/>
 
-      <Intro refer={props.refer}>
-        <Page />
+			<Intro refer={props.refer}>
+				<Page />
 
-        <Main>
-          <Nav />
-          <Notice />
+				<Main>
+					<Nav />
+					<Notice />
 
-          <Header />
-        </Main>
+					<Header />
+				</Main>
 
-        <Presence>
-          <Lanyard />
-        </Presence>
+				<Presence>
+					<Lanyard />
+				</Presence>
 
-        <Extras>
-          <div className="flex flex-row space-x-4">
-            <Globe />
-            <Toggle />
-          </div>
+				<Extras>
+					<div className="flex flex-row space-x-4">
+						<Globe />
+						<Toggle />
+					</div>
 
-          <Fullscreen
-            query={Array.isArray(query.code) ? query.code[0] : query.code}
-          />
-        </Extras>
-      </Intro>
-    </LangProvider>
-  );
+					<Fullscreen
+						query={Array.isArray(query.code) ? query.code[0] : query.code}
+					/>
+				</Extras>
+			</Intro>
+		</LangProvider>
+	);
 }
