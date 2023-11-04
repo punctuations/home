@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 	title: "Matt | Space",
 	description: "Student and Developer.",
 	openGraph: {
-		images: ["/og.png"],
+		images: ["/opengraph-image.png"],
 	},
 };
 
