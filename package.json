@@ -52,6 +52,6 @@
     "build": "next build",
     "analyze": "ANALYZE=true next build",
     "start": "next start",
-    "prettier": "npx prettier --list-different \"./src/**/*.{ts,tsx,md}\" \"./app/**/*.{ts,tsx,md}\"\""
+    "prettier": "npx prettier --list-different \"./src/**/*.{ts,tsx,md}\" \"./app/**/*.{ts,tsx,md}\""
   }
 }

@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import dynamic from 'next/dynamic';
-import { Suspense } from 'react';
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
 
-import 'src/styles/extended.css';
+import "src/styles/extended.css";
 
-const Dots = dynamic(() => import('@/components/canvas/Shapes').then((mod) => mod.Demo), { ssr: false });
-const View = dynamic(() => import('@/components/canvas/View').then((mod) => mod.View), {
+const Dots = dynamic(() => import("@/components/canvas/Shapes").then((mod) => mod.Demo), { ssr: false });
+const View: any = dynamic(() => import("@/components/canvas/View").then((mod) => mod.View), {
 	ssr: false,
 	loading: () => (
 		<div className='flex h-96 w-full flex-col items-center justify-center'>
@@ -21,12 +21,12 @@ const View = dynamic(() => import('@/components/canvas/View').then((mod) => mod.
 		</div>
 	),
 });
-const Common = dynamic(() => import('@/components/canvas/View').then((mod) => mod.Common), { ssr: false });
+const Common = dynamic(() => import("@/components/canvas/View").then((mod) => mod.Common), { ssr: false });
 
-import { Metadata } from 'next';
+import { Metadata } from "next";
 
 const metadata: Metadata = {
-	title: 'Demo | Space',
+	title: "Demo | Space",
 };
 
 export default function Demo() {
