@@ -1,9 +1,13 @@
-import { Layout } from '@/components/dom/Layout';
-import '@/global.css';
+import { Layout } from "@/components/dom/Layout";
+import "@/global.css";
+import { Metadata } from "next";
 
-export const metadata = {
-	title: 'Matt | Space',
-	description: 'Student and Developer.',
+export const metadata: Metadata = {
+	title: "Matt | Space",
+	description: "Student and Developer.",
+	openGraph: {
+		images: ["/og.png"],
+	},
 };
 
 export default function RootLayout({ children }) {
