@@ -122,7 +122,6 @@ export const Demo = (props) => {
 		vertexShader: VertexShader,
 		fragmentShader: FragmentShader,
 		uniforms: {
-			glowIntensity: { value: 0.02 },
 			pointSize: { value: 10.0 }, // Set the point size
 			pointColor: { value: new THREE.Vector3(1.0, 1.0, 1.0) },
 		},

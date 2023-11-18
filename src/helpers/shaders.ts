@@ -8,7 +8,6 @@ export const vertex = `
 `
 
 export const fragment = `
-    uniform float glowIntensity;
     uniform vec3 pointColor;
 
     void main() {
@@ -23,5 +22,3 @@ export const fragment = `
         gl_FragColor = vec4(1, 1, 1, 1);
     }
 `
-
-
