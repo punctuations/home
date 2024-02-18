@@ -83,7 +83,7 @@ export default function Page() {
 						}}
 						exit={{ y: 20, opacity: 0 }}
 					>
-						Currently I&apos;m a student studying both Computer Science and Linguistics.
+						Currently I&apos;m a student studying both Computer Science and Mathematics.
 					</motion.p>
 					<motion.p
 						initial={{ y: 20, opacity: 0 }}
