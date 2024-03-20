@@ -5056,10 +5056,10 @@ url-loader@^4.1.1:
     mime-types "^2.1.27"
     schema-utils "^3.0.0"
 
-use-lanyard@^1.4.4:
-  version "1.4.4"
-  resolved "https://registry.yarnpkg.com/use-lanyard/-/use-lanyard-1.4.4.tgz#bcf9f57ad1044f9bbb25f9c44f00a785c20aa051"
-  integrity sha512-QceDXahv4LlEt+0cTbLwOTgeCA+83BEi26m//2mu/bZkmiHyiF3ZsUYGeukkc0cCLwGm4mm5XVgy71YO6PINxQ==
+use-lanyard@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/use-lanyard/-/use-lanyard-1.5.2.tgz#e02a40b0703e30a098ce77c6d8f785119741f32d"
+  integrity sha512-clxZoUrzgvGa+9IAOv39e4yNjUEvmk/BjBbpIZ/0ymLmclypJkKJ86j5okEjBAACMkw+u1c4gf/zCifpOSwyDA==
 
 use-listen-along@^1.4.0:
   version "1.4.0"

@@ -3,11 +3,11 @@ import React from 'react'
 import Image from 'next/image'
 
 import { AnimatePresence, motion } from 'framer-motion'
-import { Activity, useLanyard } from 'use-lanyard'
+import { Activity, useLanyard, useLanyardWS } from 'use-lanyard'
 
 const Lanyard = () => {
   const snowflake = '291050399509774340'
-  const { data: lanyard } = useLanyard(snowflake)
+  const lanyard = useLanyardWS(snowflake)
 
   const activity = lanyard?.activities.find((activity: Activity) => activity.type === 0)
 

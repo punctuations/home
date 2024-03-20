@@ -24,7 +24,7 @@
     "three": "^0.153.0",
     "three-stdlib": "^2.23.10",
     "tunnel-rat": "^0.1.2",
-    "use-lanyard": "^1.4.4",
+    "use-lanyard": "^1.5.2",
     "use-listen-along": "^1.4.0"
   },
   "devDependencies": {
