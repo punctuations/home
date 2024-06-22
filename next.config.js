@@ -19,7 +19,6 @@ const nextConfig = {
 	reactStrictMode: true, // Recommended for the `pages` directory, default in `app`.
 	experimental: {
 		reactRoot: "concurrent",
-		appDir: true,
 	},
 	images: {
 		domains: ["github.com", "i.scdn.co", "cdn.dont-ping.me", "cdn.discordapp.com"],

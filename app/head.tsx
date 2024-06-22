@@ -1,4 +1,4 @@
-const title = 'Matt in space';
+const title = 'Matt\'s space';
 const url = 'https://mattt.space/';
 const description = 'Student and Developer.';
 const author = 'Author';
