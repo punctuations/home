@@ -1,5 +1,4 @@
 {
-  "ignore": ["**/unicornStudio.umd.js"],
   "extends": ["next", "prettier", "plugin:tailwindcss/recommended"],
   "rules": {
     "import/prefer-default-export": "off",
