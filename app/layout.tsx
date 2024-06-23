@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 	title: "Matt's space",
 	description: "Student and Developer.",
 	openGraph: {
-		images: ["/opengraph-image.png"],
+		images: "/opengraph-image.png",
 	},
 };
 

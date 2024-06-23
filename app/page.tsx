@@ -10,7 +10,7 @@ import { Suspense } from "react";
 import { motion } from "framer-motion";
 
 import "src/styles/extended.css";
-// import { Background } from "@/components/canvas/Background";
+import { Background } from "@/components/canvas/Background";
 
 export default function Page() {
 	const code = useSearchParams().get("code");
@@ -120,7 +120,7 @@ export default function Page() {
 
 			<div className='fixed z-20 w-full h-full bg-black/70' />
 			<Suspense fallback={null}>
-				{/* <Background className="z-10 fixed w-full h-full flex justify-center items-center" /> */}
+				<Background className="z-10 fixed w-full h-full flex justify-center items-center" />
 			</Suspense>
 		</main>
 	);
