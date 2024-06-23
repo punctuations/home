@@ -1,4 +1,7 @@
+"use client"
+
 import { useEffect } from "react";
+
 // @ts-ignore
 import * as UnicornStudio from "@/helpers/unicornStudio.umd.js";
 
