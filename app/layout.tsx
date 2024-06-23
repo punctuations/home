@@ -6,6 +6,7 @@ import { Metadata } from "next";
 const TRACKING_ID = process.env.NEXT_PUBLIC_GA4_TRACKING_ID!;
 
 export const metadata: Metadata = {
+	metadataBase: new URL('https://mattt.space'),
 	title: "Matt's space",
 	description: "Student and Developer.",
 	openGraph: {

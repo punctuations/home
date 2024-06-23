@@ -1,18 +1,14 @@
-"use client"
-
 import { useEffect } from "react";
 
 // @ts-ignore
-// import * as UnicornStudio from "@/helpers/unicornStudio.umd.js";
-
-import {init} from "@/helpers/unicornStudio.umd.js";
+import * as UnicornStudio from "@/helpers/unicornStudio.umd.js";
 
 
 export const Background = (props: any) => {
 	const isAscii = false;
 
 	useEffect(() => {
-		init()
+		UnicornStudio.init()
 			.then((scenes) => {
 				console.log({ scenes });
 			})

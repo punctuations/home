@@ -1,5 +1,7 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
 import Lanyard from "@/components/dom/Lanyard";
 import Listen from "@/components/dom/Listen";
 import { Socials } from "@/components/dom/Socials";
@@ -10,7 +12,8 @@ import { Suspense } from "react";
 import { motion } from "framer-motion";
 
 import "src/styles/extended.css";
-import { Background } from "@/components/canvas/Background";
+
+const Background = dynamic(() => import("@/components/canvas/Background").then(mod => mod.Background), { ssr: false });
 
 export default function Page() {
 	const code = useSearchParams().get("code");
