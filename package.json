@@ -15,6 +15,7 @@
     "@react-three/fiber": "^8.13.3",
     "@react-three/postprocessing": "^2.15.0",
     "@uidotdev/usehooks": "^2.4.1",
+    "@vercel/speed-insights": "^1.0.12",
     "framer-motion": "^10.16.4",
     "glsl-random": "^0.0.5",
     "maath": "^0.10.4",

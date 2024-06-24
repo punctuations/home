@@ -3,6 +3,8 @@ import { Layout } from "@/components/dom/Layout";
 import "@/global.css";
 import { Metadata } from "next";
 
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 const TRACKING_ID = process.env.NEXT_PUBLIC_GA4_TRACKING_ID!;
 
 export const metadata: Metadata = {
@@ -25,6 +27,7 @@ export default function RootLayout({ children }) {
 			<body>
 				{TRACKING_ID ? <GoogleAnalytics ga_id={TRACKING_ID} /> : null}
 				<Layout>{children}</Layout>
+				<SpeedInsights />
 			</body>
 		</html>
 	);
