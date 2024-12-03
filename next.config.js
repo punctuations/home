@@ -32,7 +32,7 @@ const nextConfig = {
 			},
 			{
 				source: "/twitter",
-				destination: "https://twitter.com/mttskbl",
+				destination: "https://twitter.com/1096bit",
 				permanent: true,
 			},
 			{
