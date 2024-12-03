@@ -37,7 +37,7 @@ const nextConfig = {
 			},
 			{
 				source: "/x",
-				destination: "https://x.com/mttskbl",
+				destination: "https://x.com/1096bit",
 				permanent: true,
 			},
 			{
