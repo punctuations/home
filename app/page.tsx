@@ -118,8 +118,8 @@ export default function Home() {
 	const [color, setColor] = useState<string>("#ff0000");
 
 	return (
-		<main className="absolute w-full h-full flex items-center justify-center space-x-24">
-			<div className="z-50 absolute top-3 left-3">
+		<main className="absolute w-full h-full flex items-center justify-center flex-col-reverse md:flex-row md:space-x-24 space-x-0 space-y-16 md:space-y-0">
+			<div className="z-50 absolute top-3 left-3 hidden md:block">
 				<AnimatePresence>
 					<motion.button
 						initial={{ opacity: 0, scale: 0.8 }}
@@ -175,7 +175,7 @@ export default function Home() {
 				style={{
 					transformOrigin: "center",
 				}}
-				className="relative w-1/5"
+				className="relative w-2/3 md:w-1/5"
 			>
 				{/* Drawing SVG */}
 				<svg
@@ -196,7 +196,6 @@ export default function Home() {
 				>
 					<clipPath id="recieptClip">
 						<rect
-							className="cursor-crosshair"
 							transform={`rotate(${rotation} ${
 								(recieptRef.current?.offsetWidth ?? 2) / 2
 							} ${(recieptRef.current?.offsetHeight ?? 2) / 2})`}
@@ -291,10 +290,10 @@ export default function Home() {
 
 						<div
 							id="socials"
-							className="flex flex-row justify-between items-center text-lg"
+							className="flex flex-row justify-between items-center space-x-2 md:space-x-0 text-lg"
 						>
 							<a
-								className="underline z-30 cursor-pointer"
+								className="flex underline z-30 cursor-pointer"
 								title="twitter"
 								href={"/twitter"}
 								target="_blank"
@@ -303,7 +302,7 @@ export default function Home() {
 								Twitter
 							</a>
 							<a
-								className="underline z-30 cursor-pointer"
+								className="flex underline z-30 cursor-pointer"
 								title="discord"
 								href={"/discord"}
 								target="_blank"
@@ -312,7 +311,7 @@ export default function Home() {
 								Discord
 							</a>
 							<a
-								className="underline z-30 cursor-pointer"
+								className="flex underline z-30 cursor-pointer"
 								title="github"
 								href={"/github"}
 								target="_blank"
@@ -321,7 +320,7 @@ export default function Home() {
 								GitHub
 							</a>
 							<a
-								className="underline z-30 cursor-pointer"
+								className="flex underline z-30 cursor-pointer"
 								title="email"
 								href="mailto:hey@mattt.space"
 								target="_blank"
@@ -346,7 +345,7 @@ export default function Home() {
 			</section>
 
 			<section>
-				<header className="flex justify-center flex-col">
+				<header className="flex justify-center flex-col text-center md:text-left">
 					<motion.h3
 						initial={{ y: 20, opacity: 0 }}
 						animate={{
@@ -358,7 +357,7 @@ export default function Home() {
 								ease: [0.48, 0.15, 0.25, 0.96],
 							},
 						}}
-						className="text-6xl"
+						className="md:text-6xl text-4xl"
 					>
 						Hello, I'm Matt
 					</motion.h3>
@@ -373,7 +372,7 @@ export default function Home() {
 								ease: [0.48, 0.15, 0.25, 0.96],
 							},
 						}}
-						className="text-2xl text-gray-300"
+						className="md:text-2xl text-md text-gray-300"
 					>
 						I'm a <span className="outbound">UBC student</span> currently
 						studying{" "}
