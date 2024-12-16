@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+body {
+  color: var(--foreground);
+  /* background: var(--background); */
+  background: var(--background);
+  /* background-image: url('/bg.jpg'); */
+}
+
+.select-none {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.gradient {
+  background-color: hsla(119, 92%, 60%, 1);
+  background-image: radial-gradient(circle at 96% 96%, hsla(337, 93%, 54%, 0.85) 5%, transparent 86%), radial-gradient(circle at 5% 90%, hsla(151, 71%, 68%, 1) 13%, transparent 65%), radial-gradient(circle at 57% 73%, hsla(230, 93%, 51%, 1) 3%, transparent 89%), radial-gradient(circle at 20% 4%, hsla(240, 60%, 76%, 1) 22%, transparent 56%), radial-gradient(circle at 74% 15%, hsla(246, 92%, 59%, 1) 13%, transparent 57%);
+  background-blend-mode: normal, normal, normal, normal, normal;
+}
+
+.reciept {
+  background-color: rgb(229, 229, 229);
+}
+
+.reciept hr {
+  border-color: #0a0a0a;
+  border-style: dashed;
+}
+
+fieldset {
+  border-color: #0a0a0a;
+  border-style: dashed;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+}
+
+legend {
+  text-align: center;
+}
+
+.outbound {
+  text-decoration: underline;
+  text-decoration-thickness: .25rem;
+  text-decoration-color: rgb(209 213 219);
+  cursor: pointer;
+}
+
+.bgrid{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+
+  mix-blend-mode: difference;
+}
+
+.bgrid .bcolumn{
+  width: 5vw;
+}
+
+.bcolumn div{
+  width: 100%;
+  height: 5vw;
+  /* border: 1px solid red; */
+}
