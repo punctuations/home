@@ -118,7 +118,7 @@ export default function Home() {
 	const [color, setColor] = useState<string>("#ff0000");
 
 	return (
-		<main className="absolute w-full h-full flex items-center justify-center flex-col-reverse md:flex-row md:space-x-24 space-x-0 space-y-16 md:space-y-0">
+		<main className="absolute w-full h-full flex items-center justify-center flex-col-reverse md:flex-row md:space-x-24 space-x-0 space-y-16 md:space-y-0 mt-6 sm:mt-0">
 			<div className="z-50 absolute top-3 left-3 hidden md:block">
 				<AnimatePresence>
 					<motion.button
