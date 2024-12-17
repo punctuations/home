@@ -165,7 +165,7 @@ export default function Home() {
         style={{
           transformOrigin: "center",
         }}
-        className="relative min-w-64"
+        className="relative min-w-64 w-3/6 sm:w-1/3 md:w-auto"
       >
         {/* Drawing SVG */}
         <svg
@@ -376,7 +376,7 @@ export default function Home() {
         </header>
       </section>
 
-      <div style={{ marginLeft: 0 }} className="absolute bottom-5 left-5 z-50">
+      <div style={{ marginLeft: 0 }} className="fixed bottom-5 left-5 z-50">
         <Lanyard />
       </div>
     </main>
