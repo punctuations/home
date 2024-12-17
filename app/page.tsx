@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { HexColorPicker } from "react-colorful";
+import Lanyard from "@/components/Lanyard";
 
 export default function Home() {
   const [windowsWidth, setWindowsWidth] = useState(0);
@@ -43,11 +44,18 @@ export default function Home() {
     }, 300);
   };
 
-  // Memoize rotation and scale to prevent recalculation
-  const rotation = useMemo(() => {
+  useEffect(() => {
     const randomRotation = Math.random() * (12 - 6) + 6;
-    return Math.random() > 0.5 ? randomRotation : -randomRotation;
+    setRotation(Math.random() > 0.5 ? randomRotation : -randomRotation);
   }, []);
+
+  const [rotation, setRotation] = useState(0);
+
+  //   // Memoize rotation and scale to prevent recalculation
+  //   const rotation = useMemo(() => {
+  //     const randomRotation = Math.random() * (12 - 6) + 6;
+  //     return Math.random() > 0.5 ? randomRotation : -randomRotation;
+  //   }, []);
 
   const [drawing, setDrawing] = useState(false);
   const [lines, setLines] = useState<{ x: number; y: number }[][]>([]);
@@ -95,24 +103,6 @@ export default function Home() {
 
     return { x, y };
   };
-
-  // const [artWidth, setArtWidth] = useState(0);
-  // const [artHeight, setArtHeight] = useState(0);
-
-  // useEffect(() => {
-  // 	const r = recieptRef.current;
-  // 	if (!r) return;
-
-  // 	const theta = 12 * (Math.PI / 180);
-
-  // 	const width =
-  // 		r.clientWidth * Math.cos(theta) + r.clientHeight * Math.sin(theta);
-  // 	const height =
-  // 		r.clientWidth * Math.sin(theta) + r.clientHeight * Math.cos(theta);
-
-  // 	setArtWidth(r.clientWidth > width ? r.clientWidth : width);
-  //   setArtHeight(r.clientHeight > height ? r.clientHeight : height);
-  // }, []);
 
   const [isOpen, setOpen] = useState<boolean>(false);
   const [color, setColor] = useState<string>("#ff0000");
@@ -385,6 +375,10 @@ export default function Home() {
           </motion.p>
         </header>
       </section>
+
+      <div style={{ marginLeft: 0 }} className="absolute bottom-5 left-5 z-50">
+        <Lanyard />
+      </div>
     </main>
   );
 }

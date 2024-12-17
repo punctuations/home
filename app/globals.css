@@ -14,6 +14,12 @@ body {
   background-image: url('/bg.png');
 }
 
+.blurred {
+  -webkit-mask-image: radial-gradient(circle at center, black, transparent 75%);
+  mask-image: radial-gradient(circle at center, black, transparent 75%);
+  filter: blur(10px);
+}
+
 .select-none {
   user-select: none;
   -webkit-user-select: none;
