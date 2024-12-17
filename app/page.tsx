@@ -175,7 +175,7 @@ export default function Home() {
         style={{
           transformOrigin: "center",
         }}
-        className="relative w-2/3 md:w-1/5 xl:w-[12.5%]"
+        className="relative w-2/3 md:w-1/5 xl:w-[12.5%] min-w-64"
       >
         {/* Drawing SVG */}
         <svg
