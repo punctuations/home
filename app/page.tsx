@@ -112,6 +112,7 @@ export default function Home() {
       <div className="z-50 absolute top-3 left-3 hidden md:block">
         <AnimatePresence>
           <motion.button
+            title="Color Picker"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{
               opacity: 1,
@@ -252,7 +253,11 @@ export default function Home() {
             </div>
           </header>
           <div className="flex items-center justify-center">
-            <img className="rounded-lg h-60 pointer-events-none" src="/h.png" />
+            <img
+              alt="hero image"
+              className="rounded-lg h-60 pointer-events-none"
+              src="/h.png"
+            />
           </div>
           <hr className="!border-solid" />
           <div className="flex flex-row justify-between items-center text-lg">
@@ -332,6 +337,7 @@ export default function Home() {
           <hr />
           <div className="flex items-center justify-center">
             <img
+              alt="barcode"
               className="w-full xl:w-[90%] h-20 pointer-events-none"
               src="/barcode.png"
             />
