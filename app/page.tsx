@@ -520,7 +520,7 @@ export default function Home() {
               href={project.link}
               target="_blank"
               key={project.name}
-              className="cursor-pointer absolute select-none text-black shadow-lg"
+              className="hidden lg:flex cursor-pointer absolute select-none text-black shadow-lg"
               style={positions[index % positions.length]}
             >
               <Ticket
