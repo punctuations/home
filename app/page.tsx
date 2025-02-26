@@ -1,8 +1,9 @@
 "use client";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { HexColorPicker } from "react-colorful";
 import Lanyard from "@/components/Lanyard";
+import Ticket from "@/components/Ticket";
 
 export default function Home() {
   const [windowsWidth, setWindowsWidth] = useState(0);
@@ -106,6 +107,53 @@ export default function Home() {
 
   const [isOpen, setOpen] = useState<boolean>(false);
   const [color, setColor] = useState<string>("#ff0000");
+
+  const projects = [
+    {
+      name: "use listen along",
+      color: "#800020",
+      link: "https://github.com/punctuations/use-listen-along",
+      desc: "react hook for discord's listen along",
+      date: "August 17, 2021",
+      number: "0001",
+    },
+    {
+      name: "oscilloscope",
+      color: "#4F6A43",
+      link: "https://github.com/punctuations/oscilloscope",
+      desc: "a video/image converter to audio waveform",
+      date: "Janurary 29, 2023",
+      number: "0002",
+    },
+    {
+      name: "presence",
+      color: "#9E7B3A",
+      link: "https://github.com/punctuations/presence",
+      desc: "a video/image converter to audio waveform",
+      date: "August 1, 2021",
+      number: "0003",
+    },
+    {
+      name: "vec",
+      color: "#3B4C5C",
+      link: "https://github.com/punctuations/vec",
+      desc: "an efficient and modern vector lib",
+      date: "Coming soon",
+      number: "0004",
+    },
+  ];
+
+  const [random, setRandom] = useState<number[]>([]);
+  useEffect(() => {
+    setRandom([...Array(projects.length).keys()].map(() => Math.random()));
+  }, []);
+
+  const positions = [
+    { top: "4%", right: "15%" },
+    { top: "16%", right: "17%" },
+    { bottom: "13%", right: "27%" },
+    { bottom: "2%", right: "25%" },
+  ];
 
   return (
     <main className="absolute w-full h-full flex items-center justify-center flex-col-reverse md:flex-row md:space-x-24 space-x-0 space-y-16 md:space-y-0 mt-6 sm:mt-0">
@@ -448,6 +496,43 @@ export default function Home() {
             <span className="outbound">Computer Science and Mathematics</span>.
           </motion.p>
         </header>
+      </section>
+
+      <section>
+        {projects.map((project, index) => {
+          return (
+            <motion.a
+              initial={{
+                opacity: 0,
+                scale: 0.8,
+                rotate: 90,
+              }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+                rotate: 90 - rotation + random[index] * 10 * index,
+              }}
+              transition={{
+                duration: 0.4,
+                delay: 0.5 + index * 0.2,
+                ease: [0.48, 0.15, 0.25, 0.96],
+              }}
+              href={project.link}
+              target="_blank"
+              key={project.name}
+              className="cursor-pointer absolute select-none text-black shadow-lg"
+              style={positions[index % positions.length]}
+            >
+              <Ticket
+                name={project.name}
+                color={project.color}
+                desc={project.desc}
+                date={project.date}
+                number={project.number}
+              />
+            </motion.a>
+          );
+        })}
       </section>
 
       <div style={{ marginLeft: 0 }} className="fixed bottom-5 left-5 z-50">

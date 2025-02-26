@@ -59,6 +59,45 @@ body {
   background-blend-mode: normal, normal, normal, normal, normal;
 }
 
+.triangle {
+  @apply absolute !border-none w-5 h-5 bg-[#0a0a0a] rotate-45;
+}
+
+
+.ticket {
+  background-color: rgb(219, 219, 219);
+
+  --deg: 45deg;
+  --notch-size: 0.75rem;
+  clip-path: polygon(
+    /* Top-left bevel */
+    calc(sin(var(--deg)) * 1rem) 0%,
+    0% calc(cos(var(--deg)) * 1rem),
+
+    /* Left-side notch */
+    0% calc(27% - var(--notch-size)),
+    var(--notch-size) 27%,
+    0% calc(27% + var(--notch-size)),
+
+    /* Bottom-left bevel */
+    0% calc(100% - cos(var(--deg)) * 1rem),
+    calc(sin(var(--deg)) * 1rem) 100%,
+
+    /* Bottom-right bevel */
+    calc(100% - sin(var(--deg)) * 1rem) 100%,
+    100% calc(100% - cos(var(--deg)) * 1rem),
+
+    /* Right-side notch */
+    100% calc(27% + var(--notch-size)),
+    calc(100% - var(--notch-size)) 27%,
+    100% calc(27% - var(--notch-size)),
+
+    /* Top-right bevel */
+    100% calc(cos(var(--deg)) * 1rem),
+    calc(100% - sin(var(--deg)) * 1rem) 0%
+  );
+}
+
 .reciept {
   background-color: rgb(229, 229, 229);
 }
