@@ -134,11 +134,11 @@ export default function Home() {
       number: "0003",
     },
     {
-      name: "vec",
+      name: "jtp",
       color: "#3B4C5C",
-      link: "https://github.com/punctuations/vec",
-      desc: "an efficient and modern vector lib",
-      date: "Coming soon",
+      link: "https://github.com/punctuations/jtp",
+      desc: "a high-performance binary protocol for images",
+      date: "January, 24 2026",
       number: "0004",
     },
   ];
