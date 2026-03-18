@@ -62,13 +62,13 @@ export default function Home() {
   const [lines, setLines] = useState<{ x: number; y: number }[][]>([]);
   const [colors, setColors] = useState<string[]>([]);
   const [currentLine, setCurrentLine] = useState<{ x: number; y: number }[]>(
-    []
+    [],
   );
   const svgRef = useRef<SVGSVGElement>(null);
   const recieptRef = useRef<HTMLDivElement>(null);
 
   const startDrawing = (
-    e: React.MouseEvent<SVGSVGElement | HTMLDivElement>
+    e: React.MouseEvent<SVGSVGElement | HTMLDivElement>,
   ) => {
     const point = getCoordinates(e);
     setDrawing(true);
@@ -92,7 +92,7 @@ export default function Home() {
   };
 
   const getCoordinates = (
-    e: React.MouseEvent<SVGSVGElement | HTMLDivElement>
+    e: React.MouseEvent<SVGSVGElement | HTMLDivElement>,
   ): { x: number; y: number } => {
     const svg = svgRef.current;
     if (!svg) return { x: 0, y: 0 };
@@ -329,16 +329,15 @@ export default function Home() {
           </div>
           <div className="flex flex-row justify-between items-center text-lg">
             <p>timezone</p>
-            <p>
-              {
-                new Date()
-                  .toLocaleTimeString("en-US", {
-                    timeZone: "America/Vancouver",
-                    timeZoneName: "short",
-                  })
-                  .split(" ")[2]
-              }
-            </p>
+            <a
+              className="cursor-pointer underline"
+              title="pacific time"
+              href="https://24timezones.com/time-zone/pt"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              PT
+            </a>
           </div>
 
           <fieldset className="pb-2 mt-2">
@@ -442,7 +441,7 @@ export default function Home() {
                 }}
               ></motion.polyline>
             </motion.svg>
-            <p>
+            <p suppressHydrationWarning>
               last coffee at{" "}
               {new Date().toLocaleString("en-CA", {
                 timeStyle: "short",
