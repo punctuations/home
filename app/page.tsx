@@ -510,7 +510,44 @@ export default function Home() {
             pointerEvents: "none",
           }}
         >
-          press ↑ ↓ ← → to play snake
+          <span
+            style={{ display: "inline-flex", alignItems: "center", gap: 6 }}
+          >
+            <span className="kbd-cluster">
+              <kbd className="kbd-key">↑</kbd>
+              <span className="kbd-row">
+                <kbd className="kbd-key">←</kbd>
+                <kbd className="kbd-key">↓</kbd>
+                <kbd className="kbd-key">→</kbd>
+              </span>
+            </span>
+            <span
+              style={{
+                fontSize: 16,
+                color: "rgba(255,255,255,0.18)",
+                lineHeight: 1,
+              }}
+            >
+              /
+            </span>
+            <span className="kbd-cluster">
+              <kbd className="kbd-key">W</kbd>
+              <span className="kbd-row">
+                <kbd className="kbd-key">A</kbd>
+                <kbd className="kbd-key">S</kbd>
+                <kbd className="kbd-key">D</kbd>
+              </span>
+            </span>
+            <span
+              style={{
+                fontSize: 11,
+                color: "rgba(255,255,255,0.18)",
+                letterSpacing: "0.2em",
+              }}
+            >
+              <span className="ml-1">to play snake</span>
+            </span>
+          </span>
         </div>
       )}
 

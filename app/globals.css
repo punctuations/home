@@ -168,3 +168,31 @@ legend {
   background-size: 80px 80px;
 }
 
+.kbd-key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-bottom-width: 2px;
+  border-radius: 2px;
+  font-family: monospace;
+  font-size: 8px;
+  color: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0);
+}
+
+.kbd-cluster {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: middle;
+  gap: 2px;
+  margin: 0 4px;
+}
+
+.kbd-row {
+  display: inline-flex;
+  gap: 2px;
+}
