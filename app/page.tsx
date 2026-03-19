@@ -86,7 +86,6 @@ export default function Home() {
     foodRef.current = { col: fc, row: fr };
     setFoodCell(cellKey(fc, fr));
 
-    // Check if the food cell overlaps the receipt or any ticket
     const blockSize = window.innerWidth * 0.05;
     const foodLeft = fc * blockSize;
     const foodTop = fr * blockSize;
@@ -104,9 +103,7 @@ export default function Home() {
         0,
         Math.min(foodBottom, r.bottom) - Math.max(foodTop, r.top),
       );
-      const intersection = ix * iy;
-      const cellArea = blockSize * blockSize;
-      return intersection / cellArea >= 0.5;
+      return (ix * iy) / (blockSize * blockSize) >= 0.5;
     };
 
     setFoodOverlapsReceipt(overlaps(recieptRef.current));
@@ -197,7 +194,6 @@ export default function Home() {
       snakeRef.current = newSnake;
       setSnakeCells(new Set(newSnake.map((s) => cellKey(s.col, s.row))));
 
-      // Check if any snake cell overlaps the receipt or tickets
       const bsz = window.innerWidth * 0.05;
       const snakeOverlap = (el: HTMLElement | null) => {
         if (!el) return false;
@@ -284,11 +280,6 @@ export default function Home() {
 
   const [rotation, setRotation] = useState(0);
 
-  // Track the receipt's actual top-left corner in viewport coords.
-  // getBoundingClientRect() returns the axis-aligned bounding box of the
-  // rotated element -- its top-left is NOT the visual corner (!!!!!). Instead we take
-  // the element's centre, then rotate the vector from centre to the unrotated
-  // top-left by `rotation` degrees to find the real rotated corner.
   const [pickerPos, setPickerPos] = useState<{
     top: number;
     left: number;
@@ -319,7 +310,15 @@ export default function Home() {
     };
   }, [calcPickerPos]);
 
+  // Imperatively manage an eraser circle div directly on document.body
+  // so no React ancestor transform or overflow can ever clip it
+  const eraserDivRef = useRef<HTMLDivElement | null>(null);
+
   const [drawing, setDrawing] = useState(false);
+  const [erasing, setErasing] = useState(false);
+  const [eraserPos, setEraserPos] = useState<{ x: number; y: number } | null>(
+    null,
+  );
   const [lines, setLines] = useState<{ x: number; y: number }[][]>([]);
   const [colors, setColors] = useState<string[]>([]);
   const [currentLine, setCurrentLine] = useState<{ x: number; y: number }[]>(
@@ -327,6 +326,54 @@ export default function Home() {
   );
   const svgRef = useRef<SVGSVGElement>(null);
   const recieptRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleMouseMove(e: MouseEvent) {
+      if (!erasing) return;
+      setEraserPos({ x: e.clientX, y: e.clientY });
+      if (eraserDivRef.current) {
+        eraserDivRef.current.style.left = `${e.clientX - 10}px`;
+        eraserDivRef.current.style.top = `${e.clientY - 10}px`;
+      }
+    }
+    function handleMouseUp() {
+      if (!erasing) return;
+      setErasing(false);
+      setEraserPos(null);
+    }
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseup", handleMouseUp);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, [erasing]);
+
+  useEffect(() => {
+    if (!mounted) return;
+    if (erasing) {
+      const div = document.createElement("div");
+      div.id = "eraser-circle";
+      Object.assign(div.style, {
+        position: "fixed",
+        width: "20px",
+        height: "20px",
+        borderRadius: "50%",
+        border: "1.5px dashed rgba(0,0,0,1)",
+        backgroundColor: "rgba(0,0,0,0.1)",
+        pointerEvents: "none",
+        zIndex: "99999",
+        top: "-100px",
+        left: "-100px",
+      });
+      document.body.appendChild(div);
+      eraserDivRef.current = div;
+      return () => {
+        div.remove();
+        eraserDivRef.current = null;
+      };
+    }
+  }, [erasing, mounted]);
 
   // Color state
   const [color, setColor] = useState<BlossomColor>({
@@ -336,27 +383,6 @@ export default function Home() {
     alpha: 50,
     layer: "outer",
   });
-
-  const startDrawing = (
-    e: React.MouseEvent<SVGSVGElement | HTMLDivElement>,
-  ) => {
-    setDrawing(true);
-    setCurrentLine([getCoordinates(e)]);
-  };
-
-  const draw = (e: React.MouseEvent<SVGSVGElement | HTMLDivElement>) => {
-    if (!drawing) return;
-    setCurrentLine((prev) => [...prev, getCoordinates(e)]);
-  };
-
-  const endDrawing = () => {
-    if (drawing) {
-      setLines((prev) => [...prev, currentLine]);
-      setColors((prev) => [...prev, color.hex]);
-      setCurrentLine([]);
-      setDrawing(false);
-    }
-  };
 
   const getCoordinates = (
     e: React.MouseEvent<SVGSVGElement | HTMLDivElement>,
@@ -370,6 +396,75 @@ export default function Home() {
     pt.y = e.clientY;
     const local = pt.matrixTransform(ctm.inverse());
     return { x: local.x, y: local.y };
+  };
+
+  // Erase parts of strokes within the eraser radius, splitting them into
+  // separate sub-strokes either side of the erased segment.
+  const eraseAt = (e: React.MouseEvent<SVGSVGElement | HTMLDivElement>) => {
+    const { x, y } = getCoordinates(e);
+    const RADIUS = 10;
+    setLines((prev) => {
+      const nextLines: { x: number; y: number }[][] = [];
+      const nextColors: string[] = [];
+      prev.forEach((line, i) => {
+        let current: { x: number; y: number }[] = [];
+        line.forEach((p) => {
+          if (Math.hypot(p.x - x, p.y - y) < RADIUS) {
+            if (current.length > 1) {
+              nextLines.push(current);
+              nextColors.push(colors[i]);
+            }
+            current = [];
+          } else {
+            current.push(p);
+          }
+        });
+        if (current.length > 1) {
+          nextLines.push(current);
+          nextColors.push(colors[i]);
+        }
+      });
+      setColors(nextColors);
+      return nextLines;
+    });
+  };
+
+  const startDrawing = (
+    e: React.MouseEvent<SVGSVGElement | HTMLDivElement>,
+  ) => {
+    if (e.button === 2) {
+      e.preventDefault();
+      setErasing(true);
+      setEraserPos({ x: e.clientX, y: e.clientY });
+      eraseAt(e);
+    } else {
+      setDrawing(true);
+      setCurrentLine([getCoordinates(e)]);
+    }
+  };
+
+  const draw = (e: React.MouseEvent<SVGSVGElement | HTMLDivElement>) => {
+    if (erasing) {
+      setEraserPos({ x: e.clientX, y: e.clientY });
+      eraseAt(e);
+      return;
+    }
+    if (!drawing) return;
+    setCurrentLine((prev) => [...prev, getCoordinates(e)]);
+  };
+
+  const endDrawing = () => {
+    if (erasing) {
+      setErasing(false);
+      setEraserPos(null);
+      return;
+    }
+    if (drawing) {
+      setLines((prev) => [...prev, currentLine]);
+      setColors((prev) => [...prev, color.hex]);
+      setCurrentLine([]);
+      setDrawing(false);
+    }
   };
 
   // Projects
@@ -423,8 +518,6 @@ export default function Home() {
 
   return (
     <main className="absolute w-full h-full flex items-center justify-center flex-col-reverse md:flex-row md:space-x-24 space-x-0 space-y-16 md:space-y-0 mt-6 sm:mt-0">
-      {/* Blossom picker portalled to body so no ancestor transform skews
-          hit-testing. sliderPosition="left" keeps the arc away from the receipt. */}
       {mounted &&
         pickerPos &&
         createPortal(
@@ -554,51 +647,44 @@ export default function Home() {
       {/* Background grid */}
       <div className="bgrid select-none" style={{ marginLeft: 0 }}>
         {windowsWidth > 0 &&
-          [...Array(20).keys()].map((_, colIndex) => {
-            return (
-              <div key={"b_" + colIndex} className="bcolumn">
-                {(() => {
-                  const blockSize = windowsWidth * 0.05;
-                  const nbOfBlocks = Math.ceil(window.innerHeight / blockSize);
-                  return [...Array(nbOfBlocks).keys()].map((_, rowIndex) => {
-                    const k = cellKey(colIndex, rowIndex);
-                    const isHead =
-                      snakeActive &&
-                      snakeRef.current[0] &&
-                      snakeRef.current[0].col === colIndex &&
-                      snakeRef.current[0].row === rowIndex;
-                    const isBody = snakeCells.has(k) && !isHead;
-                    const isFood = foodCell === k;
-                    const isTrail = trailCells.has(k);
-
-                    let bg = "transparent";
-                    let boxShadow = "none";
-                    if (isHead) {
-                      bg = "rgba(255,255,255,1)";
-                    } else if (isBody) bg = "rgba(255,255,255,0.85)";
-                    else if (isFood) bg = "rgba(255,90,90,0.7)";
-                    else if (isTrail) bg = "rgba(255,255,255,0.07)";
-
-                    return (
-                      <div
-                        key={rowIndex}
-                        style={{
-                          backgroundColor: bg,
-                          boxShadow,
-                          transition: isTrail
-                            ? "background-color 0.4s ease"
-                            : "none",
-                        }}
-                        onMouseEnter={(e) => {
-                          if (!snakeActive) colorize(e.target);
-                        }}
-                      />
-                    );
-                  });
-                })()}
-              </div>
-            );
-          })}
+          [...Array(20).keys()].map((_, colIndex) => (
+            <div key={"b_" + colIndex} className="bcolumn">
+              {(() => {
+                const blockSize = windowsWidth * 0.05;
+                const nbOfBlocks = Math.ceil(window.innerHeight / blockSize);
+                return [...Array(nbOfBlocks).keys()].map((_, rowIndex) => {
+                  const k = cellKey(colIndex, rowIndex);
+                  const isHead =
+                    snakeActive &&
+                    snakeRef.current[0] &&
+                    snakeRef.current[0].col === colIndex &&
+                    snakeRef.current[0].row === rowIndex;
+                  const isBody = snakeCells.has(k) && !isHead;
+                  const isFood = foodCell === k;
+                  const isTrail = trailCells.has(k);
+                  let bg = "transparent";
+                  if (isHead) bg = "rgba(255,255,255,1)";
+                  else if (isBody) bg = "rgba(255,255,255,0.85)";
+                  else if (isFood) bg = "rgba(255,90,90,0.7)";
+                  else if (isTrail) bg = "rgba(255,255,255,0.07)";
+                  return (
+                    <div
+                      key={rowIndex}
+                      style={{
+                        backgroundColor: bg,
+                        transition: isTrail
+                          ? "background-color 0.4s ease"
+                          : "none",
+                      }}
+                      onMouseEnter={(e) => {
+                        if (!snakeActive) colorize(e.target);
+                      }}
+                    />
+                  );
+                });
+              })()}
+            </div>
+          ))}
       </div>
 
       <section
@@ -624,6 +710,7 @@ export default function Home() {
             transform: `rotate(${rotation}deg)`,
             transformOrigin: "center center",
             pointerEvents: "none",
+            cursor: "crosshair",
           }}
         >
           <defs>
@@ -683,7 +770,9 @@ export default function Home() {
           onMouseMove={draw}
           onMouseUp={endDrawing}
           onMouseLeave={endDrawing}
-          className="relative select-none cursor-crosshair reciept text-black rounded-sm px-6 py-4"
+          onContextMenu={(e) => e.preventDefault()}
+          className="relative select-none reciept text-black rounded-sm px-6 py-4"
+          style={{ cursor: erasing ? "none" : "crosshair" }}
         >
           <header>
             <div className="flex flex-row justify-between items-center">
