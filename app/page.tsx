@@ -50,6 +50,7 @@ export default function Home() {
   const [snakeOverlapsTicket, setSnakeOverlapsTicket] = useState<boolean[]>([]);
   const ticketRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
+  const mouseCellRef = useRef<Cell>({ col: 10, row: 7 });
   const snakeRef = useRef<Cell[]>([]);
   const dirRef = useRef<Dir>({ dc: 1, dr: 0 });
   const nextDirRef = useRef<Dir>({ dc: 1, dr: 0 });
@@ -71,6 +72,21 @@ export default function Home() {
     calcGrid();
     window.addEventListener("resize", calcGrid);
     return () => window.removeEventListener("resize", calcGrid);
+  }, []);
+
+  // Track mouse cell position
+  useEffect(() => {
+    function handleMouseMove(e: MouseEvent) {
+      const blockSize = window.innerWidth * 0.05;
+      const col = Math.floor(e.clientX / blockSize);
+      const row = Math.floor(e.clientY / blockSize);
+      mouseCellRef.current = {
+        col: Math.max(0, Math.min(col, gridColsRef.current - 1)),
+        row: Math.max(0, Math.min(row, gridRowsRef.current - 1)),
+      };
+    }
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   const cellKey = (c: number, r: number) => `${c},${r}`;
@@ -110,127 +126,139 @@ export default function Home() {
     setFoodOverlapsTicket(ticketRefs.current.map(overlaps));
   }, []);
 
-  const startSnake = useCallback(() => {
-    if (intervalRef.current) clearInterval(intervalRef.current);
-    trailTimers.current.forEach(clearTimeout);
-    trailTimers.current = [];
+  const startSnake = useCallback(
+    (initialDir: Dir) => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+      trailTimers.current.forEach(clearTimeout);
+      trailTimers.current = [];
 
-    const cols = gridColsRef.current || 20;
-    const rows = gridRowsRef.current || 15;
-    const sc = Math.floor(cols / 2);
-    const sr = Math.floor(rows / 2);
+      const cols = gridColsRef.current || 20;
+      const rows = gridRowsRef.current || 15;
 
-    const initial: Cell[] = [
-      { col: sc, row: sr },
-      { col: sc - 1, row: sr },
-      { col: sc - 2, row: sr },
-    ];
-    snakeRef.current = initial;
-    dirRef.current = { dc: 1, dr: 0 };
-    nextDirRef.current = { dc: 1, dr: 0 };
-    snakeScoreRef.current = 0;
-    setSnakeScore(0);
-    setTrailCells(new Set());
+      // Start at the current mouse cell, falling back to center
+      const mc = mouseCellRef.current;
+      const sc = Math.max(0, Math.min(mc.col, cols - 1));
+      const sr = Math.max(0, Math.min(mc.row, rows - 1));
 
-    const occupied = new Set(initial.map((s) => cellKey(s.col, s.row)));
-    placeFood(occupied);
+      // Build the initial tail opposite to the intended direction so the snake
+      // doesn't immediately overlap itself.
+      const initial: Cell[] = [
+        { col: sc, row: sr },
+        { col: sc - initialDir.dc, row: sr - initialDir.dr },
+        { col: sc - initialDir.dc * 2, row: sr - initialDir.dr * 2 },
+      ].map((c) => ({
+        col: Math.max(0, Math.min(c.col, cols - 1)),
+        row: Math.max(0, Math.min(c.row, rows - 1)),
+      }));
 
-    setSnakeCells(new Set(initial.map((s) => cellKey(s.col, s.row))));
-    setSnakeActive(true);
+      snakeRef.current = initial;
+      dirRef.current = initialDir;
+      nextDirRef.current = initialDir;
+      snakeScoreRef.current = 0;
+      setSnakeScore(0);
+      setTrailCells(new Set());
 
-    intervalRef.current = setInterval(() => {
-      const dir = nextDirRef.current;
-      dirRef.current = dir;
-      const head = snakeRef.current[0];
-      const nc = head.col + dir.dc;
-      const nr = head.row + dir.dr;
+      const occupied = new Set(initial.map((s) => cellKey(s.col, s.row)));
+      placeFood(occupied);
 
-      if (
-        nc < 0 ||
-        nc >= gridColsRef.current ||
-        nr < 0 ||
-        nr >= gridRowsRef.current
-      ) {
-        clearInterval(intervalRef.current!);
-        setSnakeActive(false);
-        setSnakeCells(new Set());
-        setFoodCell(null);
-        setTrailCells(new Set());
-        setFoodOverlapsReceipt(false);
-        setFoodOverlapsTicket([]);
-        setSnakeOverlapsReceipt(false);
-        setSnakeOverlapsTicket([]);
-        return;
-      }
+      setSnakeCells(new Set(initial.map((s) => cellKey(s.col, s.row))));
+      setSnakeActive(true);
 
-      if (snakeRef.current.some((s) => s.col === nc && s.row === nr)) {
-        clearInterval(intervalRef.current!);
-        setSnakeActive(false);
-        setSnakeCells(new Set());
-        setFoodCell(null);
-        setTrailCells(new Set());
-        setFoodOverlapsReceipt(false);
-        setFoodOverlapsTicket([]);
-        setSnakeOverlapsReceipt(false);
-        setSnakeOverlapsTicket([]);
-        return;
-      }
+      intervalRef.current = setInterval(() => {
+        const dir = nextDirRef.current;
+        dirRef.current = dir;
+        const head = snakeRef.current[0];
+        const nc = head.col + dir.dc;
+        const nr = head.row + dir.dr;
 
-      const newHead: Cell = { col: nc, row: nr };
-      const food = foodRef.current;
-      const ate = food && nc === food.col && nr === food.row;
+        if (
+          nc < 0 ||
+          nc >= gridColsRef.current ||
+          nr < 0 ||
+          nr >= gridRowsRef.current
+        ) {
+          clearInterval(intervalRef.current!);
+          setSnakeActive(false);
+          setSnakeCells(new Set());
+          setFoodCell(null);
+          setTrailCells(new Set());
+          setFoodOverlapsReceipt(false);
+          setFoodOverlapsTicket([]);
+          setSnakeOverlapsReceipt(false);
+          setSnakeOverlapsTicket([]);
+          return;
+        }
 
-      const newSnake = [newHead, ...snakeRef.current];
-      let tail: Cell | undefined;
-      if (!ate) {
-        tail = newSnake.pop();
-      } else {
-        snakeScoreRef.current += 1;
-        setSnakeScore(snakeScoreRef.current);
-        const occ = new Set(newSnake.map((s) => cellKey(s.col, s.row)));
-        placeFood(occ);
-      }
+        if (snakeRef.current.some((s) => s.col === nc && s.row === nr)) {
+          clearInterval(intervalRef.current!);
+          setSnakeActive(false);
+          setSnakeCells(new Set());
+          setFoodCell(null);
+          setTrailCells(new Set());
+          setFoodOverlapsReceipt(false);
+          setFoodOverlapsTicket([]);
+          setSnakeOverlapsReceipt(false);
+          setSnakeOverlapsTicket([]);
+          return;
+        }
 
-      snakeRef.current = newSnake;
-      setSnakeCells(new Set(newSnake.map((s) => cellKey(s.col, s.row))));
+        const newHead: Cell = { col: nc, row: nr };
+        const food = foodRef.current;
+        const ate = food && nc === food.col && nr === food.row;
 
-      const bsz = window.innerWidth * 0.05;
-      const snakeOverlap = (el: HTMLElement | null) => {
-        if (!el) return false;
-        const er = el.getBoundingClientRect();
-        return newSnake.some((s) => {
-          const sl = s.col * bsz,
-            st = s.row * bsz;
-          const sr2 = sl + bsz,
-            sb = st + bsz;
-          const ix = Math.max(
-            0,
-            Math.min(sr2, er.right) - Math.max(sl, er.left),
-          );
-          const iy = Math.max(
-            0,
-            Math.min(sb, er.bottom) - Math.max(st, er.top),
-          );
-          return (ix * iy) / (bsz * bsz) >= 0.5;
-        });
-      };
-      setSnakeOverlapsReceipt(snakeOverlap(recieptRef.current));
-      setSnakeOverlapsTicket(ticketRefs.current.map(snakeOverlap));
+        const newSnake = [newHead, ...snakeRef.current];
+        let tail: Cell | undefined;
+        if (!ate) {
+          tail = newSnake.pop();
+        } else {
+          snakeScoreRef.current += 1;
+          setSnakeScore(snakeScoreRef.current);
+          const occ = new Set(newSnake.map((s) => cellKey(s.col, s.row)));
+          placeFood(occ);
+        }
 
-      if (tail) {
-        const tk = cellKey(tail.col, tail.row);
-        setTrailCells((prev) => new Set(prev).add(tk));
-        const t = setTimeout(() => {
-          setTrailCells((prev) => {
-            const next = new Set(prev);
-            next.delete(tk);
-            return next;
+        snakeRef.current = newSnake;
+        setSnakeCells(new Set(newSnake.map((s) => cellKey(s.col, s.row))));
+
+        const bsz = window.innerWidth * 0.05;
+        const snakeOverlap = (el: HTMLElement | null) => {
+          if (!el) return false;
+          const er = el.getBoundingClientRect();
+          return newSnake.some((s) => {
+            const sl = s.col * bsz,
+              st = s.row * bsz;
+            const sr2 = sl + bsz,
+              sb = st + bsz;
+            const ix = Math.max(
+              0,
+              Math.min(sr2, er.right) - Math.max(sl, er.left),
+            );
+            const iy = Math.max(
+              0,
+              Math.min(sb, er.bottom) - Math.max(st, er.top),
+            );
+            return (ix * iy) / (bsz * bsz) >= 0.5;
           });
-        }, 400);
-        trailTimers.current.push(t);
-      }
-    }, SNAKE_INTERVAL);
-  }, [placeFood]);
+        };
+        setSnakeOverlapsReceipt(snakeOverlap(recieptRef.current));
+        setSnakeOverlapsTicket(ticketRefs.current.map(snakeOverlap));
+
+        if (tail) {
+          const tk = cellKey(tail.col, tail.row);
+          setTrailCells((prev) => new Set(prev).add(tk));
+          const t = setTimeout(() => {
+            setTrailCells((prev) => {
+              const next = new Set(prev);
+              next.delete(tk);
+              return next;
+            });
+          }, 400);
+          trailTimers.current.push(t);
+        }
+      }, SNAKE_INTERVAL);
+    },
+    [placeFood],
+  );
 
   // Arrow key listener
   useEffect(() => {
@@ -251,8 +279,7 @@ export default function Home() {
       e.preventDefault();
 
       if (!snakeActive) {
-        startSnake();
-        nextDirRef.current = d;
+        startSnake(d);
         return;
       }
 
