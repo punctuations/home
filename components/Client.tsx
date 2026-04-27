@@ -915,6 +915,7 @@ export default function Home({
 									overlap={
 										foodOverlapsLinkPre[index] || snakeOverlapsLinkPre[index]
 									}
+									parentOverlap={foodOverlapsReceipt || snakeOverlapsReceipt}
 									href={link.href}
 									label={link.label}
 									rot={rotation}

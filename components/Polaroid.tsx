@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 
 interface LinkPreviewProps {
 	overlap: boolean;
+	parentOverlap: boolean;
 	href: string;
 	label: string;
 	children: React.ReactNode;
@@ -14,6 +15,7 @@ interface LinkPreviewProps {
 
 export function PolaroidLink({
 	overlap,
+	parentOverlap,
 	href,
 	label,
 	children,
@@ -70,7 +72,13 @@ export function PolaroidLink({
 										rot ?? 0
 								  }deg)`,
 							transformOrigin: "center bottom",
-							opacity: hovered ? (overlap ? 0.25 : 1) : 0,
+							opacity: hovered
+								? overlap
+									? 0.25
+									: parentOverlap
+									? 0.65
+									: 1
+								: 0,
 							pointerEvents: "none",
 							zIndex: 99999,
 							transition: hovered
