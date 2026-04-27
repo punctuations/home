@@ -1,6 +1,6 @@
 "use client";
 import { AnimatePresence } from "motion/react";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
 
 interface LinkPreviewProps {
@@ -25,7 +25,9 @@ export function PolaroidLink({
 	const [hovered, setHovered] = useState(false);
 	const [pos, setPos] = useState({ top: 0, left: 0 });
 	const anchorRef = useRef<HTMLAnchorElement>(null);
+	const previewRef = useRef<HTMLDivElement | null>(null);
 	const [mounted, setMounted] = useState(false);
+	const dismissTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
 	useEffect(() => {
 		setMounted(true);
@@ -40,13 +42,28 @@ export function PolaroidLink({
 		});
 	}, [hovered]);
 
+	const show = useCallback(() => {
+		if (dismissTimer.current) clearTimeout(dismissTimer.current);
+		setHovered(true);
+	}, []);
+
+	const hide = useCallback(() => {
+		dismissTimer.current = setTimeout(() => {
+			setHovered(false);
+		}, 80);
+	}, []);
+
+	useEffect(() => {
+		if (dismissTimer.current) clearTimeout(dismissTimer.current);
+	}, []);
+
 	return (
 		<>
 			<a
 				ref={anchorRef}
 				className="relative flex underline z-30 cursor-pointer"
-				onMouseEnter={() => setHovered(true)}
-				onMouseLeave={() => setHovered(false)}
+				onMouseEnter={show}
+				onMouseLeave={hide}
 				href={href}
 				title={label.toLowerCase()}
 				target="_blank"
@@ -58,8 +75,15 @@ export function PolaroidLink({
 			{mounted &&
 				createPortal(
 					<div
-						ref={ref}
+						ref={(el) => {
+							(
+								previewRef as React.MutableRefObject<HTMLDivElement | null>
+							).current = el;
+							ref(el);
+						}}
 						aria-hidden
+						onMouseEnter={show}
+						onMouseLeave={hide}
 						style={{
 							position: "absolute",
 							top: pos.top,
@@ -79,7 +103,7 @@ export function PolaroidLink({
 									? 0.65
 									: 1
 								: 0,
-							pointerEvents: "none",
+							pointerEvents: hovered ? "auto" : "none",
 							zIndex: 99999,
 							transition: hovered
 								? "transform 0.2s cubic-bezier(0.34,1.2,0.64,1), opacity 0.15s ease"

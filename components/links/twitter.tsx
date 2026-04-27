@@ -43,7 +43,10 @@ export const Twitter: React.FC<TwitterProps> = ({
 			)}
 
 			{/* avatar + info */}
-			<div
+			<a
+				href="/twitter"
+				target="_blank"
+				rel="noopener noreferrer"
 				style={{
 					padding: "12px",
 					display: "flex",
@@ -105,7 +108,7 @@ export const Twitter: React.FC<TwitterProps> = ({
 						{bio}
 					</span>
 				</div>
-			</div>
+			</a>
 		</div>
 	);
 };

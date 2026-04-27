@@ -12,7 +12,10 @@ export const Email = () => {
 			}}
 			className="reciept"
 		>
-			<div
+			<a
+				href="mailto:hey@mattt.space"
+				target="_blank"
+				rel="noopener noreferrer"
 				style={{
 					padding: "12px",
 					display: "flex",
@@ -53,7 +56,7 @@ export const Email = () => {
 						hey@mattt.space
 					</span>
 				</div>
-			</div>
+			</a>
 		</div>
 	);
 };

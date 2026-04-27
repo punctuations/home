@@ -64,7 +64,10 @@ export const Discord: React.FC<DiscordProps> = ({
 			)}
 
 			{/* avatar + info */}
-			<div
+			<a
+				href="/discord"
+				target="_blank"
+				rel="noopener noreferrer"
 				style={{
 					padding: "12px",
 					display: "flex",
@@ -179,7 +182,7 @@ export const Discord: React.FC<DiscordProps> = ({
 						</span>
 					)}
 				</div>
-			</div>
+			</a>
 		</div>
 	);
 };

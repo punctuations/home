@@ -77,6 +77,7 @@ export const Github: React.FC<GithubProps> = ({
 										},
 									}}
 									key={di}
+									title={`${day.contributionCount} contributions on this day`}
 									style={{
 										aspectRatio: "1",
 										width: "100%",
@@ -91,7 +92,10 @@ export const Github: React.FC<GithubProps> = ({
 			</div>
 
 			{/* avatar + name + bio */}
-			<div
+			<a
+				href="/github"
+				target="_blank"
+				rel="noopener noreferrer"
 				style={{
 					padding: "12px 12px 8px",
 					display: "flex",
@@ -158,13 +162,13 @@ export const Github: React.FC<GithubProps> = ({
 						{bio}
 					</span>
 				</div>
-			</div>
+			</a>
 		</div>
 	);
 };
 
 function levelColor(count: number): string {
-	if (count === 0) return "#ebedf0";
+	if (count === 0) return "#e0e3e8";
 	if (count <= 2) return "#9be9a8";
 	if (count <= 5) return "#40c463";
 	if (count <= 10) return "#30a14e";
