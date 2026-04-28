@@ -472,15 +472,22 @@ export default function Home({
 	const getCoordinates = (
 		e: React.MouseEvent<SVGSVGElement | HTMLDivElement>,
 	): { x: number; y: number } => {
-		const svg = svgRef.current;
-		if (!svg) return { x: 0, y: 0 };
-		const ctm = svg.getScreenCTM();
-		if (!ctm) return { x: 0, y: 0 };
-		const pt = svg.createSVGPoint();
-		pt.x = e.clientX;
-		pt.y = e.clientY;
-		const local = pt.matrixTransform(ctm.inverse());
-		return { x: local.x, y: local.y };
+		const el = recieptRef.current;
+		if (!el) return { x: 0, y: 0 };
+
+		const rect = el.getBoundingClientRect();
+
+		// un-rotate the mouse position back into the receipt's local space
+		const cx = rect.left + rect.width / 2;
+		const cy = rect.top + rect.height / 2;
+		const dx = e.clientX - cx;
+		const dy = e.clientY - cy;
+		const rad = (-rotation * Math.PI) / 180;
+
+		return {
+			x: dx * Math.cos(rad) - dy * Math.sin(rad) + el.offsetWidth / 2,
+			y: dx * Math.sin(rad) + dy * Math.cos(rad) + el.offsetHeight / 2,
+		};
 	};
 
 	// Erase parts of strokes within the eraser radius, splitting them into
