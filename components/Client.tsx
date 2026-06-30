@@ -887,8 +887,8 @@ export default function Home({
 					<div className="flex items-center justify-center">
 						<img
 							alt="hero image"
-							className="rounded-lg h-60 pointer-events-none"
-							src="/h.png"
+							className="h-60 pointer-events-none"
+							src="/matt.png"
 						/>
 					</div>
 					<hr className="!border-solid" />
