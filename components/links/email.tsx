@@ -44,7 +44,14 @@ export const Email = () => {
             href="mailto:contact@thew.sh"
             aria-hidden="true"
             tabIndex={-1}
-            style={{ position: "absolute", left: "-10000px" }}
+            style={{
+              position: "absolute",
+              width: "1px",
+              height: "1px",
+              overflow: "hidden",
+              clipPath: "inset(50%)",
+              whiteSpace: "nowrap",
+            }}
           >
             contact@thew.sh
           </a>
