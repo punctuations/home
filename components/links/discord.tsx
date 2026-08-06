@@ -1,6 +1,6 @@
 "use client";
 
-import { useLanyard } from "@/components/LanyardContext";
+import { usePresence } from "@/components/LanyardContext";
 
 type Status = "online" | "idle" | "dnd" | "offline";
 
@@ -23,7 +23,7 @@ export const Discord: React.FC<DiscordProps> = ({
 	listening,
 	status,
 }) => {
-	const ws = useLanyard();
+	const ws = usePresence();
 
 	return (
 		<div

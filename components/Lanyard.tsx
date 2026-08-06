@@ -3,10 +3,10 @@ import React from "react";
 import Image from "next/image";
 
 import { AnimatePresence, motion } from "motion/react";
-import { useLanyard } from "@/components/LanyardContext";
+import { usePresence } from "@/components/LanyardContext";
 
 const Lanyard = () => {
-  const lanyard = useLanyard();
+  const lanyard = usePresence();
   return (
     <>
       <AnimatePresence>

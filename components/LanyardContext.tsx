@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext } from "react";
-import { useLanyardWS, type Types } from "use-lanyard";
+import { useLanyard, type Types } from "use-lanyard";
 
 const LanyardContext = createContext<Types.Presence | undefined>(undefined);
 
@@ -14,7 +14,7 @@ export function LanyardProvider({
   initialData: Types.Presence;
   children: React.ReactNode;
 }) {
-  const presence = useLanyardWS(snowflake, { initialData });
+  const presence = useLanyard(snowflake, { initialData });
   return (
     <LanyardContext.Provider value={presence}>
       {children}
@@ -22,6 +22,6 @@ export function LanyardProvider({
   );
 }
 
-export function useLanyard() {
+export function usePresence() {
   return useContext(LanyardContext);
 }
