@@ -11,7 +11,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  background-image: url("/bg.png");
+  background-image: url("/bg.webp");
 }
 
 .blurred {
@@ -27,32 +27,31 @@ body {
 
 .gradient {
   background-color: hsla(119, 92%, 60%, 1);
-  background-image:
-    radial-gradient(
+  background-image: radial-gradient(
       circle at 96% 96%,
       hsla(337, 93%, 54%, 0.85) 5%,
       transparent 86%
     ),
     radial-gradient(
-    circle at 5% 90%,
-    hsla(151, 71%, 68%, 1) 13%,
-    transparent 65%
-  ),
+      circle at 5% 90%,
+      hsla(151, 71%, 68%, 1) 13%,
+      transparent 65%
+    ),
     radial-gradient(
-    circle at 57% 73%,
-    hsla(230, 93%, 51%, 1) 3%,
-    transparent 89%
-  ),
+      circle at 57% 73%,
+      hsla(230, 93%, 51%, 1) 3%,
+      transparent 89%
+    ),
     radial-gradient(
-    circle at 20% 4%,
-    hsla(240, 60%, 76%, 1) 22%,
-    transparent 56%
-  ),
+      circle at 20% 4%,
+      hsla(240, 60%, 76%, 1) 22%,
+      transparent 56%
+    ),
     radial-gradient(
-    circle at 74% 15%,
-    hsla(246, 92%, 59%, 1) 13%,
-    transparent 57%
-  );
+      circle at 74% 15%,
+      hsla(246, 92%, 59%, 1) 13%,
+      transparent 57%
+    );
   background-blend-mode: normal, normal, normal, normal, normal;
 }
 
@@ -104,8 +103,10 @@ fieldset {
   border-bottom-width: 1px;
 }
 
-legend {
-  text-align: center;
+fieldset > legend {
+  display: table;
+  float: none;
+  margin: 0 auto;
 }
 
 .outbound {
@@ -135,12 +136,14 @@ legend {
   /* border: 1px solid red; */
 }
 
-.bcp-core, .bcp-ring {
+.bcp-core,
+.bcp-ring {
   position: relative;
   overflow: hidden;
 }
 
-.bcp-core::after, .bcp-ring::after {
+.bcp-core::after,
+.bcp-ring::after {
   content: "";
   position: absolute;
   inset: 0;

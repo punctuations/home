@@ -1,6 +1,6 @@
 "use client";
 
-import { type Data } from "use-lanyard";
+import { useLanyard } from "@/components/LanyardContext";
 
 type Status = "online" | "idle" | "dnd" | "offline";
 
@@ -12,7 +12,6 @@ export interface DiscordProps {
 	avg: string;
 	listening?: string;
 	status: Status;
-	ws: Data | undefined;
 }
 
 export const Discord: React.FC<DiscordProps> = ({
@@ -23,8 +22,9 @@ export const Discord: React.FC<DiscordProps> = ({
 	avg,
 	listening,
 	status,
-	ws,
 }) => {
+	const ws = useLanyard();
+
 	return (
 		<div
 			style={{

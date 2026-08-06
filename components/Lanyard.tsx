@@ -2,10 +2,11 @@ import React from "react";
 
 import Image from "next/image";
 
-import { AnimatePresence, motion } from "framer-motion";
-import { type Data } from "use-lanyard";
+import { AnimatePresence, motion } from "motion/react";
+import { useLanyard } from "@/components/LanyardContext";
 
-const Lanyard = ({ lanyard }: { lanyard: Data | undefined }) => {
+const Lanyard = () => {
+  const lanyard = useLanyard();
   return (
     <>
       <AnimatePresence>

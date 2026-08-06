@@ -13,9 +13,6 @@ export const Email = () => {
       className="reciept"
     >
       <div
-        // href="mailto:hey@mattt.space"
-        // target="_blank"
-        // rel="noopener noreferrer"
         style={{
           padding: "12px",
           display: "flex",
@@ -43,6 +40,14 @@ export const Email = () => {
             minWidth: 0,
           }}
         >
+          <a
+            href="mailto:contact@thew.sh"
+            aria-hidden="true"
+            tabIndex={-1}
+            style={{ position: "absolute", left: "-10000px" }}
+          >
+            contact@thew.sh
+          </a>
           <span
             style={{
               fontSize: "11px",
@@ -53,7 +58,7 @@ export const Email = () => {
               whiteSpace: "nowrap",
             }}
           >
-            hey[at]mattt[dot]space
+            m [at] thew [dot] sh
           </span>
         </div>
       </div>

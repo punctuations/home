@@ -8,6 +8,9 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        plane: { raw: "(min-width: 768px) and (min-height: 620px)" },
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",

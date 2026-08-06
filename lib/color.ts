@@ -1,7 +1,7 @@
 import sharp from "sharp";
 
 export async function fac(url: string) {
-    const res = await fetch(url);
+    const res = await fetch(url, { next: { revalidate: 86400 } });
     const buffer = Buffer.from(await res.arrayBuffer());
 
     const { data, info } = await sharp(buffer).resize(64, 64).toFormat("raw")

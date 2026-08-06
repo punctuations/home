@@ -1,5 +1,8 @@
 import Home from "@/components/Client";
 import { fac } from "@/lib/color";
+import { type Types } from "use-lanyard";
+
+const SNOWFLAKE = "291050399509774340";
 
 async function getGithubPreview() {
 	const res = await fetch("https://api.github.com/graphql", {
@@ -38,34 +41,51 @@ async function getGithubPreview() {
 	};
 }
 
-async function getDiscordPreview() {
-	const snowflake = "291050399509774340";
-	const res = await fetch(`https://api.lanyard.rest/v1/users/${snowflake}`, {
+async function getPresence(): Promise<Types.Presence> {
+	const res = await fetch(`https://api.lanyard.rest/v1/users/${SNOWFLAKE}`, {
 		next: { revalidate: 60 },
 	});
 	const { data } = await res.json();
+	return data;
+}
 
-	const avatarUrl = `https://cdn.discordapp.com/avatars/${data.discord_user.id}/${data.discord_user.avatar}.webp?size=128`;
-	const bannerUrl = data.discord_user.banner
-		? `https://cdn.discordapp.com/banners/${data.discord_user.id}/${data.discord_user.banner}.webp?size=300`
+async function getLastUpdate() {
+	const res = await fetch("https://api.github.com/repos/punctuations/home", {
+		headers: { Authorization: `Bearer ${process.env.GITHUB_TOKEN}` },
+		next: { revalidate: 3600 },
+	});
+	const data = await res.json();
+	return (data.updated_at as string) ?? new Date().toISOString();
+}
+
+async function toDiscordPreview(data: Types.Presence) {
+	const user = data.discord_user as Types.DiscordUser & {
+		banner?: string | null;
+	};
+	const avatarUrl = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.webp?size=128`;
+	const bannerUrl = user.banner
+		? `https://cdn.discordapp.com/banners/${user.id}/${user.banner}.webp?size=300`
 		: null;
-
-	const avg = await fac(avatarUrl);
 
 	return {
 		displayName: data.discord_user.global_name ?? data.discord_user.username,
 		username: data.discord_user.username,
 		avatarUrl,
 		bannerUrl,
-		avg,
-		listening: data.activities.find((a: any) => a.type === 2)?.state,
-		ws: undefined,
+		avg: bannerUrl ? "" : await fac(avatarUrl),
+		listening: data.activities.find((a) => a.type === 2)?.state,
 		status: data.discord_status,
 	};
 }
 
 export default async function Page() {
-	const gh = await getGithubPreview();
-	const dc = await getDiscordPreview();
-	return <Home gh={gh} dc={dc} />;
+	const [gh, presence, lastUpdate] = await Promise.all([
+		getGithubPreview(),
+		getPresence(),
+		getLastUpdate(),
+	]);
+
+	const dc = await toDiscordPreview(presence);
+
+	return <Home gh={gh} dc={dc} presence={presence} lastUpdate={lastUpdate} />;
 }
