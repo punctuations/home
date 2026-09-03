@@ -17,7 +17,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/github",
-        destination: "https://github.com/punctuations",
+        destination: "https://github.com/aamttt",
         permanent: true,
       },
       {

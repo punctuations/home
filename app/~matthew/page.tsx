@@ -81,11 +81,7 @@ export default function Page() {
           <p className="mt-[22px] text-[15px] leading-[1.55] plane:absolute plane:bottom-[6vh] plane:left-[8vw] plane:mt-0">
             <span>m [at] thew [dot] sh</span>
             <span className="px-[10px]">/</span>
-            <a
-              href="https://github.com/punctuations"
-              rel="me noreferrer"
-              target="_blank"
-            >
+            <a href="/github" rel="me noreferrer" target="_blank">
               github
             </a>
             <span className="px-[10px]">/</span>

@@ -60,7 +60,7 @@ const projects = [
   {
     name: "use listen along",
     color: "#800020",
-    link: "https://github.com/punctuations/use-listen-along",
+    link: "https://github.com/aamttt/use-listen-along",
     desc: "react hook for discord's listen along",
     date: "August 17, 2021",
     number: "0001",
@@ -68,7 +68,7 @@ const projects = [
   {
     name: "oscilloscope",
     color: "#4F6A43",
-    link: "https://github.com/punctuations/oscilloscope",
+    link: "https://github.com/aamttt/oscilloscope",
     desc: "a video/image converter to audio waveform",
     date: "Janurary 29, 2023",
     number: "0002",
@@ -76,7 +76,7 @@ const projects = [
   {
     name: "jtp",
     color: "#3B4C5C",
-    link: "https://github.com/punctuations/jtp",
+    link: "https://github.com/aamttt/jtp",
     desc: "a high-performance binary protocol for images",
     date: "January 24, 2026",
     number: "0003",
@@ -84,7 +84,7 @@ const projects = [
   {
     name: "fossil",
     color: "#9E7B3A",
-    link: "https://github.com/punctuations/fossil",
+    link: "https://github.com/aamttt/fossil",
     desc: "a compressor that shows its work",
     date: "June 27, 2026",
     number: "0004",
@@ -118,8 +118,14 @@ function coversCells(rect: DOMRect | null, cells: Cell[], bsz: number) {
   for (const c of cells) {
     const l = c.col * bsz;
     const t = c.row * bsz;
-    const ix = Math.max(0, Math.min(l + bsz, rect.right) - Math.max(l, rect.left));
-    const iy = Math.max(0, Math.min(t + bsz, rect.bottom) - Math.max(t, rect.top));
+    const ix = Math.max(
+      0,
+      Math.min(l + bsz, rect.right) - Math.max(l, rect.left),
+    );
+    const iy = Math.max(
+      0,
+      Math.min(t + bsz, rect.bottom) - Math.max(t, rect.top),
+    );
     if ((ix * iy) / area >= 0.5) return true;
   }
   return false;
@@ -171,7 +177,9 @@ function HomeBody({ gh, dc, lastUpdate }: HomeProps) {
   );
 
   useEffect(() => {
-    setUpdatedLabel(new Date(lastUpdate).toLocaleString("de-CH", UPDATE_FORMAT));
+    setUpdatedLabel(
+      new Date(lastUpdate).toLocaleString("de-CH", UPDATE_FORMAT),
+    );
   }, [lastUpdate]);
 
   // Snake state
@@ -254,16 +262,24 @@ function HomeBody({ gh, dc, lastUpdate }: HomeProps) {
     setFoodOverlapsReceipt(coversCells(receiptRect, foodCells, bsz));
     setSnakeOverlapsReceipt(coversCells(receiptRect, snake, bsz));
 
-    const nextFoodTicket = ticketRects.map((r) => coversCells(r, foodCells, bsz));
+    const nextFoodTicket = ticketRects.map((r) =>
+      coversCells(r, foodCells, bsz),
+    );
     const nextSnakeTicket = ticketRects.map((r) => coversCells(r, snake, bsz));
-    const nextFoodLink = linkPreRects.map((r) => coversCells(r, foodCells, bsz));
+    const nextFoodLink = linkPreRects.map((r) =>
+      coversCells(r, foodCells, bsz),
+    );
     const nextSnakeLink = linkPreRects.map((r) => coversCells(r, snake, bsz));
 
-    setFoodOverlapsTicket((p) => (sameBools(p, nextFoodTicket) ? p : nextFoodTicket));
+    setFoodOverlapsTicket((p) =>
+      sameBools(p, nextFoodTicket) ? p : nextFoodTicket,
+    );
     setSnakeOverlapsTicket((p) =>
       sameBools(p, nextSnakeTicket) ? p : nextSnakeTicket,
     );
-    setFoodOverlapsLinkPre((p) => (sameBools(p, nextFoodLink) ? p : nextFoodLink));
+    setFoodOverlapsLinkPre((p) =>
+      sameBools(p, nextFoodLink) ? p : nextFoodLink,
+    );
     setSnakeOverlapsLinkPre((p) =>
       sameBools(p, nextSnakeLink) ? p : nextSnakeLink,
     );
@@ -638,7 +654,9 @@ function HomeBody({ gh, dc, lastUpdate }: HomeProps) {
     [colors, getCoordinates],
   );
 
-  const startDrawing = (e: React.MouseEvent<SVGSVGElement | HTMLDivElement>) => {
+  const startDrawing = (
+    e: React.MouseEvent<SVGSVGElement | HTMLDivElement>,
+  ) => {
     const el = recieptRef.current;
     strokeRectRef.current = el?.getBoundingClientRect() ?? null;
     strokeSizeRef.current = el
@@ -778,7 +796,9 @@ function HomeBody({ gh, dc, lastUpdate }: HomeProps) {
             pointerEvents: "none",
           }}
         >
-          <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+          <span
+            style={{ display: "inline-flex", alignItems: "center", gap: 6 }}
+          >
             <span className="kbd-cluster">
               <kbd className="kbd-key">↑</kbd>
               <span className="kbd-row">
@@ -819,11 +839,7 @@ function HomeBody({ gh, dc, lastUpdate }: HomeProps) {
 
       {/* Background grid */}
       {rows > 0 && (
-        <SnakeGrid
-          rows={rows}
-          handle={gridHandleRef}
-          paused={snakeActiveRef}
-        />
+        <SnakeGrid rows={rows} handle={gridHandleRef} paused={snakeActiveRef} />
       )}
 
       <section
