@@ -13,7 +13,7 @@ async function getGithubPreview() {
     },
     body: JSON.stringify({
       query: `{
-        user(login: "aamttt") {
+        user(login: "aamtt") {
           name
           login
           bio
