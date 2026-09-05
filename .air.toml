@@ -1,0 +1,32 @@
+root = "."
+tmp_dir = "tmp"
+
+[build]
+  cmd = "go build -o ./tmp/site ."
+  bin = "./tmp/site"
+  include_ext = ["go", "html", "txt", "css", "js", "ico", "woff2", "webp"]
+  exclude_dir = ["tmp", ".vercel", ".git"]
+  exclude_regex = ["_test\\.go"]
+  exclude_unchanged = true
+  follow_symlink = false
+  delay = 200
+  stop_on_error = true
+  send_interrupt = true
+  kill_delay = 500000000
+
+[log]
+  time = false
+  main_only = false
+
+[color]
+  main = "magenta"
+  watcher = "cyan"
+  build = "yellow"
+  runner = "green"
+
+[misc]
+  clean_on_exit = true
+
+[screen]
+  clear_on_rebuild = false
+  keep_scroll = true

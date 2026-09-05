@@ -57,11 +57,11 @@ body {
 
 #curve {
   position: absolute;
-  bottom: 50%;
-  left: 50%;
+  bottom: 10%;
+  right: 10%;
   margin: 0;
   z-index: 0;
-  transform: translateX(-50%) translateY(50%);
+  transform: translateX(50%) translateY(50%);
   color: var(--curve);
   font: 16px/1 var(--mono);
   white-space: pre;

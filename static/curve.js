@@ -229,18 +229,38 @@
   let grabX = 0, grabY = 0, grabYaw = REST, grabPitch = 0;
   let painted = 0;
   let dirty = false;
+  let moved = false;
+  let swallowClick = false;
 
   render(yaw, pitch);
 
+  const CONTROLS = "a, button, input, textarea, select, summary, [tabindex]";
+
+  const interactive = (node) =>
+    !!(node && node.closest && node.closest(CONTROLS));
+
+  const hold = (on) => {
+    const style = document.documentElement.style;
+    style.userSelect = on ? "none" : "";
+    style.webkitUserSelect = on ? "none" : "";
+  };
+
   window.addEventListener("pointerdown", (event) => {
-    if (event.button !== 1) return;
+    swallowClick = false;
+
+    const middle = event.button === 1;
+    const held =
+      event.button === 0 && event.metaKey && !interactive(event.target);
+    if (!middle && !held) return;
 
     event.preventDefault();
     dragging = true;
+    moved = false;
     grabX = event.clientX;
     grabY = event.clientY;
     grabYaw = yaw;
     grabPitch = pitch;
+    hold(true);
   });
 
   const swallowMiddle = (event) => {
@@ -254,8 +274,12 @@
     (event) => {
       if (!dragging) return;
 
-      const across = (event.clientX - grabX) / window.innerWidth;
-      const down = (event.clientY - grabY) / window.innerHeight;
+      const shiftX = event.clientX - grabX;
+      const shiftY = event.clientY - grabY;
+      if (Math.abs(shiftX) > 3 || Math.abs(shiftY) > 3) moved = true;
+
+      const across = shiftX / window.innerWidth;
+      const down = shiftY / window.innerHeight;
 
       yaw = grabYaw + across * TURN * 1.5;
       pitch = clamp(grabPitch - down * 2 * MAX_PITCH, -MAX_PITCH, MAX_PITCH);
@@ -265,11 +289,25 @@
   );
 
   const release = () => {
+    if (!dragging) return;
     dragging = false;
+    swallowClick = moved;
+    hold(false);
   };
   window.addEventListener("pointerup", release);
   window.addEventListener("pointercancel", release);
   window.addEventListener("blur", release);
+
+  window.addEventListener(
+    "click",
+    (event) => {
+      if (!swallowClick) return;
+      swallowClick = false;
+      event.preventDefault();
+      event.stopPropagation();
+    },
+    true,
+  );
 
   const frame = (now) => {
     requestAnimationFrame(frame);
