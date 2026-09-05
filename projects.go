@@ -70,7 +70,7 @@ var projects = []Project{
 	},
 	{
 		Title:       "use listen along",
-		Description: "a react hook for Discord",
+		Description: "a react hook for spotify sync",
 		Year:        2021,
 		URL:         "https://github.com/aamtt/use-listen-along",
 		Color:       "#A8843F",
