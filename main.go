@@ -17,8 +17,8 @@ var templateFS embed.FS
 //go:embed static
 var staticFS embed.FS
 
-//go:embed all:home
-var homeFS embed.FS
+//go:embed all:archive
+var archiveFS embed.FS
 
 var (
 	pageTemplate = htmltemplate.Must(htmltemplate.New("index.html").
