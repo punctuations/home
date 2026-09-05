@@ -56,7 +56,7 @@
       {{end}}
       <span class="polaroid-profile">
         <span class="discord-avatar-wrap">
-          <img class="discord-avatar" alt=""{{with .Presence.AvatarURL}} src="{{.}}"{{end}} />
+          <img class="discord-avatar" alt="" crossorigin="anonymous"{{with .Presence.AvatarURL}} src="{{.}}"{{end}} />
           <i class="discord-status-dot discord-status-{{with .Presence.Status}}{{.}}{{else}}offline{{end}}"></i>
         </span>
         <span>

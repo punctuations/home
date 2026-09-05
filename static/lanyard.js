@@ -96,6 +96,97 @@
       ? `https://cdn.discordapp.com/banners/${user.id}/${user.banner}.webp?size=300`
       : "";
 
+  const sample = (image) => {
+    const w = image.naturalWidth;
+    const h = image.naturalHeight;
+    if (!w || !h) return "";
+
+    let data;
+    try {
+      const frame = document.createElement("canvas");
+      frame.width = w;
+      frame.height = h;
+      const ink = frame.getContext("2d", { willReadFrequently: true });
+      if (!ink) return "";
+      ink.drawImage(image, 0, 0);
+      data = ink.getImageData(0, 0, w, h).data;
+    } catch {
+      return "";
+    }
+
+    let bestHue = 0;
+    let bestSaturation = 0;
+    let bestValue = 0;
+    let redTotal = 0;
+    let greenTotal = 0;
+    let blueTotal = 0;
+    let pixels = 0;
+
+    for (let i = 0; i < data.length; i += 4) {
+      const red = data[i] / 255;
+      const green = data[i + 1] / 255;
+      const blue = data[i + 2] / 255;
+
+      redTotal += Math.trunc(red * 255);
+      greenTotal += Math.trunc(green * 255);
+      blueTotal += Math.trunc(blue * 255);
+      pixels++;
+
+      const top = Math.max(red, green, blue);
+      const low = Math.min(red, green, blue);
+      const delta = top - low;
+      const saturation = top === 0 ? 0 : delta / top;
+      if (top < 0.45 || top > 0.92 || saturation <= bestSaturation) continue;
+
+      let hue;
+      if (top === red) {
+        hue = (green - blue) / delta;
+        if (hue < 0) hue += 6;
+      } else if (top === green) {
+        hue = (blue - red) / delta + 2;
+      } else {
+        hue = (red - green) / delta + 4;
+      }
+
+      bestHue = hue * 60;
+      bestSaturation = saturation;
+      bestValue = top;
+    }
+
+    if (!pixels) return "";
+
+    if (bestSaturation === 0) {
+      return `rgb(${Math.trunc(redTotal / pixels)}, ${Math.trunc(greenTotal / pixels)}, ${Math.trunc(blueTotal / pixels)})`;
+    }
+
+    const channel = (n) => {
+      const turn = n + bestHue / 60;
+      const k = turn - Math.trunc(turn / 6) * 6;
+      const drop = bestSaturation * Math.max(0, Math.min(k, 4 - k, 1));
+      return Math.trunc((bestValue - bestValue * drop) * 255);
+    };
+
+    return `rgb(${channel(5)}, ${channel(3)}, ${channel(1)})`;
+  };
+
+  let toned = false;
+
+  const tone = (banner, url) => {
+    if (toned || !banner || !url) return;
+    toned = true;
+
+    const probe = new Image();
+    probe.crossOrigin = "anonymous";
+    probe.addEventListener("load", () => {
+      const accent = sample(probe);
+      if (accent) banner.style.background = accent;
+    });
+    probe.addEventListener("error", () => {
+      toned = false;
+    });
+    probe.src = url;
+  };
+
   const mirror = (data) => {
     if (!data || !profile) return;
 
@@ -131,6 +222,11 @@
     if (profile.banner && cover) {
       profile.banner.style.backgroundImage = `url("${cover}")`;
       profile.banner.style.backgroundSize = "cover";
+      return;
+    }
+
+    if (profile.banner && !profile.banner.dataset.accent) {
+      tone(profile.banner, face);
     }
   };
 

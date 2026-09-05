@@ -7,8 +7,7 @@ import (
 
 const (
 	retryAfterFailure = 5 * time.Second
-	refillAttempts    = 3
-	refillPause       = time.Second
+	refillTimeout     = 30 * time.Second
 )
 
 type memo[T any] struct {
@@ -20,7 +19,7 @@ type memo[T any] struct {
 	value     T
 	stamped   time.Time
 	holds     bool
-	refilling bool
+	refilling time.Time
 }
 
 func (m *memo[T]) get() T {
@@ -29,50 +28,48 @@ func (m *memo[T]) get() T {
 
 	if !m.holds {
 		m.store(m.load())
-		if !m.sound(m.value) && !m.refilling {
-			m.refilling = true
-			go m.refill()
+		return m.value
+	}
+
+	if !m.sound(m.value) {
+		if time.Since(m.stamped) >= retryAfterFailure {
+			m.store(m.load())
 		}
 		return m.value
 	}
 
-	if time.Since(m.stamped) >= m.life() && !m.refilling {
-		m.refilling = true
+	if time.Since(m.stamped) >= m.ttl && !m.busy() {
+		m.refilling = time.Now()
 		go m.refill()
 	}
 
 	return m.value
 }
 
+func (m *memo[T]) busy() bool {
+	return !m.refilling.IsZero() && time.Since(m.refilling) < refillTimeout
+}
+
 func (m *memo[T]) refill() {
 	fresh := m.load()
-	for attempt := 1; attempt < refillAttempts && !m.sound(fresh); attempt++ {
-		time.Sleep(time.Duration(attempt) * refillPause)
-		fresh = m.load()
-	}
 
 	m.mu.Lock()
 	defer m.mu.Unlock()
 
-	m.refilling = false
-	if m.sound(fresh) || !m.sound(m.value) {
+	m.refilling = time.Time{}
+
+	if m.sound(fresh) {
 		m.store(fresh)
-	} else {
-		m.stamped = time.Now().Add(retryAfterFailure - m.ttl)
+		return
 	}
+
+	m.stamped = time.Now().Add(retryAfterFailure - m.ttl)
 }
 
 func (m *memo[T]) store(value T) {
 	m.value = value
 	m.stamped = time.Now()
 	m.holds = true
-}
-
-func (m *memo[T]) life() time.Duration {
-	if m.sound(m.value) {
-		return m.ttl
-	}
-	return retryAfterFailure
 }
 
 var (

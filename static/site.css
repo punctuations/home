@@ -56,7 +56,7 @@ body {
 }
 
 #curve {
-  position: absolute;
+  position: fixed;
   bottom: 10%;
   right: 10%;
   margin: 0;
