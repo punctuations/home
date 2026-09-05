@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="{{.ThemeColor}}">
+<title>{{.Name}}</title>
+<meta name="description" content="{{.Description}}">
+<meta property="og:title" content="{{.Name}}">
+<meta property="og:description" content="{{.Description}}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{.CanonicalURL}}">
+<meta property="og:image" content="{{.OpenGraphURL}}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{.Name}}">
+<meta name="twitter:description" content="{{.Description}}">
+<meta name="twitter:image" content="{{.OpenGraphURL}}">
+<link rel="canonical" href="{{.CanonicalURL}}">
+<link rel="preload" href="{{asset "fonts/karla-latin.woff2"}}" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="{{asset "favicon.ico"}}" sizes="any">
+<link rel="stylesheet" href="{{asset "site.css"}}">
+<script type="application/ld+json">{{.Structured}}</script>
+</head>
+<body>
+
+<pre id="curve" aria-hidden="true" data-w="{{.CurveWidth}}" data-h="{{.CurveHeight}}">{{.Curve}}</pre>
+
+<main>
+  <h3 class="name">{{.Name}}</h3>
+
+  <p>I study <a href="{{.StudyURL}}">computer science and mathematics</a> at the University of British Columbia. I'm interested in algorithms, optimization and compression, and in representing and processing data more efficiently.</p>
+
+  <p class="status">From {{.Location}}, where it's <span id="clock" data-zone="{{.Timezone}}">{{.LocalTime}}</span>.</p>
+
+  <div class="lanyard" id="lanyard" data-user="{{.DiscordID}}" aria-label="Now playing on Spotify"
+       {{if not (and .Presence.ListeningToSpotify .Presence.SpotifyAlbumArtURL)}}hidden{{end}}>
+    <a class="lanyard-art" href="https://open.spotify.com/search/{{.Presence.SpotifySong}}%20-%20{{.Presence.SpotifyArtist}}" target="_blank" rel="noopener noreferrer">
+      <img{{with .Presence.SpotifyAlbumArtURL}} src="{{.}}"{{end}} alt="Spotify album art">
+      <img class="lanyard-art-blur"{{with .Presence.SpotifyAlbumArtURL}} src="{{.}}"{{end}} alt="" aria-hidden="true">
+      <img class="lanyard-art-next" alt="" aria-hidden="true">
+    </a>
+    <div class="lanyard-copy">
+      <strong>{{.Presence.SpotifySong}}</strong>
+      <span>{{with .Presence.SpotifyArtist}}by {{.}}{{end}}</span>
+    </div>
+  </div>
+
+  <div class="label">selected work</div>
+  {{range .Projects}}
+  <div class="work">
+    <svg viewBox="-1.2 -1.2 2.4 2.4" aria-hidden="true"
+         data-a="{{.A}}" data-b="{{.B}}" data-c="{{.C}}" data-phase="{{.Phase}}">
+      <path d="{{.Path}}" fill="none" stroke="{{.Color}}" stroke-width="0.1"/>
+    </svg>
+    <div><a href="{{.URL}}" target="_blank">{{.Title}}</a> <span class="dim">&middot; {{.Description}} &middot; {{.Year}}</span></div>
+  </div>
+  {{end}}
+  <div class="label" style="margin-top: 10px;">elsewhere</div>
+  {{range .Elsewhere}}
+  <div class="work">
+    <svg viewBox="-1.2 -1.2 2.4 2.4" aria-hidden="true"
+         data-a="{{.A}}" data-b="{{.B}}" data-c="{{.C}}" data-phase="{{.Phase}}">
+      <path d="{{.Path}}" fill="none" stroke="{{.Color}}" stroke-width="0.1"/>
+    </svg>
+    <div><a href="{{.URL}}">{{.Title}}</a> <span class="dim">&middot; {{.Description}}</span></div>
+  </div>
+  {{end}}
+
+  <div class="square">
+    <span class="qed" tabindex="0" aria-describedby="qed-note">
+      <span class="qed-note" id="qed-note" role="tooltip">QED</span>
+    </span>
+  </div>
+
+  <div style="min-height: 30px;" class="gap"></div>
+
+  {{template "footer" .}}
+</main>
+
+<script src="{{asset "lanyard.js"}}" defer></script>
+<script src="{{asset "curve.js"}}" defer></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#1B1A17">
+<title>Not Found</title>
+<meta name="robots" content="noindex">
+<link rel="preload" href="{{asset "fonts/karla-latin.woff2"}}" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="{{asset "favicon.ico"}}" sizes="any">
+<link rel="stylesheet" href="{{asset "site.css"}}">
+</head>
+<body>
+
+<main>
+  <h3 class="name">Not Found</h3>
+
+  <p>There is nothing at <span class="badpath" tabindex="0">{{.Path}}<span class="badpath-note" role="tooltip">the address you asked for</span></span>. It may have moved, or it may never have been here.</p>
+
+  <div class="square">
+    <span class="qed" tabindex="0" aria-describedby="qed-note">
+      <span class="qed-note" id="qed-note" role="tooltip">QED</span>
+    </span>
+  </div>
+
+  <p><a href="/">Back to the front page</a></p>
+
+  <div class="gap"></div>
+
+  {{template "footer" .}}
+</main>
+
+<script src="{{asset "curve.js"}}" defer></script>
+</body>
+</html>

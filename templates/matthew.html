@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>~matthew</title>
+<meta name="description" content="Optimization and graph theory">
+<link rel="canonical" href="{{.CanonicalURL}}">
+<link rel="icon" href="{{asset "favicon.ico"}}" sizes="any">
+<link rel="stylesheet" href="{{asset "academic.css"}}">
+</head>
+<body>
+
+<canvas id="portrait" aria-hidden="true"></canvas>
+<div class="veil" aria-hidden="true"></div>
+
+<main>
+  <header>
+    <h1>M. Baker</h1>
+    <h2>Optimization &amp; Graph Theory</h2>
+
+    <div class="lede">
+      <p>I work on optimization and graph theory, and on the intersection between them.</p>
+    </div>
+  </header>
+
+  <div class="foot">
+    <section>
+      <h3>Research</h3>
+      <ol>
+        {{range $n, $item := .Papers}}
+        <li>
+          <span class="index">[{{inc $n}}]</span>
+          <span>
+            <span class="title{{if $item.InProgress}} pending{{end}}">{{$item.Title}}</span>
+            <span class="status">{{$item.Status}}</span>
+          </span>
+        </li>
+        {{end}}
+      </ol>
+    </section>
+
+    <p class="contact">
+      <span>m [at] thew [dot] sh</span>
+      <span class="rule">/</span>
+      <a href="/github" rel="me noreferrer" target="_blank">github</a>
+      <span class="rule">/</span>
+      <a href="/">thew.sh</a>
+    </p>
+  </div>
+</main>
+
+<script src="{{asset "portrait.js"}}" type="module" defer></script>
+</body>
+</html>

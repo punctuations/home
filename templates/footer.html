@@ -1,0 +1,58 @@
+{{define "footer"}}
+  <footer>
+    <span>&copy; {{.Year}} {{.Name}}</span>
+    <span class="polaroid-link">
+      <a href="/github" rel="me">github</a>
+      <span class="polaroid polaroid-github" aria-hidden="true">
+        <span class="github-graph" data-contributions="{{range .Github.Contributions}}{{.}},{{end}}">
+          <span class="github-month-labels"></span>
+          <span class="contribution-grid"></span>
+        </span>
+        <span class="polaroid-profile">
+          <img src="{{.Github.AvatarURL}}" alt="">
+          <span>
+            <strong>{{.Github.DisplayName}}</strong>
+            <small>{{.Github.Username}}</small>
+            <em>{{.Github.Bio}}</em>
+          </span>
+        </span>
+      </span>
+    </span>
+    <span class="polaroid-link">
+      <a href="/twitter" rel="me">twitter</a>
+      <span class="polaroid polaroid-twitter" aria-hidden="true">
+        <span class="polaroid-banner" style="background-image: url('https://pbs.twimg.com/profile_banners/1210823653027303424/1710105556/600x200')"></span>
+        <span class="polaroid-profile">
+          <img src="https://pbs.twimg.com/profile_images/2029463293635772421/3fZPkyDK_200x200.jpg" alt="">
+          <span>
+            <strong>matt <small>@0xA5A5</small></strong>
+            <em>somewhat of a software dev, ubc cs '27</em>
+          </span>
+        </span>
+      </span>
+    </span>
+    <span class="polaroid-link">
+      <a href="/discord">discord</a>
+      <span class="polaroid polaroid-discord" aria-hidden="true">
+        {{if .Presence.BannerURL}}
+        <span class="polaroid-banner" style="background-image: url('{{.Presence.BannerURL}}')"></span>
+        {{else}}
+        <span class="polaroid-banner" data-accent="{{.Presence.Accent}}"></span>
+        {{end}}
+        <span class="polaroid-profile">
+          <span class="discord-avatar-wrap">
+            <img src="{{.Presence.AvatarURL}}" alt="">
+            <i class="discord-status-dot discord-status-{{.Presence.Status}}"></i>
+          </span>
+          <span>
+            <strong>{{.Presence.DisplayName}}</strong>
+            <small>@{{.Presence.Username}}</small>
+            <em class="discord-listening"{{if not .Presence.Listening}} hidden{{end}}>{{with .Presence.Listening}}listening to {{.}}{{end}}</em>
+          </span>
+        </span>
+      </span>
+    </span>
+    <span class="email" tabindex="0">m [at] thew [dot] sh<span class="email-note" role="tooltip">email address</span></span>
+    {{template "signature"}}
+  </footer>
+{{end}}
