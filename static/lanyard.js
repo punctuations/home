@@ -1,31 +1,50 @@
 (() => {
   const card = document.getElementById("lanyard");
-  if (!card) return;
+  const polaroid = document.querySelector(".polaroid-discord");
 
-  const id = card.dataset.user;
+  const id = (card && card.dataset.user) || (polaroid && polaroid.dataset.user);
   if (!id) return;
-
-  const link = card.querySelector(".lanyard-art");
-  const art = card.querySelectorAll(
-    ".lanyard-art img:not(.lanyard-art-next)",
-  );
-  const next = card.querySelector(".lanyard-art-next");
-  const copy = card.querySelector(".lanyard-copy");
-  const song = card.querySelector(".lanyard-copy strong");
-  const artist = card.querySelector(".lanyard-copy span");
-  if (!link || !song || !artist) return;
 
   const still =
     window.matchMedia &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  const player = (() => {
+    if (!card) return null;
+
+    const link = card.querySelector(".lanyard-art");
+    const song = card.querySelector(".lanyard-copy strong");
+    const artist = card.querySelector(".lanyard-copy span");
+    if (!link || !song || !artist) return null;
+
+    return {
+      link,
+      song,
+      artist,
+      art: card.querySelectorAll(".lanyard-art img:not(.lanyard-art-next)"),
+      next: card.querySelector(".lanyard-art-next"),
+      copy: card.querySelector(".lanyard-copy"),
+    };
+  })();
+
+  const profile = polaroid
+    ? {
+        dot: polaroid.querySelector(".discord-status-dot"),
+        listening: polaroid.querySelector(".discord-listening"),
+        avatar: polaroid.querySelector(".discord-avatar"),
+        name: polaroid.querySelector(".discord-name"),
+        handle: polaroid.querySelector(".discord-handle"),
+        banner: polaroid.querySelector(".polaroid-banner"),
+      }
+    : null;
+
   const wearArt = (cover) => {
-    art.forEach((img) => img.setAttribute("src", cover));
+    player.art.forEach((img) => img.setAttribute("src", cover));
   };
 
   const swapArt = (cover, gently) => {
     if (!cover) return;
-    if (!gently || !next) {
+    if (!gently || !player.next) {
       wearArt(cover);
       return;
     }
@@ -35,11 +54,11 @@
       if (settled) return;
       settled = true;
 
-      next.src = cover;
-      next.classList.add("is-in");
+      player.next.src = cover;
+      player.next.classList.add("is-in");
       setTimeout(() => {
         wearArt(cover);
-        next.classList.remove("is-in");
+        player.next.classList.remove("is-in");
       }, 340);
     };
 
@@ -55,7 +74,7 @@
   };
 
   const swapCopy = (apply, gently) => {
-    if (!gently || !copy) {
+    if (!gently || !player.copy) {
       apply();
       return;
     }
@@ -67,21 +86,51 @@
     }, 160);
   };
 
-  const dot = document.querySelector(".polaroid-discord .discord-status-dot");
-  const listening = document.querySelector(".polaroid-discord .discord-listening");
+  const avatarURL = (user) =>
+    user && user.id && user.avatar
+      ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.webp?size=128`
+      : "";
+
+  const bannerURL = (user) =>
+    user && user.id && user.banner
+      ? `https://cdn.discordapp.com/banners/${user.id}/${user.banner}.webp?size=300`
+      : "";
 
   const mirror = (data) => {
-    if (!data) return;
+    if (!data || !profile) return;
 
-    if (dot && data.discord_status) {
-      dot.className = `discord-status-dot discord-status-${data.discord_status}`;
+    if (profile.dot) {
+      const status = data.discord_status || "offline";
+      profile.dot.className = `discord-status-dot discord-status-${status}`;
     }
 
-    if (listening) {
+    if (profile.listening) {
       const tune = (data.activities || []).find((item) => item.type === 2);
       const state = tune && tune.state ? tune.state : "";
-      listening.textContent = state ? `listening to ${state}` : "";
-      listening.hidden = !state;
+      profile.listening.textContent = state ? `listening to ${state}` : "";
+      profile.listening.hidden = !state;
+    }
+
+    const user = data.discord_user;
+    if (!user) return;
+
+    const face = avatarURL(user);
+    if (profile.avatar && face && profile.avatar.getAttribute("src") !== face) {
+      profile.avatar.setAttribute("src", face);
+    }
+
+    if (profile.name && user.global_name) {
+      profile.name.textContent = user.global_name;
+    }
+
+    if (profile.handle && user.username) {
+      profile.handle.textContent = `@${user.username}`;
+    }
+
+    const cover = bannerURL(user);
+    if (profile.banner && cover) {
+      profile.banner.style.backgroundImage = `url("${cover}")`;
+      profile.banner.style.backgroundSize = "cover";
     }
   };
 
@@ -89,6 +138,7 @@
 
   const paint = (data) => {
     mirror(data);
+    if (!player) return;
 
     const playing = data && data.listening_to_spotify && data.spotify;
     if (!playing) {
@@ -108,11 +158,11 @@
 
     swapArt(cover, gently);
     swapCopy(() => {
-      song.textContent = title || "";
-      artist.textContent = by ? `by ${by}` : "";
+      player.song.textContent = title || "";
+      player.artist.textContent = by ? `by ${by}` : "";
     }, gently);
 
-    link.href = `https://open.spotify.com/search/${encodeURIComponent(`${title} - ${by}`)}`;
+    player.link.href = `https://open.spotify.com/search/${encodeURIComponent(`${title} - ${by}`)}`;
     card.hidden = false;
   };
 
@@ -127,7 +177,9 @@
 
   const resync = async () => {
     try {
-      const res = await fetch(`https://api.lanyard.rest/v1/users/${id}`, { cache: "no-store" });
+      const res = await fetch(`https://api.lanyard.rest/v1/users/${id}`, {
+        cache: "no-store",
+      });
       if (!res.ok) return;
       const { data } = await res.json();
       if (data) paint(data);
@@ -141,7 +193,11 @@
   };
 
   function connect() {
-    if (socket && (socket.readyState === WebSocket.OPEN || socket.readyState === WebSocket.CONNECTING)) {
+    if (
+      socket &&
+      (socket.readyState === WebSocket.OPEN ||
+        socket.readyState === WebSocket.CONNECTING)
+    ) {
       return;
     }
 
@@ -163,7 +219,8 @@
         socket.send(JSON.stringify({ op: 2, d: { subscribe_to_id: id } }));
         stopBeat();
         beat = setInterval(() => {
-          if (socket.readyState === WebSocket.OPEN) socket.send(JSON.stringify({ op: 3 }));
+          if (socket.readyState === WebSocket.OPEN)
+            socket.send(JSON.stringify({ op: 3 }));
         }, frame.d.heartbeat_interval);
         return;
       }
@@ -190,6 +247,9 @@
       connect();
     }
   };
+
+  resync();
+  if (!player) return;
 
   connect();
   document.addEventListener("visibilitychange", wake);

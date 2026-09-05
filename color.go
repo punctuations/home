@@ -5,13 +5,20 @@ import (
 	"image"
 	_ "image/jpeg"
 	_ "image/png"
+	"io"
 	"net/http"
+	"time"
 
 	_ "golang.org/x/image/webp"
 )
 
+const (
+	avatarTimeout = 2 * time.Second
+	avatarLimit   = 2 << 20
+)
+
 func fac(url string) (string, error) {
-	response, err := http.Get(url)
+	response, err := (&http.Client{Timeout: avatarTimeout}).Get(url)
 	if err != nil {
 		return "", err
 	}
@@ -21,7 +28,7 @@ func fac(url string) (string, error) {
 		return "", fmt.Errorf("fetch image: %s", response.Status)
 	}
 
-	imageData, _, err := image.Decode(response.Body)
+	imageData, _, err := image.Decode(io.LimitReader(response.Body, avatarLimit))
 	if err != nil {
 		return "", err
 	}

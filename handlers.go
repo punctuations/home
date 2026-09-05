@@ -81,6 +81,15 @@ func asset(name string) string {
 
 var indexed = []string{"/", "/~matthew", "/receipt", "/guestbook"}
 
+const unsettledCache = "public, max-age=0, s-maxage=15"
+
+func cacheFor(settled bool, full string) string {
+	if settled {
+		return full
+	}
+	return unsettledCache
+}
+
 var shortlinks = map[string]string{
 	"/github":  "https://github.com/aamtt",
 	"/twitter": "https://twitter.com/0xA5A5",
@@ -137,6 +146,10 @@ type view struct {
 	Projects     []mark
 	Elsewhere    []mark
 	Home         bool
+}
+
+func (v view) settled() bool {
+	return v.Presence.Username != "" && v.Github.Username != ""
 }
 
 func page() view {
@@ -200,7 +213,7 @@ func root(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	w.Header().Set("Cache-Control", "public, max-age=0, s-maxage=300, stale-while-revalidate=86400")
+	w.Header().Set("Cache-Control", cacheFor(data.settled(), "public, max-age=0, s-maxage=300, stale-while-revalidate=86400"))
 	pageTemplate.ExecuteTemplate(w, "index.html", data)
 }
 
@@ -312,6 +325,11 @@ func guestbook(w http.ResponseWriter, r *http.Request) {
 	if wantsPlain(w, r) {
 		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.Header().Set("Cache-Control", "public, max-age=0, s-maxage=60, stale-while-revalidate=86400")
+		if len(list) == 0 {
+			fmt.Fprintf(w, "    Nobody has signed yet.\n")
+			return
+		}
+
 		for _, entry := range list {
 			fmt.Fprintf(w, "    %s  %s\n", entry.Signed(), entry.Display())
 		}
@@ -319,7 +337,7 @@ func guestbook(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	w.Header().Set("Cache-Control", "public, max-age=0, s-maxage=60, stale-while-revalidate=86400")
+	w.Header().Set("Cache-Control", cacheFor(data.settled(), "public, max-age=0, s-maxage=60, stale-while-revalidate=86400"))
 	guestbookTemplate.ExecuteTemplate(w, "guestbook.html", guestbookView{
 		view:      data,
 		Origin:    "https://" + canonicalHost,
@@ -329,12 +347,13 @@ func guestbook(w http.ResponseWriter, r *http.Request) {
 }
 
 type errorView struct {
-	Home     bool
-	Path     string
-	Name     string
-	Year     int
-	Github   githubPreview
-	Presence presencePreview
+	Home      bool
+	Path      string
+	Name      string
+	Year      int
+	DiscordID string
+	Github    githubPreview
+	Presence  presencePreview
 }
 
 func notFound(w http.ResponseWriter, r *http.Request) {
@@ -351,11 +370,12 @@ func notFound(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNotFound)
 
 	errorTemplate.ExecuteTemplate(w, "404.html", errorView{
-		Path:     trimPath(r.URL.Path),
-		Name:     displayName,
-		Year:     time.Now().In(zone()).Year(),
-		Github:   githubMemo.get(),
-		Presence: presenceMemo.get(),
+		Path:      trimPath(r.URL.Path),
+		Name:      displayName,
+		Year:      time.Now().In(zone()).Year(),
+		DiscordID: discordID,
+		Github:    githubMemo.get(),
+		Presence:  presenceMemo.get(),
 	})
 }
 

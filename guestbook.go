@@ -45,6 +45,9 @@ func (s signer) Display() string {
 }
 
 func (s signer) Signed() string {
+	if s.At <= 0 {
+		return ""
+	}
 	return time.Unix(s.At, 0).In(zone()).Format("2006-01-02")
 }
 
@@ -299,9 +302,6 @@ func signRecipe(host string) string {
     echo YOURNAME \
       | ssh-keygen -Y sign -n %s -f ~/.ssh/id_ed25519 - \
       | curl -sX POST --data-binary @- '%s/sign?user=YOURNAME'
-
-  In PowerShell, use a backtick to continue each line, $HOME instead
-  of ~, and curl.exe so the alias for Invoke-WebRequest is bypassed.
 
   Replace YOURNAME with your GitHub username. The key must be
   published on your account, as either a signing or an auth key.

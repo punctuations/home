@@ -54,7 +54,11 @@
          data-a="{{.A}}" data-b="{{.B}}" data-c="{{.C}}" data-phase="{{.Phase}}">
       <path d="{{.Path}}" fill="none" stroke="{{.Color}}" stroke-width="0.1"/>
     </svg>
-    <div><a href="{{.URL}}" target="_blank">{{.Title}}</a> <span class="dim">&middot; {{.Description}} &middot; {{.Year}}</span></div>
+    <div class="work-body">
+      <a href="{{.URL}}" target="_blank">{{.Title}}</a>
+      <span class="dim work-desc">{{.Description}}</span>
+      <span class="dim work-year">{{.Year}}</span>
+    </div>
   </div>
   {{end}}
   <div class="label" style="margin-top: 10px;">elsewhere</div>
@@ -64,7 +68,10 @@
          data-a="{{.A}}" data-b="{{.B}}" data-c="{{.C}}" data-phase="{{.Phase}}">
       <path d="{{.Path}}" fill="none" stroke="{{.Color}}" stroke-width="0.1"/>
     </svg>
-    <div><a href="{{.URL}}">{{.Title}}</a> <span class="dim">&middot; {{.Description}}</span></div>
+    <div class="work-body">
+      <a href="{{.URL}}">{{.Title}}</a>
+      <span class="dim work-desc">{{.Description}}</span>
+    </div>
   </div>
   {{end}}
 

@@ -9,6 +9,11 @@ import (
 	"time"
 )
 
+const (
+	presenceTimeout = 3 * time.Second
+	browserAgent    = "thew.sh (+https://thew.sh)"
+)
+
 type presencePreview struct {
 	Status             string
 	Listening          string
@@ -118,7 +123,9 @@ func fetchPresencePreview() presencePreview {
 	value := presencePreview{}
 	request, err := http.NewRequest(http.MethodGet, "https://api.lanyard.rest/v1/users/"+discordID, nil)
 	if err == nil {
-		response, responseErr := (&http.Client{Timeout: 5 * time.Second}).Do(request)
+		request.Header.Set("Accept", "application/json")
+		request.Header.Set("User-Agent", browserAgent)
+		response, responseErr := (&http.Client{Timeout: presenceTimeout}).Do(request)
 		if responseErr == nil {
 			defer response.Body.Close()
 			if response.StatusCode == http.StatusOK {

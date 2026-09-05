@@ -5,7 +5,11 @@ import (
 	"time"
 )
 
-const retryAfterFailure = 15 * time.Second
+const (
+	retryAfterFailure = 5 * time.Second
+	refillAttempts    = 3
+	refillPause       = time.Second
+)
 
 type memo[T any] struct {
 	ttl   time.Duration
@@ -25,6 +29,10 @@ func (m *memo[T]) get() T {
 
 	if !m.holds {
 		m.store(m.load())
+		if !m.sound(m.value) && !m.refilling {
+			m.refilling = true
+			go m.refill()
+		}
 		return m.value
 	}
 
@@ -38,6 +46,10 @@ func (m *memo[T]) get() T {
 
 func (m *memo[T]) refill() {
 	fresh := m.load()
+	for attempt := 1; attempt < refillAttempts && !m.sound(fresh); attempt++ {
+		time.Sleep(time.Duration(attempt) * refillPause)
+		fresh = m.load()
+	}
 
 	m.mu.Lock()
 	defer m.mu.Unlock()

@@ -1,5 +1,5 @@
 :root {
-  --bg: #f3eee3;
+  --bg: #f7f4ee;
   --fg: #2a2724;
   --strong: #16130f;
   --dim: #8a8279;
@@ -8,9 +8,11 @@
   --curve: #e6cece;
   --column: 720px;
   --title-lead: 20px;
-  --sans:
-    Karla, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif;
+  --gutter: 36px;
+  --face-size: 34px;
+  --face-lap: 12px;
+  --sans: Karla, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
   --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 }
 
@@ -34,11 +36,12 @@
 html {
   background: var(--bg);
   overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
-  padding: 64px 36px 40px;
+  padding: 64px var(--gutter) 40px;
   background: var(--bg);
   color: var(--fg);
   font: 17px/1.75 var(--sans);
@@ -46,8 +49,10 @@ body {
   display: flex;
   flex-direction: column;
   -webkit-font-smoothing: antialiased;
+  overflow-wrap: break-word;
   position: relative;
   min-height: 100vh;
+  min-height: 100dvh;
 }
 
 #curve {
@@ -71,6 +76,7 @@ main {
   flex-direction: column;
   flex: 1;
   width: 100%;
+  min-width: 0;
   max-width: var(--column);
   margin: 0 auto;
 }
@@ -84,6 +90,7 @@ a {
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
+  overflow-wrap: break-word;
 }
 
 .name {
@@ -233,6 +240,23 @@ a {
   overflow: visible;
 }
 
+.work > div {
+  min-width: 0;
+}
+
+.work-body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 0.4em;
+}
+
+.work-desc::before,
+.work-year::before {
+  content: "·";
+  margin-right: 0.3em;
+}
+
 .gap {
   flex: 1;
   min-height: 90px;
@@ -264,9 +288,7 @@ a {
   padding: 5px 9px;
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 8px;
-  box-shadow:
-    0 4px 6px rgba(0, 0, 0, 0.07),
-    0 12px 32px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07), 0 12px 32px rgba(0, 0, 0, 0.12);
   background: var(--fg);
   color: var(--bg);
   font: 12px/1.2 var(--sans);
@@ -278,9 +300,7 @@ a {
   user-select: none;
   transform: translate(-50%, 4px) scale(0.95);
   transform-origin: center bottom;
-  transition:
-    transform 0.15s ease,
-    opacity 0.1s ease;
+  transition: transform 0.15s ease, opacity 0.1s ease;
   z-index: 10;
 }
 
@@ -298,8 +318,7 @@ a {
 .badpath:focus-visible .badpath-note {
   opacity: 1;
   transform: translate(-50%, 0) scale(1);
-  transition:
-    transform 0.2s cubic-bezier(0.34, 1.2, 0.64, 1),
+  transition: transform 0.2s cubic-bezier(0.34, 1.2, 0.64, 1),
     opacity 0.15s ease;
 }
 
@@ -309,6 +328,10 @@ footer {
   gap: 20px;
   font-size: 14px;
   color: var(--dim);
+}
+
+footer > * {
+  min-width: 0;
 }
 
 .signature {
@@ -360,6 +383,7 @@ footer {
 .badpath {
   position: relative;
   cursor: help;
+  overflow-wrap: anywhere;
   text-decoration: underline dotted;
   text-underline-offset: 3px;
 }
@@ -385,18 +409,14 @@ footer a:hover {
   padding: 8px;
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 8px;
-  box-shadow:
-    0 4px 6px rgba(0, 0, 0, 0.07),
-    0 12px 32px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07), 0 12px 32px rgba(0, 0, 0, 0.12);
   background: var(--bg);
   font: 12px/1.2 var(--mono);
   opacity: 0;
   pointer-events: none;
   transform: translate(-50%, -100%) scale(0.95);
   transform-origin: center bottom;
-  transition:
-    transform 0.15s ease,
-    opacity 0.1s ease;
+  transition: transform 0.15s ease, opacity 0.1s ease;
   z-index: 10;
 }
 
@@ -405,8 +425,7 @@ footer a:hover {
   opacity: 1;
   pointer-events: auto;
   transform: translate(-50%, -100%) scale(1);
-  transition:
-    transform 0.2s cubic-bezier(0.34, 1.2, 0.64, 1),
+  transition: transform 0.2s cubic-bezier(0.34, 1.2, 0.64, 1),
     opacity 0.15s ease;
 }
 
@@ -545,17 +564,30 @@ footer a:hover {
   background: #c44c3c;
 }
 
-@media (max-width: 40rem) {
+@media (max-width: 44rem) {
+  :root {
+    --gutter: 16px;
+    --face-size: 38px;
+    --face-lap: 8px;
+  }
+
   body {
-    padding: 36px 18px 28px;
+    padding: 40px var(--gutter) 28px;
+    font-size: 16px;
   }
 
-  #curve {
-    display: none;
-  }
-
+  #curve,
   .polaroid {
     display: none;
+  }
+
+  .name {
+    margin: var(--title-lead) 0 24px;
+  }
+
+  .label {
+    margin: 22px 0 16px;
+    letter-spacing: 0.1em;
   }
 
   .lanyard {
@@ -571,18 +603,120 @@ footer a:hover {
   }
 
   .work {
-    gap: 10px;
+    gap: 5px;
+  }
+
+  .work svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  .work-body {
+    flex-wrap: nowrap;
+  }
+
+  .work-body > a {
+    flex: none;
+    font-size: clamp(12px, calc(4.7vw - 2.4px), 17px);
+  }
+
+  .work-year {
+    display: none;
+  }
+
+  .work-desc {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: clamp(10.5px, calc(4.08vw - 2.04px), 16px);
   }
 
   .gap {
     min-height: 56px;
   }
 
+  .recipe {
+    overflow-x: auto;
+    padding-right: 36px;
+    font-size: 11.5px;
+    overscroll-behavior-x: contain;
+  }
+
+  .copy {
+    top: -3px;
+    right: 0;
+    width: 32px;
+    height: 32px;
+  }
+
+  .shells {
+    gap: 18px;
+    margin-top: 14px;
+  }
+
+  .shell {
+    padding: 6px 0;
+  }
+
+  .faces {
+    margin-top: 16px;
+  }
+
+  .face {
+    margin-bottom: 10px;
+  }
+
+  .qed-note,
+  .face-note,
+  .keypath-note,
+  .username-note,
+  .email-note,
+  .badpath-note {
+    width: max-content;
+    max-width: min(66vw, 240px);
+    white-space: normal;
+  }
+
+  .faces {
+    position: relative;
+  }
+
+  .face {
+    position: static;
+  }
+
+  .face-note {
+    left: 0;
+    right: 0;
+    width: auto;
+    max-width: none;
+    text-align: center;
+    transform: translateY(4px) scale(0.98);
+    transform-origin: center bottom;
+  }
+
+  .face:hover .face-note,
+  .face:focus-visible .face-note {
+    transform: translateY(0) scale(1);
+  }
+
   footer {
     align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
-    gap: 10px 16px;
+    gap: 10px 0.7em;
+    font-size: clamp(12px, 3.6vw, 14px);
     line-height: 1.4;
+  }
+
+  footer > * {
+    white-space: nowrap;
+  }
+
+  .footer-name {
+    display: none;
   }
 
   .signature {
@@ -594,12 +728,26 @@ footer a:hover {
 }
 
 @media (max-width: 24rem) {
+  :root {
+    --gutter: 16px;
+    --face-size: 34px;
+  }
+
   body {
-    padding: 32px 14px 24px;
+    padding: 32px var(--gutter) 24px;
+  }
+
+  .recipe {
+    font-size: 11px;
+  }
+
+  .masthead-lead {
+    margin-left: -0.6em;
+    margin-right: 0.35em;
   }
 
   footer {
-    gap: 8px 12px;
+    gap: 8px 0.7em;
   }
 
   .signature {
@@ -641,8 +789,7 @@ footer a:hover {
   width: 15px;
   height: 15px;
   margin: auto;
-  transition:
-    opacity 130ms ease,
+  transition: opacity 130ms ease,
     transform 260ms cubic-bezier(0.34, 1.2, 0.64, 1);
 }
 
@@ -719,16 +866,15 @@ footer a:hover {
   display: flex;
   flex-wrap: wrap;
   margin-top: 20px;
-  padding-left: 12px;
+  padding-left: var(--face-lap);
 }
 
 .face {
   position: relative;
-  margin: 0 0 12px -12px;
+  margin: 0 0 12px calc(var(--face-lap) * -1);
   border-bottom: 0;
   border-radius: 50%;
-  transition:
-    translate 190ms cubic-bezier(0.22, 0.61, 0.36, 1),
+  transition: translate 190ms cubic-bezier(0.22, 0.61, 0.36, 1),
     z-index 0s 190ms;
   animation: face-in 360ms cubic-bezier(0.34, 1.2, 0.64, 1)
     calc(min(var(--face, 0) * 55ms, 660ms)) backwards;
@@ -742,16 +888,14 @@ footer a:hover {
 
 .face img {
   display: block;
-  width: 34px;
-  height: 34px;
+  width: var(--face-size);
+  height: var(--face-size);
   border-radius: 50%;
   background: var(--bg);
   box-shadow: 0 0 0 2px var(--bg);
   opacity: 0;
   filter: blur(6px);
-  transition:
-    opacity 420ms ease,
-    filter 420ms ease;
+  transition: opacity 420ms ease, filter 420ms ease;
   transition-delay: calc(min(var(--face, 0) * 55ms, 660ms));
 }
 
@@ -760,13 +904,18 @@ footer a:hover {
   filter: blur(0);
 }
 
+.face-date {
+  display: block;
+  margin-top: 3px;
+  opacity: 0.7;
+  font-variant-numeric: tabular-nums;
+}
+
 .face:hover,
 .face:focus-visible {
   z-index: 5;
   translate: 0 -4px;
-  transition:
-    translate 180ms cubic-bezier(0.34, 1.2, 0.64, 1),
-    z-index 0s;
+  transition: translate 180ms cubic-bezier(0.34, 1.2, 0.64, 1), z-index 0s;
 }
 
 .keypath {
@@ -876,11 +1025,5 @@ footer a:hover {
   .polaroid-link.is-previewing .polaroid,
   .polaroid:hover {
     transition: none;
-  }
-}
-
-@media (max-width: 44rem) {
-  .recipe {
-    overflow-x: auto;
   }
 }
