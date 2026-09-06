@@ -57,6 +57,7 @@ func main() {
 	mux.HandleFunc("GET /receipt", receipt)
 	mux.Handle("GET /receipt/", exported())
 	mux.HandleFunc("GET /og.png", openGraph)
+	mux.HandleFunc("GET /portrait.svg", portraitSVG)
 	mux.HandleFunc("GET /favicon.ico", favicon)
 	mux.HandleFunc("GET /robots.txt", robots)
 	mux.HandleFunc("GET /sitemap.xml", sitemap)

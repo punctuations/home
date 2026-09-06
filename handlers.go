@@ -53,6 +53,7 @@ var papers = []research{
 type academicView struct {
 	Papers       []research
 	CanonicalURL string
+	Portrait     string
 }
 
 func academic(w http.ResponseWriter, r *http.Request) {
@@ -73,6 +74,7 @@ func academic(w http.ResponseWriter, r *http.Request) {
 	academicTemplate.ExecuteTemplate(w, "matthew.html", academicView{
 		Papers:       papers,
 		CanonicalURL: "https://" + canonicalHost + "/~matthew",
+		Portrait:     portraitFrame(),
 	})
 }
 func receipt(w http.ResponseWriter, r *http.Request) {

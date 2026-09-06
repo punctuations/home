@@ -54,13 +54,6 @@ var PROMOTE_MS = 3.5;
 var FIELD_PIXELS = 3;
 var FIELD_SPACING = 85;
 var FIELD_LENGTH = 90;
-var GRID_PX = 7;
-var NEWTON_STEPS = 40;
-var SEPARATRIX_STEPS = 900;
-var SEPARATRIX_NUDGE = 0.004;
-var CYCLE_BURN = 40000;
-var CYCLE_POINTS = 2600;
-var CYCLE_STEP = 0.05;
 var ESCAPE = 40;
 var TIERS = [
   { dpr: 2, minFrame: 1 / 61, step: 1 / 60, area: 4200, cap: 420 },
@@ -123,10 +116,6 @@ function baseTier() {
   let yScale = 1;
   let halfX = X_HALF;
   let halfY = Y_HALF;
-  let gridX = new Float64Array(0);
-  let gridY = new Float64Array(0);
-  let gridCols = 0;
-  let gridRows = 0;
   const floor = baseTier();
   let tier = floor;
   let painted = false;
@@ -195,348 +184,35 @@ function baseTier() {
     s[1] += flow[1] * gain;
     return true;
   }
-  function jacobian(x, y) {
-    const hx = X_HALF * 0.00001;
-    const hy = Y_HALF * 0.00001;
-    return [
-      (field(x + hx, y, 0) - field(x - hx, y, 0)) / (2 * hx),
-      (field(x, y + hy, 0) - field(x, y - hy, 0)) / (2 * hy),
-      (field(x + hx, y, 1) - field(x - hx, y, 1)) / (2 * hx),
-      (field(x, y + hy, 1) - field(x, y - hy, 1)) / (2 * hy),
-    ];
+  const FRAME = (() => {
+    try {
+      return JSON.parse(canvas.dataset.portrait);
+    } catch {
+      return null;
+    }
+  })();
+
+  let structure = null;
+  if (FRAME && FRAME.src) {
+    const img = new Image();
+    img.decoding = "async";
+    img.addEventListener("load", () => {
+      structure = img;
+      configure(true);
+    });
+    img.src = FRAME.src;
   }
-  function sampleGrid(cx, cy) {
-    gridCols = Math.ceil(width / GRID_PX) + 1;
-    gridRows = Math.ceil(height / GRID_PX) + 1;
-    const size = gridCols * gridRows;
-    if (gridX.length < size) {
-      gridX = new Float64Array(size);
-      gridY = new Float64Array(size);
-    }
-    for (let j = 0; j < gridRows; j++) {
-      const y = Y_CENTER - (j * GRID_PX - cy) / yScale;
-      const row = j * gridCols;
-      for (let i = 0; i < gridCols; i++) {
-        const x = X_CENTER + (i * GRID_PX - cx) / xScale;
-        derivative(x, y, flow);
-        gridX[row + i] = flow[0];
-        gridY[row + i] = flow[1];
-      }
-    }
+
+  function drawStructure() {
+    if (!surfaceCtx || !structure || !FRAME) return;
+    const sx = (FRAME.xHalf - halfX) * (FRAME.width / (2 * FRAME.xHalf));
+    const sy = (FRAME.yHalf - halfY) * (FRAME.height / (2 * FRAME.yHalf));
+    const sw = FRAME.width - 2 * sx;
+    const sh = FRAME.height - 2 * sy;
+    if (!(sw > 0) || !(sh > 0)) return;
+    surfaceCtx.drawImage(structure, sx, sy, sw, sh, 0, 0, width, height);
   }
-  function contour(grid, cells) {
-    const path = new Path2D();
-    const cornerX = [];
-    const cornerY = [];
-    for (let j = 0; j < gridRows - 1; j++) {
-      for (let i = 0; i < gridCols - 1; i++) {
-        const base = j * gridCols + i;
-        const v00 = grid[base];
-        const v10 = grid[base + 1];
-        const v01 = grid[base + gridCols];
-        const v11 = grid[base + gridCols + 1];
-        if (
-          !Number.isFinite(v00) ||
-          !Number.isFinite(v10) ||
-          !Number.isFinite(v01) ||
-          !Number.isFinite(v11)
-        ) {
-          continue;
-        }
-        const x0 = i * GRID_PX;
-        const y0 = j * GRID_PX;
-        cornerX.length = 0;
-        cornerY.length = 0;
-        if (v00 > 0 !== v10 > 0) {
-          cornerX.push(x0 + (GRID_PX * v00) / (v00 - v10));
-          cornerY.push(y0);
-        }
-        if (v10 > 0 !== v11 > 0) {
-          cornerX.push(x0 + GRID_PX);
-          cornerY.push(y0 + (GRID_PX * v10) / (v10 - v11));
-        }
-        if (v01 > 0 !== v11 > 0) {
-          cornerX.push(x0 + (GRID_PX * v01) / (v01 - v11));
-          cornerY.push(y0 + GRID_PX);
-        }
-        if (v00 > 0 !== v01 > 0) {
-          cornerX.push(x0);
-          cornerY.push(y0 + (GRID_PX * v00) / (v00 - v01));
-        }
-        if (cornerX.length < 2) continue;
-        path.moveTo(cornerX[0], cornerY[0]);
-        path.lineTo(cornerX[1], cornerY[1]);
-        if (cornerX.length === 4) {
-          path.moveTo(cornerX[2], cornerY[2]);
-          path.lineTo(cornerX[3], cornerY[3]);
-        }
-        cells.push(base);
-      }
-    }
-    return path;
-  }
-  function nullclineY(x, lowY, highY) {
-    let lo = lowY;
-    let hi = highY;
-    let loValue = field(x, lo, 0);
-    if (!(loValue * field(x, hi, 0) < 0)) return NaN;
-    for (let k = 0; k < 18; k++) {
-      const mid = (lo + hi) * 0.5;
-      const midValue = field(x, mid, 0);
-      if (loValue * midValue <= 0) {
-        hi = mid;
-      } else {
-        lo = mid;
-        loValue = midValue;
-      }
-    }
-    return (lo + hi) * 0.5;
-  }
-  function fastSlope(x, y) {
-    const h = X_HALF * 0.00001;
-    return (field(x + h, y, 0) - field(x - h, y, 0)) / (2 * h);
-  }
-  function refineFold(left, right, lowY, highY) {
-    const leftY = nullclineY(left, lowY, highY);
-    const rightY = nullclineY(right, lowY, highY);
-    if (leftY !== leftY || rightY !== rightY) return NaN;
-    let lo = left;
-    let hi = right;
-    let loSlope = fastSlope(left, leftY);
-    if (!(loSlope * fastSlope(right, rightY) < 0)) return NaN;
-    for (let k = 0; k < 16; k++) {
-      const mid = (lo + hi) * 0.5;
-      const midY = nullclineY(mid, lowY, highY);
-      if (midY !== midY) return NaN;
-      const midSlope = fastSlope(mid, midY);
-      if (loSlope * midSlope <= 0) {
-        hi = mid;
-      } else {
-        lo = mid;
-        loSlope = midSlope;
-      }
-    }
-    return (lo + hi) * 0.5;
-  }
-  function findFolds(cells, folds, cx, cy) {
-    for (const base of cells) {
-      const i = base % gridCols;
-      if (i < 1 || i > gridCols - 3) continue;
-      const left = gridX[base] - gridX[base - 1];
-      const right = gridX[base + 2] - gridX[base + 1];
-      if (left * right >= 0) continue;
-      const j = (base - i) / gridCols;
-      const v00 = gridX[base];
-      const v01 = gridX[base + gridCols];
-      let px = i * GRID_PX;
-      let py =
-        v00 > 0 !== v01 > 0
-          ? j * GRID_PX + (GRID_PX * v00) / (v00 - v01)
-          : j * GRID_PX + GRID_PX * 0.5;
-      const lowY = Y_CENTER - ((j + 2) * GRID_PX - cy) / yScale;
-      const highY = Y_CENTER - ((j - 1) * GRID_PX - cy) / yScale;
-      const xLeft = X_CENTER + ((i - 0.5) * GRID_PX - cx) / xScale;
-      const xRight = X_CENTER + ((i + 1.5) * GRID_PX - cx) / xScale;
-      const exact = refineFold(xLeft, xRight, lowY, highY);
-      if (exact === exact) {
-        const exactY = nullclineY(exact, lowY, highY);
-        if (exactY === exactY) {
-          px = toScreenX(cx, exact);
-          py = toScreenY(cy, exactY);
-        }
-      }
-      let fresh = true;
-      for (let f = 0; f < folds.length; f += 2) {
-        const gapX = folds[f] - px;
-        const gapY = folds[f + 1] - py;
-        if (gapX * gapX + gapY * gapY < 400) fresh = false;
-      }
-      if (fresh) folds.push(px, py);
-    }
-  }
-  function findEquilibria(seeds, cx, cy) {
-    const found = [];
-    for (const seed of seeds) {
-      const i = seed % gridCols;
-      const j = (seed - i) / gridCols;
-      let x = X_CENTER + ((i + 0.5) * GRID_PX - cx) / xScale;
-      let y = Y_CENTER - ((j + 0.5) * GRID_PX - cy) / yScale;
-      let solved = false;
-      for (let n = 0; n < NEWTON_STEPS; n++) {
-        derivative(x, y, flow);
-        const fx = flow[0];
-        const fy = flow[1];
-        if (!Number.isFinite(fx) || !Number.isFinite(fy)) break;
-        const [a, b, c, d] = jacobian(x, y);
-        const det = a * d - b * c;
-        if (!Number.isFinite(det) || Math.abs(det) < 0.000000000001) break;
-        const stepX = (d * fx - b * fy) / det;
-        const stepY = (a * fy - c * fx) / det;
-        x -= stepX;
-        y -= stepY;
-        if (
-          Math.abs(stepX) * xScale < 0.0001 &&
-          Math.abs(stepY) * yScale < 0.0001
-        ) {
-          solved = true;
-          break;
-        }
-      }
-      if (!solved) continue;
-      if (x < X_CENTER - halfX || x > X_CENTER + halfX) continue;
-      if (y < Y_CENTER - halfY || y > Y_CENTER + halfY) continue;
-      let fresh = true;
-      for (let f = 0; f < found.length; f += 2) {
-        const gapX = (found[f] - x) * xScale;
-        const gapY = (found[f + 1] - y) * yScale;
-        if (gapX * gapX + gapY * gapY < 36) fresh = false;
-      }
-      if (fresh) found.push(x, y);
-    }
-    return found;
-  }
-  function drawStructure(cx, cy) {
-    if (!surfaceCtx) return;
-    sampleGrid(cx, cy);
-    const cellsX = [];
-    const cellsY = [];
-    const nullX = contour(gridX, cellsX);
-    const nullY = contour(gridY, cellsY);
-    surfaceCtx.setLineDash([5, 6]);
-    surfaceCtx.lineWidth = 1;
-    surfaceCtx.strokeStyle = "rgba(0, 0, 0, 0.18)";
-    surfaceCtx.stroke(nullY);
-    surfaceCtx.setLineDash([3, 4]);
-    surfaceCtx.lineWidth = 1.2;
-    surfaceCtx.strokeStyle = "rgba(0, 0, 0, 0.3)";
-    surfaceCtx.stroke(nullX);
-    surfaceCtx.setLineDash([]);
-    const crossings = new Set(cellsY);
-    const seeds = [];
-    for (const base of cellsX) {
-      if (
-        crossings.has(base) ||
-        crossings.has(base + 1) ||
-        crossings.has(base - 1) ||
-        crossings.has(base + gridCols) ||
-        crossings.has(base - gridCols)
-      ) {
-        seeds.push(base);
-      }
-    }
-    const rest = findEquilibria(seeds, cx, cy);
-    const separatrix = new Path2D();
-    const trace = new Float64Array(2);
-    let unstableX = X_CENTER;
-    let unstableY = Y_CENTER;
-    let oscillates = false;
-    for (let e = 0; e < rest.length; e += 2) {
-      const x = rest[e];
-      const y = rest[e + 1];
-      const [a, b, c, d] = jacobian(x, y);
-      const det = a * d - b * c;
-      const sum = a + d;
-      if (det < 0) {
-        const rate = Math.sqrt(-det);
-        const nudge = SEPARATRIX_NUDGE * halfX;
-        for (const outward of [1, -1]) {
-          for (const direction of [1, -1]) {
-            const lambda = direction * rate;
-            let vx = b;
-            let vy = lambda - a;
-            if (Math.abs(vx) + Math.abs(vy) < 0.000000000001) {
-              vx = lambda - d;
-              vy = c;
-            }
-            const px = vx * xScale;
-            const py = vy * yScale;
-            const norm = Math.sqrt(px * px + py * py);
-            if (!(norm > 0.000000000001)) continue;
-            trace[0] = x + (outward * nudge * px) / norm;
-            trace[1] = y + (outward * nudge * py) / norm;
-            separatrix.moveTo(toScreenX(cx, trace[0]), toScreenY(cy, trace[1]));
-            for (let n = 0; n < SEPARATRIX_STEPS; n++) {
-              if (!streamStep(trace, direction)) break;
-              const sx = toScreenX(cx, trace[0]);
-              const sy = toScreenY(cy, trace[1]);
-              if (sx < -MARGIN || sx > width + MARGIN) break;
-              if (sy < -MARGIN || sy > height + MARGIN) break;
-              separatrix.lineTo(sx, sy);
-            }
-          }
-        }
-      } else if (sum > 0) {
-        oscillates = true;
-        unstableX = x;
-        unstableY = y;
-      }
-    }
-    if (oscillates) {
-      trace[0] = unstableX + halfX * 0.12;
-      trace[1] = unstableY;
-      let sane = true;
-      for (let n = 0; n < CYCLE_BURN; n++) {
-        step(trace, CYCLE_STEP);
-        if (!Number.isFinite(trace[0])) {
-          sane = false;
-          break;
-        }
-      }
-      if (sane) {
-        const cycle = new Path2D();
-        let lowX = Infinity;
-        let highX = -Infinity;
-        let lowY = Infinity;
-        let highY = -Infinity;
-        cycle.moveTo(toScreenX(cx, trace[0]), toScreenY(cy, trace[1]));
-        for (let n = 0; n < CYCLE_POINTS; n++) {
-          step(trace, CYCLE_STEP);
-          if (!Number.isFinite(trace[0])) break;
-          lowX = Math.min(lowX, trace[0]);
-          highX = Math.max(highX, trace[0]);
-          lowY = Math.min(lowY, trace[1]);
-          highY = Math.max(highY, trace[1]);
-          cycle.lineTo(toScreenX(cx, trace[0]), toScreenY(cy, trace[1]));
-        }
-        if ((highX - lowX) * xScale + (highY - lowY) * yScale > 40) {
-          surfaceCtx.lineWidth = 1.3;
-          surfaceCtx.strokeStyle = "rgba(0, 0, 0, 0.26)";
-          surfaceCtx.stroke(cycle);
-        }
-      }
-    }
-    surfaceCtx.lineWidth = 1.2;
-    surfaceCtx.strokeStyle = "rgba(0, 0, 0, 0.28)";
-    surfaceCtx.stroke(separatrix);
-    const folds = [];
-    findFolds(cellsX, folds, cx, cy);
-    for (let f = 0; f < folds.length; f += 2) {
-      surfaceCtx.beginPath();
-      surfaceCtx.arc(folds[f], folds[f + 1], 3, 0, Math.PI * 2);
-      surfaceCtx.fillStyle = "rgba(0, 0, 0, 0.42)";
-      surfaceCtx.fill();
-    }
-    for (let e = 0; e < rest.length; e += 2) {
-      const [a, b, c, d] = jacobian(rest[e], rest[e + 1]);
-      const settled = a * d - b * c > 0 && a + d < 0;
-      surfaceCtx.beginPath();
-      surfaceCtx.arc(
-        toScreenX(cx, rest[e]),
-        toScreenY(cy, rest[e + 1]),
-        3.4,
-        0,
-        Math.PI * 2,
-      );
-      if (settled) {
-        surfaceCtx.fillStyle = "rgba(0, 0, 0, 0.45)";
-        surfaceCtx.fill();
-      } else {
-        surfaceCtx.lineWidth = 1.3;
-        surfaceCtx.strokeStyle = "rgba(0, 0, 0, 0.45)";
-        surfaceCtx.stroke();
-      }
-    }
-  }
+
   function drawSurface(ratio) {
     if (!surfaceCtx) return;
     surfaceCtx.setTransform(ratio, 0, 0, ratio, 0, 0);
@@ -574,7 +250,7 @@ function baseTier() {
     surfaceCtx.lineWidth = 1;
     surfaceCtx.strokeStyle = "rgba(0, 0, 0, 0.1)";
     surfaceCtx.stroke(lines);
-    drawStructure(cx, cy);
+    drawStructure();
   }
   function configure(clear = false) {
     if (!canvas || !ctx) return;
