@@ -1,3 +1,19 @@
+const CURVE = (() => {
+  const fallback = {
+    a: 5, b: 7, c: 9, phase: 0.7,
+    ramp: ".:-=+*#%@",
+    samples: 4, pitch: 0.5, rest: 0.3,
+    markerRest: 0.6, markerSteps: 240,
+  };
+  const el = document.getElementById("curve");
+  if (!el || !el.dataset.curve) return fallback;
+  try {
+    return Object.assign(fallback, JSON.parse(el.dataset.curve));
+  } catch {
+    return fallback;
+  }
+})();
+
 (() => {
   const links = document.querySelectorAll(".polaroid-link");
 
@@ -107,19 +123,19 @@
   const h = Number(el.dataset.h);
   if (!w || !h) return;
 
-  const A = 5,
-    B = 7,
-    C = 9,
-    PHASE = 0.7;
-  const STEPS = w * h * 8;
-  const RAMP = ".:-=+*#%@";
+  const A = CURVE.a,
+    B = CURVE.b,
+    C = CURVE.c,
+    PHASE = CURVE.phase;
+  const STEPS = w * h * CURVE.samples;
+  const RAMP = CURVE.ramp;
 
   const shade = (depth) => {
     const level = Math.round(((depth + 1) / 2) * (RAMP.length - 1));
     return RAMP[Math.min(RAMP.length - 1, Math.max(0, level))];
   };
 
-  const MAX_PITCH = 0.5;
+  const MAX_PITCH = CURVE.pitch;
 
   const bounds = () => {
     let rx = 0, rz = 0;
@@ -220,7 +236,7 @@
   if (still) return;
 
   const TURN = 2 * Math.PI;
-  const REST = 0.3;
+  const REST = CURVE.rest;
   const SPIN = 0.01;
   const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
 
@@ -330,8 +346,8 @@
 })();
 
 (() => {
-  const REST = 0.6;
-  const STEPS = 240;
+  const REST = CURVE.markerRest;
+  const STEPS = CURVE.markerSteps;
   const SPEED = 0.055;
 
   const still =

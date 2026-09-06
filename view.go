@@ -53,6 +53,7 @@ type view struct {
 	DiscordID    string
 	Year         int
 	Curve        string
+	CurveData    string
 	CurveWidth   int
 	CurveHeight  int
 	Github       githubPreview
@@ -91,6 +92,7 @@ func page() view {
 		DiscordID:    discordID,
 		Year:         time.Now().In(zone()).Year(),
 		Curve:        ASCII(asciiWidth, asciiHeight, backgroundAngle, 0),
+		CurveData:    curveSettings(),
 		CurveWidth:   asciiWidth,
 		CurveHeight:  asciiHeight,
 		Github:       githubMemo.get(),

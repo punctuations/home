@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"math"
 	"strings"
@@ -13,7 +14,30 @@ type curve struct {
 
 var site = curve{A: 5, B: 7, C: 9, Phase: 0.7}
 
-const ramp = ".:-=+*#%@"
+const (
+	ramp           = ".:-=+*#%@"
+	samplesPerCell = 4
+	markerSteps    = 240
+)
+
+func curveSettings() string {
+	body, err := json.Marshal(map[string]any{
+		"a":           site.A,
+		"b":           site.B,
+		"c":           site.C,
+		"phase":       site.Phase,
+		"ramp":        ramp,
+		"samples":     samplesPerCell,
+		"pitch":       maxPitch,
+		"rest":        backgroundAngle,
+		"markerRest":  restAngle,
+		"markerSteps": markerSteps,
+	})
+	if err != nil {
+		return ""
+	}
+	return string(body)
+}
 
 func (c curve) at(t float64) (x, y, z float64) {
 	a, b, k := float64(c.A), float64(c.B), float64(c.C)
@@ -86,7 +110,7 @@ func verticalExtent(pitch float64) float64 {
 }
 
 func Path(a, b, c int, phase, theta float64) string {
-	const steps = 240
+	const steps = markerSteps
 
 	shape := curve{a, b, c, phase}
 	sin, cos := math.Sincos(theta)
@@ -118,7 +142,7 @@ func ASCII(w, h int, yaw, pitch float64) string {
 		depths[i] = math.Inf(-1)
 	}
 
-	steps := w * h * 8
+	steps := w * h * samplesPerCell
 	sinYaw, cosYaw := math.Sincos(yaw)
 	sinPitch, cosPitch := math.Sincos(pitch)
 	tall := verticalExtent(pitch)
