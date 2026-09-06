@@ -576,9 +576,13 @@ footer a:hover {
     font-size: 16px;
   }
 
-  #curve,
   .polaroid {
     display: none;
+  }
+
+  #curve {
+    right: -50%;
+    bottom: 0;
   }
 
   .name {
