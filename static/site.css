@@ -11,8 +11,9 @@
   --gutter: 36px;
   --face-size: 34px;
   --face-lap: 12px;
-  --sans: Karla, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Helvetica, Arial, sans-serif;
+  --sans:
+    Karla, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
   --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 }
 
@@ -288,7 +289,9 @@ a {
   padding: 5px 9px;
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07), 0 12px 32px rgba(0, 0, 0, 0.12);
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.07),
+    0 12px 32px rgba(0, 0, 0, 0.12);
   background: var(--fg);
   color: var(--bg);
   font: 12px/1.2 var(--sans);
@@ -300,7 +303,9 @@ a {
   user-select: none;
   transform: translate(-50%, 4px) scale(0.95);
   transform-origin: center bottom;
-  transition: transform 0.15s ease, opacity 0.1s ease;
+  transition:
+    transform 0.15s ease,
+    opacity 0.1s ease;
   z-index: 10;
 }
 
@@ -318,7 +323,8 @@ a {
 .badpath:focus-visible .badpath-note {
   opacity: 1;
   transform: translate(-50%, 0) scale(1);
-  transition: transform 0.2s cubic-bezier(0.34, 1.2, 0.64, 1),
+  transition:
+    transform 0.2s cubic-bezier(0.34, 1.2, 0.64, 1),
     opacity 0.15s ease;
 }
 
@@ -409,14 +415,18 @@ footer a:hover {
   padding: 8px;
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07), 0 12px 32px rgba(0, 0, 0, 0.12);
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.07),
+    0 12px 32px rgba(0, 0, 0, 0.12);
   background: var(--bg);
   font: 12px/1.2 var(--mono);
   opacity: 0;
   pointer-events: none;
   transform: translate(-50%, -100%) scale(0.95);
   transform-origin: center bottom;
-  transition: transform 0.15s ease, opacity 0.1s ease;
+  transition:
+    transform 0.15s ease,
+    opacity 0.1s ease;
   z-index: 10;
 }
 
@@ -425,7 +435,8 @@ footer a:hover {
   opacity: 1;
   pointer-events: auto;
   transform: translate(-50%, -100%) scale(1);
-  transition: transform 0.2s cubic-bezier(0.34, 1.2, 0.64, 1),
+  transition:
+    transform 0.2s cubic-bezier(0.34, 1.2, 0.64, 1),
     opacity 0.15s ease;
 }
 
@@ -745,11 +756,6 @@ footer a:hover {
     font-size: 11px;
   }
 
-  .masthead-lead {
-    margin-left: -0.6em;
-    margin-right: 0.35em;
-  }
-
   footer {
     gap: 8px 0.7em;
   }
@@ -793,7 +799,8 @@ footer a:hover {
   width: 15px;
   height: 15px;
   margin: auto;
-  transition: opacity 130ms ease,
+  transition:
+    opacity 130ms ease,
     transform 260ms cubic-bezier(0.34, 1.2, 0.64, 1);
 }
 
@@ -878,7 +885,8 @@ footer a:hover {
   margin: 0 0 12px calc(var(--face-lap) * -1);
   border-bottom: 0;
   border-radius: 50%;
-  transition: translate 190ms cubic-bezier(0.22, 0.61, 0.36, 1),
+  transition:
+    translate 190ms cubic-bezier(0.22, 0.61, 0.36, 1),
     z-index 0s 190ms;
   animation: face-in 360ms cubic-bezier(0.34, 1.2, 0.64, 1)
     calc(min(var(--face, 0) * 55ms, 660ms)) backwards;
@@ -899,7 +907,9 @@ footer a:hover {
   box-shadow: 0 0 0 2px var(--bg);
   opacity: 0;
   filter: blur(6px);
-  transition: opacity 420ms ease, filter 420ms ease;
+  transition:
+    opacity 420ms ease,
+    filter 420ms ease;
   transition-delay: calc(min(var(--face, 0) * 55ms, 660ms));
 }
 
@@ -919,7 +929,9 @@ footer a:hover {
 .face:focus-visible {
   z-index: 5;
   translate: 0 -4px;
-  transition: translate 180ms cubic-bezier(0.34, 1.2, 0.64, 1), z-index 0s;
+  transition:
+    translate 180ms cubic-bezier(0.34, 1.2, 0.64, 1),
+    z-index 0s;
 }
 
 .keypath {
@@ -948,32 +960,95 @@ footer a:hover {
   cursor: help;
 }
 
-.masthead-line {
-  margin: 0;
-  line-height: var(--title-lead);
-}
-
-.masthead-lead {
-  margin-left: -1em;
-  margin-right: 0.5em;
-}
-
 .masthead {
+  align-self: flex-start;
+  display: block;
   color: var(--strong);
   font-weight: 700;
+  line-height: var(--title-lead);
   text-decoration: none;
 }
 
-.masthead:hover {
+.masthead:hover span {
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
+}
+
+.masthead-ink {
+  display: inline-block;
+  width: 30px;
+  height: 17px;
+  margin-left: 7px;
+  vertical-align: -2px;
+  overflow: visible;
+  fill: none;
+  stroke: #e34646;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.masthead-ink path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: ink-draw 0.5s ease-out 0.15s both;
+}
+
+.masthead-ink path + path {
+  animation-delay: 0.5s;
+}
+
+@keyframes ink-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 .name.sub {
   margin-top: 0;
   color: var(--dim);
   font-weight: 500;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 7px 13px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.05),
+    0 4px 12px rgba(0, 0, 0, 0.09);
+  background: var(--bg);
+  color: var(--fg);
+  font: 500 13.5px/1 var(--sans);
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.back::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-left: 1.6px solid currentColor;
+  border-bottom: 1.6px solid currentColor;
+  transform: rotate(45deg);
+}
+
+.back:hover {
+  border-color: rgba(0, 0, 0, 0.16);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.06),
+    0 3px 9px rgba(0, 0, 0, 0.07);
+}
+
+.back:active {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.06);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -988,6 +1063,11 @@ footer a:hover {
   .lanyard-copy,
   .lanyard-art-next {
     transition: none;
+  }
+
+  .masthead-ink path {
+    animation: none;
+    stroke-dashoffset: 0;
   }
 
   .contribution-week span,
