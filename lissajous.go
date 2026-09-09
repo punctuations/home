@@ -17,7 +17,7 @@ var site = curve{A: 5, B: 7, C: 9, Phase: 0.7}
 const (
 	ramp           = ".:-=+*#%@"
 	samplesPerCell = 4
-	markerSteps    = 240
+	markerSteps    = 120
 )
 
 func curveSettings() string {
@@ -122,10 +122,10 @@ func Path(a, b, c int, phase, theta float64) string {
 		x := (px*cos + pz*sin) / reach
 
 		if i == 0 {
-			fmt.Fprintf(&d, "M%.3f %.3f", x, -py)
+			fmt.Fprintf(&d, "M%.2f %.2f", x, -py)
 			continue
 		}
-		fmt.Fprintf(&d, "L%.3f %.3f", x, -py)
+		fmt.Fprintf(&d, "L%.2f %.2f", x, -py)
 	}
 	return d.String()
 }

@@ -81,7 +81,7 @@ type githubResponse struct {
 
 func fetchGithubPreview() githubPreview {
 	value := githubPreview{}
-	payload := map[string]string{"query": `{ user(login: "aamtt") { name login bio avatarUrl contributionsCollection { contributionCalendar { weeks { contributionDays { contributionCount } } } } } }`}
+	payload := map[string]string{"query": `{ user(login: "aamtt") { name login bio avatarUrl(size: 96) contributionsCollection { contributionCalendar { weeks { contributionDays { contributionCount } } } } } }`}
 	body, err := json.Marshal(payload)
 	if err == nil {
 		request, requestErr := http.NewRequest(http.MethodPost, "https://api.github.com/graphql", bytes.NewReader(body))

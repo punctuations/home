@@ -3,7 +3,7 @@ const CURVE = (() => {
     a: 5, b: 7, c: 9, phase: 0.7,
     ramp: ".:-=+*#%@",
     samples: 4, pitch: 0.5, rest: 0.3,
-    markerRest: 0.6, markerSteps: 240,
+    markerRest: 0.6, markerSteps: 120,
   };
   const el = document.getElementById("curve");
   if (!el || !el.dataset.curve) return fallback;
@@ -378,8 +378,8 @@ const CURVE = (() => {
       const py = Math.cos(b * t + phase);
       const pz = Math.cos(c * t + 2 * phase);
 
-      const x = ((px * cos + pz * sin) / reach).toFixed(3);
-      d += `${i === 0 ? "M" : "L"}${x} ${(-py).toFixed(3)}`;
+      const x = ((px * cos + pz * sin) / reach).toFixed(2);
+      d += `${i === 0 ? "M" : "L"}${x} ${(-py).toFixed(2)}`;
     }
     return d;
   };

@@ -14,8 +14,26 @@ func cacheFor(settled bool, full string) string {
 	return unsettledCache
 }
 func wantsPlain(w http.ResponseWriter, r *http.Request) bool {
-	w.Header().Set("Vary", "User-Agent")
+	if acceptsHTML(r.Header.Get("Accept")) {
+		w.Header().Set("Vary", "Accept")
+		return false
+	}
+
+	w.Header().Set("Vary", "Accept, User-Agent")
 	return terminal(r.UserAgent())
+}
+func acceptsHTML(accept string) bool {
+	for _, kind := range strings.Split(accept, ",") {
+		if at := strings.IndexByte(kind, ';'); at >= 0 {
+			kind = kind[:at]
+		}
+
+		switch strings.ToLower(strings.TrimSpace(kind)) {
+		case "text/html", "application/xhtml+xml":
+			return true
+		}
+	}
+	return false
 }
 func terminal(agent string) bool {
 	agent = strings.ToLower(agent)
