@@ -1,14 +1,40 @@
 package main
 
 import (
+	"bytes"
 	"crypto/sha256"
 	"encoding/hex"
 	"io/fs"
 	"net/http"
+	"strings"
+	"time"
 )
 
-var assetVersions = hashAssets()
+var assetVersions, stylesheets = buildAssets()
 
+func buildAssets() (map[string]string, map[string][]byte) {
+	versions := hashAssets()
+	sheets := make(map[string][]byte)
+
+	for name := range versions {
+		if !strings.HasSuffix(name, ".css") {
+			continue
+		}
+
+		body, err := staticFS.ReadFile(strings.TrimPrefix(name, "/"))
+		if err != nil {
+			continue
+		}
+
+		sheets[name] = versionedURLs(body, versions)
+	}
+
+	for name, body := range sheets {
+		versions[name] = digest(body)
+	}
+
+	return versions, sheets
+}
 func hashAssets() map[string]string {
 	versions := make(map[string]string)
 
@@ -22,12 +48,24 @@ func hashAssets() map[string]string {
 			return err
 		}
 
-		sum := sha256.Sum256(body)
-		versions["/"+path] = hex.EncodeToString(sum[:])[:10]
+		versions["/"+path] = digest(body)
 		return nil
 	})
 
 	return versions
+}
+func versionedURLs(body []byte, versions map[string]string) []byte {
+	for name, version := range versions {
+		body = bytes.ReplaceAll(body,
+			[]byte(`url("`+name+`")`),
+			[]byte(`url("`+name+`?v=`+version+`")`))
+	}
+
+	return body
+}
+func digest(body []byte) string {
+	sum := sha256.Sum256(body)
+	return hex.EncodeToString(sum[:])[:10]
 }
 func asset(name string) string {
 	path := "/static/" + name
@@ -50,6 +88,12 @@ func assets() http.Handler {
 			w.Header().Set("Cache-Control", "public, max-age=31536000, s-maxage=31536000, immutable")
 		} else {
 			w.Header().Set("Cache-Control", "public, max-age=0, must-revalidate")
+		}
+
+		if sheet, ok := stylesheets[r.URL.Path]; ok {
+			w.Header().Set("Content-Type", "text/css; charset=utf-8")
+			http.ServeContent(w, r, r.URL.Path, time.Time{}, bytes.NewReader(sheet))
+			return
 		}
 
 		files.ServeHTTP(w, r)
